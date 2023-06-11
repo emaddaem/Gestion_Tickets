@@ -28,6 +28,11 @@ class User extends Authenticatable
         'entreprise_id'
     ];
 
+    public function entreprise()
+    {
+        return $this->belongsTo(Entreprise::class);
+    }
+
     public function tickets()
     {
         if ($this->role === 'client') {

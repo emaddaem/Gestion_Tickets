@@ -17,4 +17,9 @@ class Entreprise extends Model
         'description',
         'url_personnalisee'
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

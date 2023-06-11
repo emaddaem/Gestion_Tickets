@@ -13,4 +13,9 @@ class Statut extends Model
         'nom'
     ];
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
 }
