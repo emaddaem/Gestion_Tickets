@@ -1,57 +1,47 @@
-<head>
-    <title>Afficher un ticket</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/fontawesome-5.15.4/css/all.min.css') }}">
+@extends('base')
+@section('title', 'Afficher un ticket')
+@section('content')
 
-    <style>
-        .move-right {
-            text-align: right;
-        }
+<style>
+    .move-right {
+        text-align: right;
+    }
 
-        .card-body a {
-            text-decoration: none;
-        }
+    .card-body a {
+        text-decoration: none;
+    }
 
-        /* .container {
+    /* .container {
             width: 1200px;
         } */
 
-        .left_side {
-            border: 2px #eee solid;
-            padding: 10px 15px;
-            margin-right: 96px;
-            max-height: 715px;
-        }
+    .left_side {
+        border: 2px #eee solid;
+        padding: 10px 15px;
+        margin-right: 96px;
+        max-height: 715px;
+    }
 
-        .info_agent {
-            border: 2px #eee solid;
-            padding: 10px 15px;
-        }
+    .info_agent {
+        border: 2px #eee solid;
+        padding: 10px 15px;
+    }
 
-        .right_side {
-            border: 2px #eee solid;
-            padding: 10px 15px;
-        }
+    .right_side {
+        border: 2px #eee solid;
+        padding: 10px 15px;
+    }
 
-        .line {
-            border: 1px #eee solid;
-            margin-bottom: 10px;
-        }
+    .line {
+        border: 1px #eee solid;
+        margin-bottom: 10px;
+    }
 
-        .message,
-        .date {
-            margin-left: 23px;
-        }
-    </style>
-</head>
-
-@include('includes.navbar')
+    .message,
+    .date {
+        margin-left: 23px;
+    }
+</style>
 
 <div class="container mx-auto my-3 col-10">
     <h3 class="mb-3"><strong>A propos du ticket</strong></h3>
@@ -208,3 +198,5 @@
         });
     }
 </script>
+
+@endsection

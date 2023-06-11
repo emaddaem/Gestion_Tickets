@@ -1,14 +1,6 @@
-<head>
-    <title>Liste des status</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/fontawesome-5.15.4/css/all.min.css') }}">
-
+@extends('base')
+@section('title', 'Liste des admins')
+@section('content')
     <style>
         .move-right {
             text-align: right;
@@ -18,15 +10,12 @@
             text-align: right;
         }
     </style>
-</head>
-
-@include('includes.navbar')
 
 <div class="container mt-5">
-    <h2 class="mt-3">Liste des status</h2>
+    <h2 class="mt-3">Liste des admins</h2>
 
     <div class="creer-ticket">
-        <a href="/admin/ajouter_status" class="btn btn-success mt-2">Ajouter un status</a>
+        <a href="/admin/ajouter_admin" class="btn btn-success mt-2">Ajouter un admin</a>
     </div>
 
     <div class="container mt-3">
@@ -37,6 +26,9 @@
                         <tr>
                             <th>Id</th>
                             <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
                             <th>Crée a</th>
                             <th>Mise a jour a</th>
                             <th>Actions</th>
@@ -45,11 +37,14 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Status 1</td>
+                            <td>Nom 1</td>
+                            <td>Prénom 1</td>
+                            <td>0655555</td>
+                            <td>admin1@gmail.com</td>
                             <td>05/05/2023</td>
                             <td>05/05/2023</td>
                             <td>
-                                <a href="/admin/modifier_status" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+                                <a href="/admin/admin" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
 
                                 <form action="" method="POST" class="d-inline">
                                     @csrf
@@ -65,3 +60,5 @@
         </div>
     </div>
 </div>
+
+@endsection

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\entreprise;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,8 +20,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('telephone');
             $table->string('adresse')->nullable();
-            $table->enum('role', ['admin', 'agent', 'client']);
-            $table->unsignedBigInteger('entreprise_id');
+            $table->enum('role', ['admin', 'agent', 'client'])->default('client');
+            $table->enum('estClient', ['oui', 'non'])->default('oui');
+            $table->unsignedBigInteger('entreprise_id')->nullable();
             $table->foreign('entreprise_id')->references('id')->on('entreprises');
             $table->rememberToken();
             $table->timestamps();

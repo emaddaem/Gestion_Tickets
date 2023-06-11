@@ -1,14 +1,8 @@
-<head>
-    <title>Ajouter un status</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+@extends('base')
+@section('title', 'Ajouter un status')
+@section('content')
 
-    <style>
+<style>
         .move-right {
             text-align: right;
         }
@@ -17,9 +11,6 @@
             text-align: right;
         }
     </style>
-</head>
-
-@include('includes.navbar')
 
 <div class="container">
     <h1 class="text text-center">Ajouter un status</h1>
@@ -40,3 +31,4 @@
         </form>
     </div>
 </div>
+@endsection

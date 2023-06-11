@@ -1,25 +1,17 @@
-<head>
-    <title>Liste des tickets</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+@extends('base')
+@section('title', 'Tickets spécifiques')
+@section('content')
 
-    <style>
-        .move-right {
-            text-align: right;
-        }
+<style>
+    .move-right {
+        text-align: right;
+    }
 
-        .creer-ticket {
-            text-align: right;
-        }
-    </style>
-</head>
+    .creer-ticket {
+        text-align: right;
+    }
+</style>
 
-@include('includes.navbar')
 
 <div class="container mt-5">
     <h2 class="mt-3">Liste des tickets</h2>
@@ -27,12 +19,12 @@
     <div class="creer-ticket">
         <a href="/admin/creer_ticket" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
-    
+
     <div class="container mt-3">
         <div class="row">
             <div class="col">
-                <table class="table mt-3">
-                    <thead>
+                <table class="table table-striped">
+                    <thead class="bg-light">
                         <tr>
                             <th>Id</th>
                             <th>Sujet</th>
@@ -56,13 +48,15 @@
                             <td>05/05/2023</td>
                             <td>05/05/2023</td>
                             <td>
-                                <a href="/admin/ticket" class="btn btn-dark btn-sm mb-1">Afficher</a>
-                                
-                                <a href="/admin/modifier_ticket" class="btn btn-success btn-sm mb-1">Modifier</a>
-                                
-                                <form action="" method="POST">
+                                <a href="/admin/ticket" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
+
+                                <a href="/admin/modifier_ticket" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+
+                                <form action="" method="POST" class="d-inline">
                                     @csrf
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </form>
                             </td>
                         </tr>
@@ -72,3 +66,4 @@
         </div>
     </div>
 </div>
+@endsection

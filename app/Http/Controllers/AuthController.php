@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (auth()->attempt($credentials)) {
-            return redirect()->intended('/');
+            return redirect()->intended('/client/dashboard');
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
@@ -39,15 +39,19 @@ class AuthController extends Controller
     public function customRegistration(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'nom' => 'required',
+            'prenom' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'telephone' => 'required'
         ]);
 
         User::create([
-            'name' => $request->get('name'),
+            'nom' => $request->get('nom'),
+            'prenom' => $request->get('prenom'),
             'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password'))
+            'password' => Hash::make($request->get('password')),
+            'telephone' => $request->get('telephone')
         ]);
 
         return redirect()->intended('/');

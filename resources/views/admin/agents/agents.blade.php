@@ -1,32 +1,22 @@
-<head>
-    <title>Liste des clients</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/fontawesome-5.15.4/css/all.min.css') }}">
+@extends('base')
+@section('title', 'Liste des agents')
+@section('content')
 
-    <style>
-        .move-right {
-            text-align: right;
-        }
+<style>
+    .move-right {
+        text-align: right;
+    }
 
-        .creer-ticket {
-            text-align: right;
-        }
-    </style>
-</head>
-
-@include('includes.navbar')
+    .creer-ticket {
+        text-align: right;
+    }
+</style>
 
 <div class="container mt-5">
-    <h2 class="mt-3">Liste des clients</h2>
+    <h2 class="mt-3">Liste des agents</h2>
 
     <div class="creer-ticket">
-        <a href="/admin/ajouter_client" class="btn btn-success mt-2">Ajouter un client</a>
+        <a href="/admin/ajouter_agent" class="btn btn-success mt-2">Ajouter un agent</a>
     </div>
 
     <div class="container mt-3">
@@ -40,8 +30,8 @@
                             <th>Prénom</th>
                             <th>Téléphone</th>
                             <th>Email</th>
-                            <th>Créé à</th>
-                            <th>Mise à jour à</th>
+                            <th>Crée a</th>
+                            <th>Mise a jour a</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -51,11 +41,11 @@
                             <td>Nom 1</td>
                             <td>Prénom 1</td>
                             <td>0655555</td>
-                            <td>client1@gmail.com</td>
+                            <td>agent1@gmail.com</td>
                             <td>05/05/2023</td>
                             <td>05/05/2023</td>
                             <td>
-                                <a href="/admin/client" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
+                                <a href="/admin/agent" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
 
                                 <form action="" method="POST" class="d-inline">
                                     @csrf
@@ -71,3 +61,5 @@
         </div>
     </div>
 </div>
+
+@endsection

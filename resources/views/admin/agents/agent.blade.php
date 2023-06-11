@@ -1,23 +1,16 @@
-<head>
-    <title>Afficher un agent</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+@extends('base')
+@section('title', 'Afficher un agent')
+@section('content')
 
-    <style>
-        .move-right {
-            text-align: right;
-        }
+<style>
+    .move-right {
+        text-align: right;
+    }
 
-        .card-body a {
-            text-decoration: none;
-        }
-    </style>
-</head>
+    .card-body a {
+        text-decoration: none;
+    }
+</style>
 
 @include('includes.navbar')
 
@@ -114,3 +107,5 @@
         </div>
     </div>
 </div>
+
+@endsection
