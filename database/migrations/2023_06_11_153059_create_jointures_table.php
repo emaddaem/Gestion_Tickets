@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('entreprises', function (Blueprint $table) {
+        Schema::create('jointures', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('email')->unique()->nullable();;
-            $table->string('telephone')->nullable();
-            $table->string('adresse')->nullable();
-            $table->string('description')->nullable();
-            $table->string('url_personnalisee');
+            $table->string('chemin');
+            $table->unsignedBigInteger('ticket_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('entreprises');
+        Schema::dropIfExists('jointures');
     }
 };

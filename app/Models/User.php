@@ -25,8 +25,17 @@ class User extends Authenticatable
         'telephone',
         'adresse',
         'role',
-        'estClient',
+        'entreprise_id'
     ];
+
+    public function tickets()
+    {
+        if ($this->role === 'client') {
+            return $this->hasMany(Ticket::class, 'user_id');
+        } elseif ($this->role === 'agent') {
+            return $this->hasMany(Ticket::class, 'agent_id');
+        }
+    }
 
     /**
      * The attributes that should be hidden for serialization.

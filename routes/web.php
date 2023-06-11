@@ -8,10 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/miawdelete', function () {
-    return view('miawdelete');
-});
-
 //Route d'admin
 Route::prefix('admin')->group(function () {
 
@@ -104,12 +100,16 @@ Route::prefix('client')->group(function () {
         return view('client/index');
     });
 
+    Route::get('/profil', function () {
+        return view('client/profil');
+    });
+
     Route::get('/ticket', function () {
-        return view('client/ticket');
+        return view('client/tickets/ticket');
     });
 
     Route::get('/creer_ticket', function () {
-        return view('client/creer_ticket');
+        return view('client/tickets/creer_ticket');
     });
 });
 

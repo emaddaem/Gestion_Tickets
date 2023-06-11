@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Entreprise extends Model
+class Statut extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nom',
-        'email',
-        'telephone',
-        'adresse',
-        'description',
-        'url_personnalisee'
+        'nom'
     ];
+
 }
