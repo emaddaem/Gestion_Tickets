@@ -14,8 +14,6 @@ class Ticket extends Model
         'description',
         'user_id',
         'agent_id',
-        'statut_id',
-        'priorite_id',
         'categorie_id'
     ];
 
@@ -28,6 +26,10 @@ class Ticket extends Model
     public function agent()
     {
         return $this->belongsTo(User::class, 'agent_id');
+    }
+
+    public function categorie(){
+        return $this->belongsTo(Categorie::class);
     }
     
 }

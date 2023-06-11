@@ -18,17 +18,17 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('agent_id')->nullable();
-            // $table->unsignedBigInteger('statut_id')->nullable();
-            // $table->unsignedBigInteger('priorite_id')->nullable();
-            // $table->unsignedBigInteger('categorie_id')->nullable();
+            $table->unsignedBigInteger('statut_id')->nullable();
+            $table->unsignedBigInteger('priorite_id')->nullable();
+            $table->unsignedBigInteger('categorie_id')->nullable();
 
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('agent_id')->references('id')->on('users');
-            // $table->foreign('statut_id')->references('id')->on('statuts');
-            // $table->foreign('priorite_id')->references('id')->on('priorites');
-            // $table->foreign('categorie_id')->references('id')->on('categories');
+            $table->foreign('statut_id')->references('id')->on('statuts');
+            $table->foreign('priorite_id')->references('id')->on('priorites');
+            $table->foreign('categorie_id')->references('id')->on('categories');
         });
     }
 
