@@ -118,15 +118,24 @@ Route::prefix('client')->group(function () {
 
     Route::get('/profil', [ProfilController::class, 'index'])->name('client.profil');
 
-    Route::put('/profil/modifier', [ProfilController::class, 'update'])->name('client.update');
+    Route::put('/profil/modifier', [ProfilController::class, 'update'])->name('client.update_profil');
 
     Route::get('/tickets', [TicketController::class, 'tickets'])->name('client.tickets');
 
-    Route::get('/ticket', [TicketController::class, 'show'])->name('client.ticket');
+    Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('client.ticket');
 
     Route::get('/creer_ticket', [TicketController::class, 'create'])->name('client.creer_ticket');
 
-    Route::post('/client/creer', [TicketController::class, 'store'])->name('client.enregistrer_ticket');
+    Route::post('/enregistrer_ticket', [TicketController::class, 'store'])->name('client.enregistrer_ticket');
+
+    Route::get('/modifier_ticket/{id}', [TicketController::class, 'edit'])->name('client.modifier_ticket');
+
+    Route::put('/actualiser_ticket/{id}', [TicketController::class, 'update'])->name('client.update_ticket');
+
+    Route::get('/supprimer_ticket/{id}', [TicketController::class, 'destroy'])->name('client.supprimer_ticket');
+
+
+    Route::post('/creer_commentaire/{id}', [TicketController::class, 'createCommentaire'])->name('client.creer_commentaire');
 
 
     Route::get('/statuts', [StatutController::class, 'statuts'])->name('client.statuts');

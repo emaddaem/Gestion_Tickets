@@ -49,13 +49,15 @@
 
     <div class="container mt-3">
         <div class="row">
+            @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table class="table table-striped">
                     <thead class="bg-light">
                         <tr>
                             <th>Id</th>
                             <th>Sujet</th>
-                            <th>Status</th>
+                            <th>Catégorie</th>
+                            <th>Statut</th>
                             <th>Agent assigné</th>
                             <th>Créé a</th>
                             <th>Mise a jour a</th>
@@ -63,71 +65,34 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($tickets as $ticket)
                         <tr>
-                            <td>1</td>
-                            <td>Ticket 1</td>
-                            <td>En attente</td>
-                            <td>Agent 1</td>
-                            <td>05/05/2023</td>
-                            <td>05/05/2023</td>
+                            <td>111</td>
+                            <td>{{$ticket->titre}}</td>
+                            <td>{{$ticket->categorie->nom}}</td>
+                            <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
+                            <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
+                            <td>{{$ticket->created_at}}</td>
+                            <td>{{$ticket->updated_at}}</td>
                             <td>
-                                <a href="/client/ticket" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
+                                <a href="{{route('client.ticket', $ticket->id)}}" class="btn-sm">
+                                    <i class="fa fa-eye fa-lg"></i>
+                                </a>
 
-                                <a href="/client/modifier_ticket" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+                                <a href="{{route('client.modifier_ticket', $ticket->id)}}" class="btn-sm">
+                                    <i class="fa fa-edit fa-lg"></i>
+                                </a>
 
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </form>
+                                <a href="{{route('client.supprimer_ticket', $ticket->id)}}" class="btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td>Ticket 1</td>
-                            <td>En attente</td>
-                            <td>Agent 1</td>
-                            <td>05/05/2023</td>
-                            <td>05/05/2023</td>
-                            <td>
-                                <a href="/client/ticket" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
-
-                                <a href="/client/modifier_ticket" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
-
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </form>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td>Ticket 1</td>
-                            <td>En attente</td>
-                            <td>Agent 1</td>
-                            <td>05/05/2023</td>
-                            <td>05/05/2023</td>
-                            <td>
-                                <a href="/client/ticket" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
-
-                                <a href="/client/modifier_ticket" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
-
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </form>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+            @endif
         </div>
     </div>
 </div>

@@ -42,6 +42,11 @@ class User extends Authenticatable
         }
     }
 
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
+    
     /**
      * The attributes that should be hidden for serialization.
      *

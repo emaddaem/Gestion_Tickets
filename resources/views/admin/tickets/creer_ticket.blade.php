@@ -74,8 +74,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="images[]">Ajouter des fichiers</label>
-                <input type="file" class="form-control" name="images[]" multiple>
+                <label for="jointures[]">Ajouter des fichiers</label>
+                <input type="file" class="form-control" name="jointures[]" multiple>
             </div>
 
             <div class="mb-3">

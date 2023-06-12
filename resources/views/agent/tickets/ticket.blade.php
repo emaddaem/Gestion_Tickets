@@ -169,34 +169,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    function showImage(src) {
-        var modal = document.createElement('div');
-        modal.style.position = 'fixed';
-        modal.style.top = '0';
-        modal.style.left = '0';
-        modal.style.width = '100%';
-        modal.style.height = '100%';
-        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        modal.style.zIndex = '999';
-        modal.style.display = 'flex';
-        modal.style.justifyContent = 'center';
-        modal.style.alignItems = 'center';
-
-        var img = document.createElement('img');
-        img.src = src;
-        img.style.maxWidth = '90%';
-        img.style.maxHeight = '90%';
-        img.style.objectFit = 'contain';
-        modal.appendChild(img);
-
-        document.body.appendChild(modal);
-
-        modal.addEventListener('click', function() {
-            modal.parentElement.removeChild(modal);
-        });
-    }
-</script>
-
 @endsection
