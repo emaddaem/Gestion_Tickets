@@ -28,13 +28,13 @@
                     <a class="nav-link" href="{{route('client.creer_ticket')}}">Créer un ticket</a>
                 </li>
 
-                <li class="nav-item dropdown" style="margin-left: 620px;">
+                <!-- <li class="nav-item dropdown" style="margin-left: 620px;">
                     <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Paramètres</a>
                     <div class="dropdown-menu" aria-labelledby="optionsDropdown">
-                        <a class="dropdown-item" href="{{route('client.categories')}}">Liste des catégories</a>
+                        <a class="dropdown-item" href="#">Liste des catégories</a>
                         <a class="dropdown-item" href="">Autres</a>
                     </div>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('client.profil')}}">Profil</a>

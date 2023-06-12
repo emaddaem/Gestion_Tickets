@@ -126,11 +126,13 @@ Route::group(['middleware' => 'client'], function () {
         Route::put('/profil/modifier', [ProfilController::class, 'update'])->name('client.update_profil');
 
         Route::get('/tickets', [TicketController::class, 'tickets'])->name('client.tickets');
-
+        
         Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('client.ticket');
-
+        
         Route::get('/creer_ticket', [TicketController::class, 'create'])->name('client.creer_ticket');
-
+        
+        Route::get('/tickets_specifiques/{id}', [TicketController::class, 'tickets_specifiques'])->name('client.tickets_specifiques');
+        
         Route::post('/enregistrer_ticket', [TicketController::class, 'store'])->name('client.enregistrer_ticket');
 
         Route::get('/modifier_ticket/{id}', [TicketController::class, 'edit'])->name('client.modifier_ticket');
@@ -138,7 +140,6 @@ Route::group(['middleware' => 'client'], function () {
         Route::put('/actualiser_ticket/{id}', [TicketController::class, 'update'])->name('client.update_ticket');
 
         Route::get('/supprimer_ticket/{id}', [TicketController::class, 'destroy'])->name('client.supprimer_ticket');
-
 
         Route::post('/creer_commentaire/{id}', [TicketController::class, 'createCommentaire'])->name('client.creer_commentaire');
 
@@ -150,10 +151,6 @@ Route::group(['middleware' => 'client'], function () {
         Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('client.priorites');
 
         Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('client.ajouter_priorite');
-
-        Route::get('/categories', [CategorieController::class, 'categories'])->name('client.categories');
-
-        Route::get('/ajouter_categorie', [CategorieController::class, 'create'])->name('client.ajouter_categorie');
     });
 });
 

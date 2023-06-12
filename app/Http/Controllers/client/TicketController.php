@@ -34,7 +34,7 @@ class TicketController extends Controller
 
         $tickets = Ticket::where('user_id', $user_id)->latest()->limit(4)->get();
 
-        return view('client/index', compact('tickets', 'nombreNouveauxTickets', 'nombreTicketsResolus'));
+        return view('client/index', compact('tickets', 'nombreNouveauxTickets', 'nombreTicketsResolus', 'id_statut_nouveau', 'id_statut_resolu'));
     }
 
     public function tickets()
@@ -45,6 +45,18 @@ class TicketController extends Controller
 
         return view('client/tickets/tickets', compact('tickets'));
     }
+
+    public function tickets_specifiques(string $id)
+    {
+        $user_id = auth()->user()->id;
+
+        $tickets = Ticket::where('user_id', $user_id)->where('statut_id', $id)->get();
+
+        $nom_statut = Statut::where('id', $id)->value('nom');
+
+        return view('client/tickets/tickets_specifiques', compact('tickets', 'nom_statut'));
+    }
+
 
     public function create()
     {
