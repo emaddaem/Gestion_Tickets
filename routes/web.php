@@ -118,6 +118,8 @@ Route::prefix('client')->group(function () {
 
     Route::get('/profil', [ProfilController::class, 'index'])->name('client.profil');
 
+    Route::put('/profil/modifier', [ProfilController::class, 'update'])->name('client.update');
+
     Route::get('/tickets', [TicketController::class, 'tickets'])->name('client.tickets');
     
     Route::get('/ticket', [TicketController::class, 'show'])->name('client.ticket');

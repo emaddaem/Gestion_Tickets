@@ -12,37 +12,76 @@
     }
 </style>
 
+@if (session()->has('success'))
+<div class="alert alert-success">
+    <h5>{{ session()->get('success') }}</h5>
+</div>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <div class="container my-5">
 
     <h1 class="text text-center">Page de profil</h1>
 
-    <form action="" method="post" id="entreprise" enctype="multipart/form-data">
+    <form action="{{ route('client.update') }}" method="post" id="entreprise" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        
+
         <div class="form-group mb-3">
-            <label for="logo">Logo</label>
-            <input type="file" class="form-control" name="logo" id="logo" disabled>
+            <label>Nom de l'entreprise:</label>
+            <input class="form-control" value="{{$user->entreprise->nom}}" disabled>
+            <!-- <p>{{$user->entreprise->nom}}</p> -->
         </div>
         <div class="form-group mb-3">
-            <label for="nom">Nom de l'entreprise:</label>
-            <input type="text" class="form-control" name="nom" id="nom" value="Nom 1" placeholder="Saisissez le nom de l'entreprise" disabled>
+            <label for="prenom">Prénom:</label>
+            <input type="text" class="form-control" name="prenom" id="prenom" value="{{$user->prenom}}" placeholder="Saisissez votre prénom" disabled>
+        </div>
+        <div class="form-group mb-3">
+            <label for="nom">Nom:</label>
+            <input type="text" class="form-control" name="nom" id="nom" value="{{$user->nom}}" placeholder="Saisissez votre nom" disabled>
         </div>
         <div class="form-group mb-3">
             <label for="email">Adresse e-mail:</label>
-            <input type="email" class="form-control" name="email" id="email" value="email" placeholder="Saisissez l'email" disabled>
+            <input type="email" class="form-control" name="email" id="email" value="{{$user->email}}" placeholder="Saisissez l'email" disabled>
         </div>
         <div class="form-group mb-3">
             <label for="telephone">Téléphone:</label>
-            <input type="text" class="form-control" name="telephone" id="telephone" value="tel" placeholder="Saisissez le numéro de téléphone" disabled>
+            <input type="text" class="form-control" name="telephone" id="telephone" value="{{$user->telephone}}" placeholder="Saisissez le numéro de téléphone" disabled>
         </div>
         <div class="form-group mb-3">
             <label for="adresse">Adresse:</label>
-            <input type="text" class="form-control" name="adresse" id="adresse" value="Adresse" placeholder="Saisissez l'adresse" disabled>
+            <input type="text" class="form-control" name="adresse" id="adresse" value="{{$user->adresse}}" placeholder="Saisissez l'adresse" disabled>
         </div>
+
+        <div class="my-3" id="div-changement-mot-de-passe" style="display:none">
+            <h4>Changer le mot de passe</h4>
+            <div class="form-group mb-3">
+                <label for="actual_password">Mot de passe actuel :</label>
+                <input type="password" class="form-control" name="actual_password" id="actual_password" placeholder="Saisissez votre mot de passe actuel" disabled>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password">Nouveau mot de passe :</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Saisissez votre nouveau mot de passe" disabled>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password_confirmation">Confirmer le mot de passe :</label>
+                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Saisissez votre nouveau mot de passe à nouveau" disabled>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary mt-3" id="btn-changer-mot-de-passe" onclick="activerChangementMotDePasse()">Changer le mot de passe</button>
         <button type="button" class="btn btn-primary mt-3" id="modifier" onclick="activerChamps('entreprise')">Modifier</button>
         <input type="submit" class="btn btn-success mt-3" id="enregistrer" value="Enregistrer" disabled>
+
     </form>
 
     <div class="row mt-5">
@@ -137,6 +176,18 @@
     function activerChangementMotDePasse() {
         document.getElementById('div-changement-mot-de-passe').style.display = 'block';
     }
+</script>
+
+<script>
+    var boutonModifier = document.getElementById("modifier");
+    var champsSaisie = document.querySelectorAll(
+        "input[type='text'], input[type='email'], input[type='password'], input[type='submit']");
+
+    boutonModifier.addEventListener("click", function() {
+        for (var i = 0; i < champsSaisie.length; i++) {
+            champsSaisie[i].removeAttribute("disabled");
+        }
+    });
 </script>
 
 @endsection
