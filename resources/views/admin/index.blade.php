@@ -16,6 +16,9 @@
     }
 </style>
 
+@include('includes.success')
+@include('includes.errors')
+
 <div class="container">
     <h3 class="mt-5"><strong>Tableau de board</strong></h3>
 

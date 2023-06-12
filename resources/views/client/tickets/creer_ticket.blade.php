@@ -1,6 +1,7 @@
 @extends('base')
 @section('title', 'Créer un ticket')
 @section('content')
+
 <style>
     .move-right {
         text-align: right;
@@ -11,15 +12,18 @@
     }
 </style>
 
+@include('includes.success')
+@include('includes.errors')
+
 <div class="container">
     <h1 class="text text-center mb-3">Créer un ticket</h1>
 
     <div class="form-group">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{{route('client.enregistrer_ticket')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="sujet">Sujet</label>
-                <input type="text" class="form-control" name="sujet">
+                <label for="titre">Titre</label>
+                <input type="text" class="form-control" name="titre">
             </div>
 
             <div class="mb-3">
@@ -31,8 +35,8 @@
                 <label for="categorie">Catégorie</label>
                 <select name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
                     <option>Sélectionnez la catégorie</option>
-                    @foreach (['catégorie 1', 'catégorie 2', 'catégorie 3', 'catégorie 4'] as $option)
-                    <option value="{{ $option }}">{{ $option }}</option>
+                    @foreach ($categories as $categorie)
+                    <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
                     @endforeach
                 </select>
             </div>

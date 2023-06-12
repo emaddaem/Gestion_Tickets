@@ -12,6 +12,9 @@
     }
 </style>
 
+@include('includes.success')
+@include('includes.errors')
+
 <div class="container">
     <h1 class="text text-center">Ajouter un client</h1>
 

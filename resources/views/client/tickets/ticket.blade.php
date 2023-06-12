@@ -1,6 +1,7 @@
 @extends('base')
 @section('title', 'Ticket')
 @section('content')
+
 <style>
     .move-right {
         text-align: right;

@@ -12,6 +12,8 @@
     }
 </style>
 
+@include('includes.success')
+@include('includes.errors')
 
 <div class="container my-5">
 

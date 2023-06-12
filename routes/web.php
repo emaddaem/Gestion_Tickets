@@ -28,23 +28,23 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function () {
 
     Route::get('/dashboard', [TicketController_admin::class, 'index'])->name('admin.index');
-    
+
     Route::get('/profil', [ProfilController_admin::class, 'index'])->name('admin.profil');
-    
+
 
     Route::get('/tickets', [TicketController_admin::class, 'tickets'])->name('admin.tickets');
-    
+
     Route::get('/tickets_specifiques', [TicketController_admin::class, 'tickets_specifiques'])->name('admin.tickets_specifiques');
 
     Route::get('/ticket', [TicketController_admin::class, 'show'])->name('admin.ticket');
-    
+
     Route::get('/creer_ticket', [TicketController_admin::class, 'create'])->name('admin.creer_ticket');
-    
+
     Route::get('/modifier_ticket', [ClientController_admin::class, 'edit'])->name('admin.modifier_ticket');
 
 
     Route::get('/clients', [ClientController_admin::class, 'clients'])->name('admin.clients');
-    
+
     Route::get('/ajouter_client', [ClientController_admin::class, 'create'])->name('admin.ajouter_client');
 
 
@@ -56,7 +56,7 @@ Route::prefix('admin')->group(function () {
 
 
     Route::get('/admins', [AdminController_admin::class, 'admins'])->name('admin.admins');
-    
+
     Route::get('/ajouter_admin', [AdminController_admin::class, 'create'])->name('admin.ajouter_admin');
 
 
@@ -64,7 +64,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/statuts', [StatutController::class, 'statuts'])->name('admin.statuts');
 
     Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('admin.ajouter_statuts');
-    
+
     Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('admin.priorites');
 
     Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('admin.ajouter_priorite');
@@ -78,30 +78,30 @@ Route::prefix('admin')->group(function () {
 Route::prefix('agent')->group(function () {
 
     Route::get('/dashboard', [TicketController_agent::class, 'index'])->name('agent.index');
-    
+
     Route::get('/profil', [ProfilController_agent::class, 'index'])->name('agent.profil');
-    
+
 
     Route::get('/tickets', [TicketController_agent::class, 'tickets'])->name('agent.tickets');
-    
+
     Route::get('/tickets_specifiques', [TicketController_agent::class, 'tickets_specifiques'])->name('agent.tickets_specifiques');
 
     Route::get('/ticket', [TicketController_agent::class, 'show'])->name('agent.ticket');
-    
+
     Route::get('/creer_ticket', [TicketController_agent::class, 'create'])->name('agent.creer_ticket');
-    
+
     Route::get('/modifier_ticket', [TicketController_agent::class, 'edit'])->name('agent.modifier_ticket');
 
 
     // Route::get('/clients', [ClientController_agent::class, 'clients'])->name('agent.clients');
-    
+
     Route::get('/ajouter_client', [ClientController_agent::class, 'create'])->name('agent.ajouter_client');
 
 
     // Route::get('/statuts', [StatutController::class, 'statuts'])->name('agent.statuts');
 
     // Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('agent.ajouter_statuts');
-    
+
     // Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('agent.priorites');
 
     // Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('agent.ajouter_priorite');
@@ -121,16 +121,18 @@ Route::prefix('client')->group(function () {
     Route::put('/profil/modifier', [ProfilController::class, 'update'])->name('client.update');
 
     Route::get('/tickets', [TicketController::class, 'tickets'])->name('client.tickets');
-    
+
     Route::get('/ticket', [TicketController::class, 'show'])->name('client.ticket');
 
     Route::get('/creer_ticket', [TicketController::class, 'create'])->name('client.creer_ticket');
 
-    
+    Route::post('/client/creer', [TicketController::class, 'store'])->name('client.enregistrer_ticket');
+
+
     Route::get('/statuts', [StatutController::class, 'statuts'])->name('client.statuts');
 
     Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('client.ajouter_statuts');
-    
+
     Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('client.priorites');
 
     Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('client.ajouter_priorite');

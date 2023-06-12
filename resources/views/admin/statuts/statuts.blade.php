@@ -2,15 +2,16 @@
 @section('title', 'Liste des status')
 @section('content')
 
-    <style>
-        .move-right {
-            text-align: right;
-        }
+<style>
+    .move-right {
+        text-align: right;
+    }
 
-        .creer-ticket {
-            text-align: right;
-        }
-    </style>
+    .creer-ticket {
+        text-align: right;
+    }
+</style>
+
 
 <div class="container mt-5">
     <h2 class="mt-3">Liste des status</h2>

@@ -12,21 +12,8 @@
     }
 </style>
 
-@if (session()->has('success'))
-<div class="alert alert-success">
-    <h5>{{ session()->get('success') }}</h5>
-</div>
-@endif
-
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+@include('includes.success')
+@include('includes.errors')
 
 <div class="container my-5">
 

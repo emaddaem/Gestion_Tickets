@@ -2,15 +2,15 @@
 @section('title', 'Liste des tickets')
 @section('content')
 
-    <style>
-        .move-right {
-            text-align: right;
-        }
+<style>
+    .move-right {
+        text-align: right;
+    }
 
-        .creer-ticket {
-            text-align: right;
-        }
-    </style>
+    .creer-ticket {
+        text-align: right;
+    }
+</style>
 
 
 <div class="container mt-5">
@@ -19,7 +19,7 @@
     <div class="creer-ticket">
         <a href="/admin/creer_ticket" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
-    
+
     <div class="container mt-3">
         <div class="row">
             <div class="col">

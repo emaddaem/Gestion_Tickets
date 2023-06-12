@@ -1,15 +1,18 @@
 @extends('base')
 @section('title', 'Liste des admins')
 @section('content')
-    <style>
-        .move-right {
-            text-align: right;
-        }
+<style>
+    .move-right {
+        text-align: right;
+    }
 
-        .creer-ticket {
-            text-align: right;
-        }
-    </style>
+    .creer-ticket {
+        text-align: right;
+    }
+</style>
+
+@include('includes.success')
+@include('includes.errors')
 
 <div class="container mt-5">
     <h2 class="mt-3">Liste des admins</h2>

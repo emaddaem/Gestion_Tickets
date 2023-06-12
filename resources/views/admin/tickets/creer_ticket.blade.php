@@ -2,16 +2,18 @@
 @section('title', 'Créer un ticket')
 @section('content')
 
-    <style>
-        .move-right {
-            text-align: right;
-        }
+<style>
+    .move-right {
+        text-align: right;
+    }
 
-        .creer-ticket {
-            text-align: right;
-        }
+    .creer-ticket {
+        text-align: right;
+    }
+</style>
 
-    </style>
+@include('includes.success')
+@include('includes.errors')
 
 <div class="container">
     <h1 class="text text-center">Créer un ticket</h1>
