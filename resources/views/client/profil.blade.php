@@ -19,7 +19,7 @@
 
     <h1 class="text text-center">Page de profil</h1>
 
-    <form action="{{ route('client.update') }}" method="post" id="entreprise" enctype="multipart/form-data">
+    <form action="{{ route('client.update_profil') }}" method="post" id="entreprise" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

@@ -25,130 +25,136 @@ Route::get('/', function () {
 });
 
 // Route d'admin
-Route::prefix('admin')->group(function () {
+Route::group(['middleware' => 'admin'], function () {
+    Route::prefix('admin')->group(function () {
 
-    Route::get('/dashboard', [TicketController_admin::class, 'index'])->name('admin.index');
+        Route::get('/dashboard', [TicketController_admin::class, 'index'])->name('admin.index');
 
-    Route::get('/profil', [ProfilController_admin::class, 'index'])->name('admin.profil');
-
-
-    Route::get('/tickets', [TicketController_admin::class, 'tickets'])->name('admin.tickets');
-
-    Route::get('/tickets_specifiques', [TicketController_admin::class, 'tickets_specifiques'])->name('admin.tickets_specifiques');
-
-    Route::get('/ticket', [TicketController_admin::class, 'show'])->name('admin.ticket');
-
-    Route::get('/creer_ticket', [TicketController_admin::class, 'create'])->name('admin.creer_ticket');
-
-    Route::get('/modifier_ticket', [ClientController_admin::class, 'edit'])->name('admin.modifier_ticket');
+        Route::get('/profil', [ProfilController_admin::class, 'index'])->name('admin.profil');
 
 
-    Route::get('/clients', [ClientController_admin::class, 'clients'])->name('admin.clients');
+        Route::get('/tickets', [TicketController_admin::class, 'tickets'])->name('admin.tickets');
 
-    Route::get('/ajouter_client', [ClientController_admin::class, 'create'])->name('admin.ajouter_client');
+        Route::get('/tickets_specifiques', [TicketController_admin::class, 'tickets_specifiques'])->name('admin.tickets_specifiques');
 
+        Route::get('/ticket', [TicketController_admin::class, 'show'])->name('admin.ticket');
 
-    Route::get('/agents', [AgentController_admin::class, 'agents'])->name('admin.agents');
+        Route::get('/creer_ticket', [TicketController_admin::class, 'create'])->name('admin.creer_ticket');
 
-    Route::get('/agent', [AgentController_admin::class, 'show'])->name('admin.agent');
-
-    Route::get('/ajouter_agent', [AgentController_admin::class, 'create'])->name('admin.ajouter_agent');
-
-
-    Route::get('/admins', [AdminController_admin::class, 'admins'])->name('admin.admins');
-
-    Route::get('/ajouter_admin', [AdminController_admin::class, 'create'])->name('admin.ajouter_admin');
+        Route::get('/modifier_ticket', [ClientController_admin::class, 'edit'])->name('admin.modifier_ticket');
 
 
+        Route::get('/clients', [ClientController_admin::class, 'clients'])->name('admin.clients');
 
-    Route::get('/statuts', [StatutController::class, 'statuts'])->name('admin.statuts');
+        Route::get('/ajouter_client', [ClientController_admin::class, 'create'])->name('admin.ajouter_client');
 
-    Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('admin.ajouter_statuts');
 
-    Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('admin.priorites');
+        Route::get('/agents', [AgentController_admin::class, 'agents'])->name('admin.agents');
 
-    Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('admin.ajouter_priorite');
+        Route::get('/agent', [AgentController_admin::class, 'show'])->name('admin.agent');
 
-    Route::get('/categories', [CategorieController::class, 'categories'])->name('admin.categories');
+        Route::get('/ajouter_agent', [AgentController_admin::class, 'create'])->name('admin.ajouter_agent');
 
-    Route::get('/ajouter_categorie', [CategorieController::class, 'create'])->name('admin.ajouter_categorie');
+
+        Route::get('/admins', [AdminController_admin::class, 'admins'])->name('admin.admins');
+
+        Route::get('/ajouter_admin', [AdminController_admin::class, 'create'])->name('admin.ajouter_admin');
+
+
+
+        Route::get('/statuts', [StatutController::class, 'statuts'])->name('admin.statuts');
+
+        Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('admin.ajouter_statuts');
+
+        Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('admin.priorites');
+
+        Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('admin.ajouter_priorite');
+
+        Route::get('/categories', [CategorieController::class, 'categories'])->name('admin.categories');
+
+        Route::get('/ajouter_categorie', [CategorieController::class, 'create'])->name('admin.ajouter_categorie');
+    });
 });
 
-// Route d'agent
-Route::prefix('agent')->group(function () {
+Route::group(['middleware' => 'agent'], function () {
+    // Route d'agent
+    Route::prefix('agent')->group(function () {
 
-    Route::get('/dashboard', [TicketController_agent::class, 'index'])->name('agent.index');
+        Route::get('/dashboard', [TicketController_agent::class, 'index'])->name('agent.index');
 
-    Route::get('/profil', [ProfilController_agent::class, 'index'])->name('agent.profil');
-
-
-    Route::get('/tickets', [TicketController_agent::class, 'tickets'])->name('agent.tickets');
-
-    Route::get('/tickets_specifiques', [TicketController_agent::class, 'tickets_specifiques'])->name('agent.tickets_specifiques');
-
-    Route::get('/ticket', [TicketController_agent::class, 'show'])->name('agent.ticket');
-
-    Route::get('/creer_ticket', [TicketController_agent::class, 'create'])->name('agent.creer_ticket');
-
-    Route::get('/modifier_ticket', [TicketController_agent::class, 'edit'])->name('agent.modifier_ticket');
+        Route::get('/profil', [ProfilController_agent::class, 'index'])->name('agent.profil');
 
 
-    // Route::get('/clients', [ClientController_agent::class, 'clients'])->name('agent.clients');
+        Route::get('/tickets', [TicketController_agent::class, 'tickets'])->name('agent.tickets');
 
-    Route::get('/ajouter_client', [ClientController_agent::class, 'create'])->name('agent.ajouter_client');
+        Route::get('/tickets_specifiques', [TicketController_agent::class, 'tickets_specifiques'])->name('agent.tickets_specifiques');
+
+        Route::get('/ticket', [TicketController_agent::class, 'show'])->name('agent.ticket');
+
+        Route::get('/creer_ticket', [TicketController_agent::class, 'create'])->name('agent.creer_ticket');
+
+        Route::get('/modifier_ticket', [TicketController_agent::class, 'edit'])->name('agent.modifier_ticket');
 
 
-    // Route::get('/statuts', [StatutController::class, 'statuts'])->name('agent.statuts');
+        // Route::get('/clients', [ClientController_agent::class, 'clients'])->name('agent.clients');
 
-    // Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('agent.ajouter_statuts');
+        Route::get('/ajouter_client', [ClientController_agent::class, 'create'])->name('agent.ajouter_client');
 
-    // Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('agent.priorites');
 
-    // Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('agent.ajouter_priorite');
+        // Route::get('/statuts', [StatutController::class, 'statuts'])->name('agent.statuts');
 
-    // Route::get('/categories', [CategorieController::class, 'categories'])->name('agent.categories');
+        // Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('agent.ajouter_statuts');
 
-    // Route::get('/ajouter_categorie', [CategorieController::class, 'create'])->name('agent.ajouter_categorie');
+        // Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('agent.priorites');
+
+        // Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('agent.ajouter_priorite');
+
+        // Route::get('/categories', [CategorieController::class, 'categories'])->name('agent.categories');
+
+        // Route::get('/ajouter_categorie', [CategorieController::class, 'create'])->name('agent.ajouter_categorie');
+    });
 });
 
 // Route du client
-Route::prefix('client')->group(function () {
+Route::group(['middleware' => 'client'], function () {
+    Route::prefix('client')->group(function () {
 
-    Route::get('/dashboard', [TicketController::class, 'index'])->name('client.index');
+        Route::get('/dashboard', [TicketController::class, 'index'])->name('client.index');
 
-    Route::get('/profil', [ProfilController::class, 'index'])->name('client.profil');
+        Route::get('/profil', [ProfilController::class, 'index'])->name('client.profil');
 
-    Route::put('/profil/modifier', [ProfilController::class, 'update'])->name('client.update_profil');
+        Route::put('/profil/modifier', [ProfilController::class, 'update'])->name('client.update_profil');
 
-    Route::get('/tickets', [TicketController::class, 'tickets'])->name('client.tickets');
+        Route::get('/tickets', [TicketController::class, 'tickets'])->name('client.tickets');
 
-    Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('client.ticket');
+        Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('client.ticket');
 
-    Route::get('/creer_ticket', [TicketController::class, 'create'])->name('client.creer_ticket');
+        Route::get('/creer_ticket', [TicketController::class, 'create'])->name('client.creer_ticket');
 
-    Route::post('/enregistrer_ticket', [TicketController::class, 'store'])->name('client.enregistrer_ticket');
+        Route::post('/enregistrer_ticket', [TicketController::class, 'store'])->name('client.enregistrer_ticket');
 
-    Route::get('/modifier_ticket/{id}', [TicketController::class, 'edit'])->name('client.modifier_ticket');
+        Route::get('/modifier_ticket/{id}', [TicketController::class, 'edit'])->name('client.modifier_ticket');
 
-    Route::put('/actualiser_ticket/{id}', [TicketController::class, 'update'])->name('client.update_ticket');
+        Route::put('/actualiser_ticket/{id}', [TicketController::class, 'update'])->name('client.update_ticket');
 
-    Route::get('/supprimer_ticket/{id}', [TicketController::class, 'destroy'])->name('client.supprimer_ticket');
-
-
-    Route::post('/creer_commentaire/{id}', [TicketController::class, 'createCommentaire'])->name('client.creer_commentaire');
+        Route::get('/supprimer_ticket/{id}', [TicketController::class, 'destroy'])->name('client.supprimer_ticket');
 
 
-    Route::get('/statuts', [StatutController::class, 'statuts'])->name('client.statuts');
+        Route::post('/creer_commentaire/{id}', [TicketController::class, 'createCommentaire'])->name('client.creer_commentaire');
 
-    Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('client.ajouter_statuts');
 
-    Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('client.priorites');
+        Route::get('/statuts', [StatutController::class, 'statuts'])->name('client.statuts');
 
-    Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('client.ajouter_priorite');
+        Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('client.ajouter_statuts');
 
-    Route::get('/categories', [CategorieController::class, 'categories'])->name('client.categories');
+        Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('client.priorites');
 
-    Route::get('/ajouter_categorie', [CategorieController::class, 'create'])->name('client.ajouter_categorie');
+        Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('client.ajouter_priorite');
+
+        Route::get('/categories', [CategorieController::class, 'categories'])->name('client.categories');
+
+        Route::get('/ajouter_categorie', [CategorieController::class, 'create'])->name('client.ajouter_categorie');
+    });
 });
 
 //Auth Routes

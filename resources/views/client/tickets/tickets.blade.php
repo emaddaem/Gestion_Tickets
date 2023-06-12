@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Page d\'acceuil')
+@section('title', 'Liste des tickets')
 @section('content')
 
 <style>
@@ -7,46 +7,17 @@
         text-align: right;
     }
 
-    .card-body a {
-        text-decoration: none;
+    .creer-ticket {
+        text-align: right;
     }
 </style>
 
-@include('includes.success')
-@include('includes.errors')
+<div class="container mt-3">
+    <h2 class="mt-3">Liste des tickets</h2>
 
-<div class="container my-5">
-    <h3 class="mt-5"><strong>Tableau de board</strong></h3>
-
-    <div class="row mt-5">
-        <div class="col-md-3">
-            <div class="card" style="width: 19rem;">
-                <div class="card-body">
-                    <a href="/tickets_specifiques">
-                        <h5 class="card-title">Nouveaux tickets</h5>
-                    </a>
-                    <h5 class="card-title move-right"><strong>{{$nombreNouveauxTickets}}</strong></h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-
-        <div class="col-md-3">
-            <div class="card" style="width: 19rem;">
-                <div class="card-body">
-                    <a href="/tickets_specifiques">
-                        <h5 class="card-title">Tickets résolus</h5>
-                    </a>
-                    <h5 class="card-title move-right"><strong>{{$nombreTicketsResolus}}</strong></h5>
-                </div>
-            </div>
-        </div>
+    <div class="creer-ticket">
+        <a href="{{route('client.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
-
-    <h4 class="mt-5 mb-4"><strong>Mes tickets récentes :</strong></h4>
-
     <div class="container mt-3">
         <div class="row">
             @if ($tickets && $tickets->count() > 0)
@@ -96,5 +67,4 @@
         </div>
     </div>
 </div>
-
 @endsection

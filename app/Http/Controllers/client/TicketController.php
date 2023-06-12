@@ -10,6 +10,7 @@ use App\Models\Ticket;
 use App\Models\Categorie;
 use App\Models\Jointure;
 use App\Models\Commentaire;
+use App\Models\Statut;
 
 
 class TicketController extends Controller
@@ -21,14 +22,26 @@ class TicketController extends Controller
 
     public function index()
     {
-        $tickets = Ticket::all();
+        $user_id = auth()->user()->id;
 
-        return view('client/index', compact('tickets'));
+        $tickets = Ticket::where('user_id', $user_id)->get();
+
+        $id_statut_nouveau = Statut::where('nom', 'Nouveau')->value('id');
+        $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
+
+        $nombreNouveauxTickets = $tickets->where('statut_id', $id_statut_nouveau)->count();
+        $nombreTicketsResolus = $tickets->where('statut_id', $id_statut_resolu)->count();
+
+        $tickets = Ticket::where('user_id', $user_id)->latest()->limit(4)->get();
+
+        return view('client/index', compact('tickets', 'nombreNouveauxTickets', 'nombreTicketsResolus'));
     }
 
     public function tickets()
     {
-        $tickets = Ticket::all();
+        $user_id = auth()->user()->id;
+
+        $tickets = Ticket::where('user_id', $user_id)->get();
 
         return view('client/tickets/tickets', compact('tickets'));
     }
@@ -57,6 +70,8 @@ class TicketController extends Controller
             'categorie_id' => $validatedData['categorie'],
             'user_id' => $user_id,
         ]);
+        $id_statut_nouveau = Statut::where('nom', 'Nouveau')->value('id');
+        $ticket->statut_id = $id_statut_nouveau;
         $ticket->save();
 
         if ($request->file('jointures')) {
