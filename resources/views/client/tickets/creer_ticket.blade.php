@@ -34,7 +34,7 @@
             <div class="mb-3">
                 <label for="categorie">Catégorie</label>
                 <select name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
-                    <option>Sélectionnez la catégorie</option>
+                    <option value="">Sélectionnez la catégorie</option>
                     @foreach ($categories as $categorie)
                     <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
                     @endforeach

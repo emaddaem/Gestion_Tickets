@@ -32,16 +32,21 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/profil', [ProfilController_admin::class, 'index'])->name('admin.profil');
 
-
         Route::get('/tickets', [TicketController_admin::class, 'tickets'])->name('admin.tickets');
 
         Route::get('/tickets_specifiques', [TicketController_admin::class, 'tickets_specifiques'])->name('admin.tickets_specifiques');
 
-        Route::get('/ticket', [TicketController_admin::class, 'show'])->name('admin.ticket');
+        Route::get('/ticket/{id}', [TicketController_admin::class, 'show'])->name('admin.ticket');
 
         Route::get('/creer_ticket', [TicketController_admin::class, 'create'])->name('admin.creer_ticket');
 
-        Route::get('/modifier_ticket', [ClientController_admin::class, 'edit'])->name('admin.modifier_ticket');
+        Route::post('/enregistrer_ticket', [TicketController_admin::class, 'store'])->name('admin.enregistrer_ticket');
+
+
+        Route::get('/modifier_ticket/{id}', [TicketController_admin::class, 'edit'])->name('admin.modifier_ticket');
+
+        Route::get('/supprimer_ticket/{id}', [TicketController_admin::class, 'destroy'])->name('admin.supprimer_ticket');
+
 
 
         Route::get('/clients', [ClientController_admin::class, 'clients'])->name('admin.clients');

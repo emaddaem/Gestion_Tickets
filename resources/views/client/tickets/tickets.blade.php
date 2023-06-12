@@ -43,8 +43,8 @@
                             <td>{{$ticket->categorie->nom}}</td>
                             <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
                             <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
-                            <td>{{$ticket->created_at}}</td>
-                            <td>{{$ticket->updated_at}}</td>
+                            <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
+                            <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                             <td>
                                 <a href="{{route('client.ticket', $ticket->id)}}" class="btn-sm">
                                     <i class="fa fa-eye fa-lg"></i>

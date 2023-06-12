@@ -61,6 +61,7 @@ class TicketController extends Controller
     public function create()
     {
         $categories = Categorie::all();
+
         return view('client/tickets/creer_ticket', compact('categories'));
     }
 
@@ -71,7 +72,7 @@ class TicketController extends Controller
 
         $validatedData = $request->validate([
             "titre" => "required",
-            "description" => "required",
+            "description" => "sometimes",
             "categorie" => "required",
             "jointures[]"
         ]);
@@ -122,7 +123,6 @@ class TicketController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $user_id = auth()->user()->id;
         $ticket = Ticket::find($id);
 
         $validatedData = $request->validate([
