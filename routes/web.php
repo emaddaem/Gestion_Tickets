@@ -9,15 +9,16 @@ use App\Http\Controllers\admin\ClientController as ClientController_admin;
 use App\Http\Controllers\admin\AgentController as AgentController_admin;
 use App\Http\Controllers\admin\AdminController as AdminController_admin;
 
-use App\Http\Controllers\admin\TicketController as TicketController_agent;
-use App\Http\Controllers\admin\ProfilController as ProfilController_agent;
+use App\Http\Controllers\agent\TicketController as TicketController_agent;
+use App\Http\Controllers\agent\ProfilController as ProfilController_agent;
+
+use App\Http\Controllers\client\TicketController;
+use App\Http\Controllers\client\ProfilController;
 
 use App\Http\Controllers\StatutController;
 use App\Http\Controllers\PrioriteController;
 use App\Http\Controllers\CategorieController;
 
-use App\Http\Controllers\client\TicketController;
-use App\Http\Controllers\client\ProfilController;
 
 Route::get('/', function () {
     return view('welcome');
