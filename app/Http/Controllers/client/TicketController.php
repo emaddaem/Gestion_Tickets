@@ -5,18 +5,29 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Ticket;
+
+
 class TicketController extends Controller
 {
     
     public function index()
     {
-        //
+        $tickets = Ticket::all();
+
+        return view('client/index', compact('tickets'));
     }
 
+    public function tickets()
+    {
+        $tickets = Ticket::all();
+
+        return view('client/tickets/tickets', compact('tickets'));
+    }
     
     public function create()
     {
-        //
+        return view('client/tickets/creer_ticket');
     }
 
     
@@ -26,9 +37,9 @@ class TicketController extends Controller
     }
 
     
-    public function show(string $id)
+    public function show()//string $id
     {
-        //
+        return view('client/tickets/ticket');
     }
 
     

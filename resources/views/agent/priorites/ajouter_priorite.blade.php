@@ -1,0 +1,34 @@
+@extends('base')
+@section('title', 'Ajouter une priorité')
+@section('content')
+
+    <style>
+        .move-right {
+            text-align: right;
+        }
+
+        .creer-ticket {
+            text-align: right;
+        }
+    </style>
+
+<div class="container">
+    <h1 class="text text-center">Ajouter une priorité</h1>
+
+    <div class="form-group">
+        <form action="" method="post" enctype="multipart/form-data">
+            @csrf
+
+            <div class="mb-3">
+                <label for="nom">Nom</label>
+                <input type="text" class="form-control" name="nom">
+            </div>
+            
+            <div>
+                <input type="submit" value="Ajouter" class="btn btn-primary mt-3">
+                <a href="javascript:history.back()" class="btn btn-danger mt-3">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection

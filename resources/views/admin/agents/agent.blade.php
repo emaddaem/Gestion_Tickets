@@ -12,8 +12,6 @@
     }
 </style>
 
-@include('includes.navbar')
-
 <div class="container">
     <h3 class="text-center mt-5"><strong>Informations sur l'agent</strong></h3>
 
@@ -22,7 +20,7 @@
         <div class="col-md-3">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="/tickets_specifiques">
+                    <a href="{{route('admin.tickets_specifiques')}}">
                         <h5 class="card-title">Tickets ouverts</h5>
                     </a>
                     <h5 class="card-title move-right"><strong>0</h5></strong>
@@ -33,7 +31,7 @@
         <div class="col-md-3">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="/tickets_specifiques">
+                    <a href="{{route('admin.tickets_specifiques')}}">
                         <h5 class="card-title">Tickets résolus</h5>
                     </a>
                     <h5 class="card-title move-right"><strong>0</h5></strong>
@@ -44,7 +42,7 @@
         <div class="col-md-3">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="/tickets_specifiques">
+                    <a href="{{route('admin.tickets_specifiques')}}">
                         <h5 class="card-title">Autre</h5>
                     </a>
                     <h5 class="card-title move-right"><strong>0</h5></strong>
@@ -55,7 +53,7 @@
         <div class="col-md-3">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="/tickets_specifiques">
+                    <a href="{{route('admin.tickets_specifiques')}}">
                         <h5 class="card-title">Autre</h5>
                     </a>
                     <h5 class="card-title move-right"><strong>0</h5></strong>
@@ -91,13 +89,15 @@
                             <td>05/05/2023</td>
                             <td>05/05/2023</td>
                             <td>
-                                <a href="/afficher_ticket" class="btn btn-dark btn-sm mb-1">Afficher</a>
+                                <a href="{{route('admin.ticket')}}" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
 
-                                <a href="/modifier_ticket" class="btn btn-success btn-sm mb-1">Modifier</a>
+                                <a href="{{route('admin.modifier_ticket')}}" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
 
-                                <form action="" method="POST">
+                                <form action="" method="POST" class="d-inline">
                                     @csrf
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </form>
                             </td>
                         </tr>
