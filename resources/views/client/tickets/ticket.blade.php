@@ -103,7 +103,7 @@
             </div>
             <div class="line"></div>
 
-            <div class="">
+            <div>
                 <a href="{{route('client.supprimer_ticket', $ticket->id)}}" class="btn btn-danger btn-sm">Supprimer</a>
                 <a href="{{route('client.modifier_ticket', $ticket->id)}}" class="btn btn-success btn-sm">Modifier</a>
             </div>

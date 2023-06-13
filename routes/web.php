@@ -46,8 +46,9 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::put('/actualiser_ticket/{id}', [TicketController_admin::class, 'update'])->name('admin.update_ticket');
 
-
         Route::get('/supprimer_ticket/{id}', [TicketController_admin::class, 'destroy'])->name('admin.supprimer_ticket');
+
+        Route::post('/creer_commentaire/{id}', [TicketController_admin::class, 'createCommentaire'])->name('admin.creer_commentaire');
 
 
 

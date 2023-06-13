@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\Jointure;
 use App\Models\Priorite;
 use App\Models\Statut;
@@ -25,23 +26,22 @@ class TicketController extends Controller
     {
         $tickets = Ticket::whereDate('created_at', Carbon::today())->get();
 
+        $id_statut_nouveau = Statut::where('nom', 'Nouveau')->value('id');
+        $id_statut_traitement = Statut::where('nom', 'En cours de traitement')->value('id');
+        $id_statut_attente = Statut::where('nom', 'En attente')->value('id');
+        $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
+
         $statuts_data = [
-            'id_statut_nouveau' => Statut::where('nom', 'Nouveau')->value('id'),
-            'id_statut_traitement' => Statut::where('nom', 'En cours de traitement')->value('id'),
-            'id_statut_attente' => Statut::where('nom', 'En attente')->value('id'),
-            'id_statut_resolu' => Statut::where('nom', 'Résolu')->value('id'),
-    
-            'nombreNouveauxTickets' => Ticket::where('statut_id', 'id_statut_nouveau')->count(),
-            'nombreTicketsTraitement' => Ticket::where('statut_id', 'id_statut_traitement')->count(),
-            'nombreTicketsattente' => Ticket::where('statut_id', 'id_statut_attente')->count(),
-            'nombreTicketsResolus' => Ticket::where('statut_id', 'id_statut_resolu')->count(),
+            'id_statut_nouveau' => $id_statut_nouveau,
+            'id_statut_traitement' => $id_statut_traitement,
+            'id_statut_attente' => $id_statut_attente,
+            'id_statut_resolu' => $id_statut_resolu,
+
+            'nombreNouveauxTickets' => Ticket::where('statut_id', $id_statut_nouveau)->count(),
+            'nombreTicketsTraitement' => Ticket::where('statut_id', $id_statut_traitement)->count(),
+            'nombreTicketsattente' => Ticket::where('statut_id', $id_statut_attente)->count(),
+            'nombreTicketsResolus' => Ticket::where('statut_id', $id_statut_resolu)->count(),
         ];
-
-        // $id_statut_nouveau = Statut::where('nom', 'Nouveau')->value('id');
-        // $id_statut_traitement = Statut::where('nom', 'En cours de traitement')->value('id');
-        // $id_statut_attente = Statut::where('nom', 'En attente')->value('id');
-        // $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
-
         // $nombreNouveauxTickets = $tickets->where('statut_id', $id_statut_nouveau)->count();
         // $nombreTicketsTraitement = $tickets->where('statut_id', $id_statut_traitement)->count();
         // $nombreTicketsattente = $tickets->where('statut_id', $id_statut_attente)->count();
@@ -196,5 +196,25 @@ class TicketController extends Controller
         $ticket->delete();
 
         return redirect()->route('admin.index')->with('success', "Votre ticket a été supprimé avec succès");
+    }
+
+    public function createCommentaire(Request $request, string $id)
+    {
+        $user_id = auth()->user()->id;
+        $ticket = Ticket::find($id);
+
+        $validated_data = $request->validate([
+            "contenu" => "required|max:300",
+        ]);
+
+        $commentaire = new Commentaire([
+            'contenu' => $validated_data['contenu'],
+            'user_id' => $user_id,
+            'ticket_id' => $ticket->id,
+        ]);
+
+        $commentaire->save();
+
+        return redirect()->back()->with('success', "Votre message a été envoyé");
     }
 }
