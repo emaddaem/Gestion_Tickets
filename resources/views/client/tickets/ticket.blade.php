@@ -32,8 +32,14 @@
         padding: 10px 15px;
     }
 
+    .right_side .commentaires {
+        max-height: 600px;
+        overflow-y: scroll;
+    }
+
     .line {
         border: 1px #eee solid;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 
@@ -117,47 +123,69 @@
                     <h5 class="d-inline"><strong>Vous</strong></h5>
                 </div>
 
-                <i><h6 class="date">{{$ticket->created_at->format('d-m-Y H:i')}}</p></i>
+                <i>
+                    <h6 class="date">{{$ticket->created_at->format('d-m-Y H:i')}}</h6>
+                </i>
 
                 <h5 class="message">{{$ticket->description}}</h5>
             </div>
 
             <div class="line"></div>
 
-            @if($ticket->commentaires)
-            @foreach($ticket->commentaires as $commentaire)
-            @if($commentaire->user && $commentaire->user->role == 'agent')
-            <div class="agent">
-                <div>
-                    <i class="fas fa-user-tie fa-lg mb-2"></i>
-                    <h5 class="d-inline"><strong> {{$ticket->agent->prenom}}</strong></h5>
+            <div class="commentaires">
+                @if($ticket->commentaires)
+                @foreach($ticket->commentaires as $commentaire)
+                @if($commentaire->user && $commentaire->user->role == 'agent')
+                <div class="agent">
+                    <div>
+                        <i class="fas fa-user-tie fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong> {{$ticket->agent->prenom}}</strong></h5>
+                    </div>
+
+                    <i>
+                        <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
+                    </i>
+
+                    <p class="message">{{$commentaire->contenu}}</p>
                 </div>
 
-                <i><h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</p></i>
+                <div class="line"></div>
+                @elseif($commentaire->user && $commentaire->user->role == 'client')
+                <div class="client">
+                    <div>
+                        <i class="fas fa-user fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong>Vous</strong></h5>
+                    </div>
+                    <i>
+                        <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
+                    </i>
 
-                <p class="message">{{$commentaire->contenu}}</p>
-            </div>
-
-            <div class="line"></div>
-            @elseif($commentaire->user && $commentaire->user->role == 'client')
-            <div class="client">
-                <div>
-                    <i class="fas fa-user fa-lg mb-2"></i>
-                    <h5 class="d-inline"><strong>Vous</strong></h5>
+                    <p class="message">{{$commentaire->contenu}}</p>
                 </div>
-                <i>
-                    <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
-                </i>
 
-                <p class="message">{{$commentaire->contenu}}</p>
+                <div class="line"></div>
+
+                @elseif($commentaire->user && $commentaire->user->role == 'admin')
+                <div class="agent">
+                    <div>
+                        <i class="fas fa-user-tie fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong> Administrateur</strong></h5>
+                    </div>
+
+                    <i>
+                        <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
+                    </i>
+
+                    <p class="message">{{$commentaire->contenu}}</p>
+                </div>
+
+                <div class="line"></div>
+                @endif
+                @endforeach
+                @else
+                <h1>pas de commentaires</h1>
+                @endif
             </div>
-
-            <div class="line"></div>
-            @endif
-            @endforeach
-            @else
-            <h1>pas de comments</h1>
-            @endif
             <div class="form-group">
                 <form action="{{route('client.creer_commentaire', $ticket->id)}}" method="post" enctype="multipart/form-data">
                     @csrf

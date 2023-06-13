@@ -12,6 +12,9 @@
     }
 </style>
 
+@include('includes.success')
+@include('includes.errors')
+
 <div class="container mt-5">
     <h2 class="mt-3">Liste des tickets</h2>
 
@@ -21,6 +24,7 @@
 
     <div class="container mt-3">
         <div class="row">
+            @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table class="table mt-3">
                     <thead>
@@ -37,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($tickets as $ticket)
+                        @foreach ($tickets as $ticket)
                         <tr>
                             <td>1</td>
                             <td>{{$ticket->titre}}</td>
@@ -65,6 +69,7 @@
                     </tbody>
                 </table>
             </div>
+            @endif
         </div>
     </div>
 </div>

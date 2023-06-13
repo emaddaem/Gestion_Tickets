@@ -30,6 +30,7 @@ class TicketController extends Controller
         $id_statut_traitement = Statut::where('nom', 'En cours de traitement')->value('id');
         $id_statut_attente = Statut::where('nom', 'En attente')->value('id');
         $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
+        $id_statut_non = Statut::where('nom', 'Nouveau')->value('id');
 
         $statuts_data = [
             'id_statut_nouveau' => $id_statut_nouveau,
@@ -41,6 +42,8 @@ class TicketController extends Controller
             'nombreTicketsTraitement' => Ticket::where('statut_id', $id_statut_traitement)->count(),
             'nombreTicketsattente' => Ticket::where('statut_id', $id_statut_attente)->count(),
             'nombreTicketsResolus' => Ticket::where('statut_id', $id_statut_resolu)->count(),
+
+            'nombreTicketsNonAssignés' => Ticket::where('agent_id', null)->count(),
         ];
         // $nombreNouveauxTickets = $tickets->where('statut_id', $id_statut_nouveau)->count();
         // $nombreTicketsTraitement = $tickets->where('statut_id', $id_statut_traitement)->count();
@@ -57,11 +60,18 @@ class TicketController extends Controller
         return view('admin/tickets/tickets', compact('tickets'));
     }
 
-    public function tickets_specifiques()
+    public function tickets_specifiques(string $id)
     {
-        $tickets = Ticket::all();
+        if ($id !== '0') {
+            $tickets = Ticket::where('statut_id', $id)->get();
 
-        return view('admin/tickets/tickets_specifiques', compact('tickets'));
+            $nom_statut = Statut::where('id', $id)->value('nom');
+        } else {
+            $tickets = Ticket::where('agent_id', null)->get();
+            $nom_statut = null;
+        }
+
+        return view('admin/tickets/tickets_specifiques', compact('tickets', 'nom_statut'));
     }
 
 
@@ -195,7 +205,7 @@ class TicketController extends Controller
         }
         $ticket->delete();
 
-        return redirect()->route('admin.index')->with('success', "Votre ticket a été supprimé avec succès");
+        return redirect()->route('admin.index')->with('success', "Le ticket a été supprimé avec succès");
     }
 
     public function createCommentaire(Request $request, string $id)

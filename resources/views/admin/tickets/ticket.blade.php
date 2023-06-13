@@ -28,8 +28,14 @@
         padding: 10px 15px;
     }
 
+    .right_side .commentaires{
+        max-height: 600px;
+        overflow-y: scroll;
+    }
+
     .line {
         border: 1px #eee solid;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 
@@ -38,6 +44,9 @@
         margin-left: 23px;
     }
 </style>
+
+@include('includes.success')
+@include('includes.errors')
 
 <div class="container mx-auto my-3 col-10">
     <h3 class="mb-3"><strong>A propos du ticket</strong></h3>
@@ -101,8 +110,8 @@
             <div class="line"></div>
 
             <div>
-                <a href="{{route('client.supprimer_ticket', $ticket->id)}}" class="btn btn-danger btn-sm">Supprimer</a>
-                <a href="{{route('client.modifier_ticket', $ticket->id)}}" class="btn btn-success btn-sm">Modifier</a>
+                <a href="{{route('admin.supprimer_ticket', $ticket->id)}}" class="btn btn-danger btn-sm">Supprimer</a>
+                <a href="{{route('admin.modifier_ticket', $ticket->id)}}" class="btn btn-success btn-sm">Modifier</a>
             </div>
         </div>
 
@@ -115,66 +124,71 @@
                 </div>
 
                 <i>
-                    <h6 class="date">{{$ticket->created_at->format('d-m-Y H:i')}}</>
+                    <h6 class="date">{{$ticket->created_at->format('d-m-Y H:i')}}</h6>
                 </i>
 
                 <h5 class="message">{{$ticket->description}}</h5>
             </div>
 
-            <div class="line"></div>
+            <div class="line mt-3"></div>
 
-            @if($ticket->commentaires)
-            @foreach($ticket->commentaires as $commentaire)
-            @if($commentaire->user && $commentaire->user->role == 'agent')
-            <div class="agent">
-                <div>
-                    <i class="fas fa-user-tie fa-lg mb-2"></i>
-                    <h5 class="d-inline"><strong> {{$ticket->agent->prenom}} {{$ticket->user->nom}}</strong></h5>
+            <div class="commentaires">
+                @if($ticket->commentaires)
+                @foreach($ticket->commentaires as $commentaire)
+                @if($commentaire->user && $commentaire->user->role == 'agent')
+                <div class="agent">
+                    <div>
+                        <i class="fas fa-user-tie fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong> {{$ticket->agent->prenom}} {{$ticket->user->nom}}</strong></h5>
+                    </div>
+
+                    <i>
+                        <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
+                    </i>
+
+                    <p class="message">{{$commentaire->contenu}}</p>
                 </div>
 
-                <i>
-                    <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
-                </i>
+                <div class="line"></div>
 
-                <p class="message">{{$commentaire->contenu}}</p>
-            </div>
+                @elseif($commentaire->user && $commentaire->user->role == 'client')
+                <div class="client">
+                    <div>
+                        <i class="fas fa-user fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong> {{$ticket->user->prenom}} {{$ticket->user->nom}}</strong></h5>
+                    </div>
 
-            <div class="line"></div>
+                    <i>
+                        <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
+                    </i>
 
-            @elseif($commentaire->user && $commentaire->user->role == 'client')
-            <div class="client">
-                <div>
-                    <i class="fas fa-user fa-lg mb-2"></i>
-                    <h5 class="d-inline"><strong> {{$ticket->user->prenom}} {{$ticket->user->nom}}</strong></h5>
+                    <p class="message">{{$commentaire->contenu}}</p>
                 </div>
 
-                <i>
-                    <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
-                </i>
+                <div class="line"></div>
 
-                <p class="message">{{$commentaire->contenu}}</p>
-            </div>
+                @elseif($commentaire->user && $commentaire->user->role == 'admin')
+                <div class="agent">
+                    <div>
+                        <i class="fas fa-user-tie fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong> Administrateur</strong></h5>
+                    </div>
 
-            <div class="line"></div>
+                    <i>
+                        <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
+                    </i>
 
-            @elseif($commentaire->user && $commentaire->user->role == 'admin')
-            <div class="agent">
-                <div>
-                    <i class="fas fa-user-tie fa-lg mb-2"></i>
-                    <h5 class="d-inline"><strong> Administrateur</strong></h5>
+                    <p class="message">{{$commentaire->contenu}}</p>
                 </div>
 
-                <i>
-                    <h6 class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</h6>
-                </i>
+                <div class="line"></div>
 
-                <p class="message">{{$commentaire->contenu}}</p>
+                @endif
+                @endforeach
+                @else
+                <h1>pas de commentaires</h1>
+                @endif
             </div>
-            @endif
-            @endforeach
-            @else
-            <h1>pas de commentaires</h1>
-            @endif
             <div class="form-group">
                 <form action="{{route('admin.creer_commentaire', $ticket->id)}}" method="post" enctype="multipart/form-data">
                     @csrf

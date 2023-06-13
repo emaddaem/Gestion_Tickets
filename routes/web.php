@@ -34,7 +34,7 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/tickets', [TicketController_admin::class, 'tickets'])->name('admin.tickets');
 
-        Route::get('/tickets_specifiques', [TicketController_admin::class, 'tickets_specifiques'])->name('admin.tickets_specifiques');
+        Route::get('/tickets_specifiques/{id}', [TicketController_admin::class, 'tickets_specifiques'])->name('admin.tickets_specifiques');
 
         Route::get('/ticket/{id}', [TicketController_admin::class, 'show'])->name('admin.ticket');
 
@@ -134,13 +134,13 @@ Route::group(['middleware' => 'client'], function () {
         Route::put('/profil/modifier', [ProfilController::class, 'update'])->name('client.update_profil');
 
         Route::get('/tickets', [TicketController::class, 'tickets'])->name('client.tickets');
-        
+
         Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('client.ticket');
-        
+
         Route::get('/creer_ticket', [TicketController::class, 'create'])->name('client.creer_ticket');
-        
+
         Route::get('/tickets_specifiques/{id}', [TicketController::class, 'tickets_specifiques'])->name('client.tickets_specifiques');
-        
+
         Route::post('/enregistrer_ticket', [TicketController::class, 'store'])->name('client.enregistrer_ticket');
 
         Route::get('/modifier_ticket/{id}', [TicketController::class, 'edit'])->name('client.modifier_ticket');

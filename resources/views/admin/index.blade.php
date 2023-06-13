@@ -26,7 +26,7 @@
         <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="{{route('admin.tickets_specifiques')}}">
+                    <a href="{{route('admin.tickets_specifiques', $statuts_data['id_statut_nouveau'])}}">
                         <h5 class="card-title">Nouveaux tickets</h5>
                     </a>
                     <h5 class="card-title move-right"><strong>{{$statuts_data['nombreNouveauxTickets']}}</strong></h5>
@@ -37,7 +37,7 @@
         <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="{{route('admin.tickets_specifiques')}}">
+                    <a href="{{route('admin.tickets_specifiques', $statuts_data['id_statut_traitement'])}}">
                         <h5 class="card-title">Tickets en cours de traitement</h5>
                     </a>
                     <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsTraitement']}}</strong></h5>
@@ -48,7 +48,7 @@
         <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="{{route('admin.tickets_specifiques')}}">
+                    <a href="{{route('admin.tickets_specifiques', $statuts_data['id_statut_attente'])}}">
                         <h5 class="card-title">Tickets en attente</h5>
                     </a>
                     <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsattente']}}</strong></h5>
@@ -59,7 +59,7 @@
         <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="{{route('admin.tickets_specifiques')}}">
+                    <a href="{{route('admin.tickets_specifiques', $statuts_data['id_statut_resolu'])}}">
                         <h5 class="card-title">Tickets résolus</h5>
                     </a>
                     <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsResolus']}}</strong></h5>
@@ -70,10 +70,10 @@
         <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
-                    <a href="{{route('admin.tickets_specifiques')}}">
+                    <a href="{{route('admin.tickets_specifiques', 0)}}">
                         <h5 class="card-title">Tickets non assignés</h5>
                     </a>
-                    <h5 class="card-title move-right"><strong>0</strong></h5>
+                    <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsNonAssignés']}}</strong></h5>
                 </div>
             </div>
         </div>
@@ -82,7 +82,6 @@
 
     <h2 class="mt-5">Liste des tickets d'aujourd'hui</h2>
 
-    
     <div class="row my-3">
         <div class="container col-lg-11">
             <div class="creer-ticket">

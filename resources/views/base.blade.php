@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome-free-6.4.0/css/all.min.css') }}">
     <style>
         body {
-        background-color: #4e4b78;
+        background-color: #6b69d6;
     }
     </style>
 </head>
