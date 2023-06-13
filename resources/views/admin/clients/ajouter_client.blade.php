@@ -19,7 +19,7 @@
     <h1 class="text text-center">Ajouter un client</h1>
 
     <div class="form-group">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.enregistrer_client')}}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">

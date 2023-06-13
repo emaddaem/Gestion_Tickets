@@ -56,6 +56,10 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/ajouter_client', [ClientController_admin::class, 'create'])->name('admin.ajouter_client');
 
+        Route::post('/enregistrer_client', [ClientController_admin::class, 'store'])->name('admin.enregistrer_client');
+
+        Route::get('/supprimer_client', [ClientController_admin::class, 'destroy'])->name('admin.supprimer_client');
+
 
         Route::get('/agents', [AgentController_admin::class, 'agents'])->name('admin.agents');
 

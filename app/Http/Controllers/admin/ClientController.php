@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -18,7 +21,9 @@ class ClientController extends Controller
 
     public function clients()
     {
-        return view('admin/clients/clients');
+        $clients = User::where('role', 'client')->get();
+
+        return view('admin/clients/clients', compact('clients'));
     }
 
     /**
@@ -34,7 +39,23 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:users',
+            'telephone' => 'required'
+        ]);
+
+        $client = new User([
+            'nom' => $request->get('nom'),
+            'prenom' => $request->get('prenom'),
+            'email' => $request->get('email'),
+            'telephone' => $request->get('telephone'),
+            'password' => Hash::make($request->get('prenom') . '123'),
+        ]);
+        $client->save();
+
+        return redirect()->back()->with("success", "Nouveau client a bien été ajouté.");
     }
 
     /**

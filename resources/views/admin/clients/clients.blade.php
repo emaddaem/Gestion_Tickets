@@ -16,7 +16,9 @@
         <h2 class="mt-3">Liste des clients</h2>
 
         <div class="creer-ticket">
-            <a href="/admin/ajouter_client" class="btn btn-success mt-2">Ajouter un client</a>
+            <a href="{{route('admin.ajouter_client')}}" class="btn btn-success mt-2">
+                Ajouter un client
+            </a>
         </div>
 
         <div class="container mt-3">
@@ -36,25 +38,28 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if($clients && $clients->count() > 0)
                             <tr>
+                                @foreach($clients as $client)
                                 <td>1</td>
-                                <td>Nom 1</td>
-                                <td>Prénom 1</td>
-                                <td>0655555</td>
-                                <td>client1@gmail.com</td>
-                                <td>05/05/2023</td>
-                                <td>05/05/2023</td>
+                                <td>{{$client->nom}}</td>
+                                <td>{{$client->prenom}}</td>
+                                <td>{{$client->telephone}}</td>
+                                <td>{{$client->email}}</td>
+                                <td>{{$client->created_at}}</td>
+                                <td>{{$client->updated_at}}</td>
                                 <td>
-                                    <a href="/admin/client" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
+                                    <a href="{{route('admin.miaw')}}" class="btn-sm">
+                                        <i class="fa fa-eye fa-lg"></i>
+                                    </a>
 
-                                    <form action="" method="POST" class="d-inline">
-                                        @csrf
-                                        <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </form>
+                                    <a href="{{route('admin.miaw', $ticket->id)}}" class="btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
                                 </td>
+                                @endforeach
                             </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
