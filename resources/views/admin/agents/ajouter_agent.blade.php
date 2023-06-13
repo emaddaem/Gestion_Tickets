@@ -15,11 +15,11 @@
 @include('includes.success')
 @include('includes.errors')
 
-<div class="container">
+<div class="container col-lg-10 my-5">
     <h1 class="text text-center">Ajouter un agent</h1>
 
     <div class="form-group">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.enregistrer_agent')}}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">

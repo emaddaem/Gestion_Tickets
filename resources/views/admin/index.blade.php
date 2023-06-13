@@ -22,7 +22,6 @@
 <div class="container">
     <h3><strong>Tableau de board</strong></h3>
     <div class="row mt-4">
-
         <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
@@ -77,7 +76,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <h2 class="mt-5">Liste des tickets d'aujourd'hui</h2>
@@ -96,6 +94,7 @@
                         <th>Status</th>
                         <th>Priorité</th>
                         <th>Agent assigné</th>
+                        <th>Client concerné</th>
                         <th>Créé à</th>
                         <th>Mise à jour à</th>
                         <th>Actions</th>
@@ -110,6 +109,7 @@
                         <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
                         <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
                         <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
+                        <td>{{$ticket->user->nom}}</td>
                         <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
                         <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                         <td>

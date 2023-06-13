@@ -34,7 +34,9 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/tickets', [TicketController_admin::class, 'tickets'])->name('admin.tickets');
 
-        Route::get('/tickets_specifiques/{id}', [TicketController_admin::class, 'tickets_specifiques'])->name('admin.tickets_specifiques');
+        Route::get('/tickets_specifiques/{statut_id}', [TicketController_admin::class, 'tickets_specifiques'])->name('admin.tickets_specifiques');
+
+        Route::get('/tickets_specifiques/{statut_id}/{agent_id}', [AgentController_admin::class, 'tickets_specifiques'])->name('admin.agent_tickets_specifiques');
 
         Route::get('/ticket/{id}', [TicketController_admin::class, 'show'])->name('admin.ticket');
 
@@ -54,18 +56,28 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/clients', [ClientController_admin::class, 'clients'])->name('admin.clients');
 
+        Route::get('/client/{id}', [ClientController_admin::class, 'show'])->name('admin.client');
+
+        Route::put('/actualiser_client/{id}', [ClientController_admin::class, 'update'])->name('admin.update_client');
+
         Route::get('/ajouter_client', [ClientController_admin::class, 'create'])->name('admin.ajouter_client');
 
         Route::post('/enregistrer_client', [ClientController_admin::class, 'store'])->name('admin.enregistrer_client');
 
-        Route::get('/supprimer_client', [ClientController_admin::class, 'destroy'])->name('admin.supprimer_client');
+        Route::get('/supprimer_client/{id}', [ClientController_admin::class, 'destroy'])->name('admin.supprimer_client');
 
 
         Route::get('/agents', [AgentController_admin::class, 'agents'])->name('admin.agents');
 
-        Route::get('/agent', [AgentController_admin::class, 'show'])->name('admin.agent');
+        Route::get('/agent/{id}', [AgentController_admin::class, 'show'])->name('admin.agent');
+
+        Route::put('/actualiser_agent/{id}', [AgentController_admin::class, 'update'])->name('admin.update_agent');
 
         Route::get('/ajouter_agent', [AgentController_admin::class, 'create'])->name('admin.ajouter_agent');
+
+        Route::post('/enregistrer_agent', [AgentController_admin::class, 'store'])->name('admin.enregistrer_agent');
+
+        Route::get('/supprimer_agent/{id}', [AgentController_admin::class, 'destroy'])->name('admin.supprimer_agent');
 
 
         Route::get('/admins', [AdminController_admin::class, 'admins'])->name('admin.admins');

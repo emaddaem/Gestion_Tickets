@@ -16,7 +16,9 @@
     <h2 class="mt-3">Liste des agents</h2>
 
     <div class="creer-ticket">
-        <a href="/admin/ajouter_agent" class="btn btn-success mt-2">Ajouter un agent</a>
+        <a href="{{route('admin.ajouter_agent')}}" class="btn btn-success mt-2">
+            Ajouter un agent
+        </a>
     </div>
 
     <div class="container mt-3">
@@ -36,25 +38,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if($agents && $agents->count() > 0)
+                        @foreach($agents as $agent)
                         <tr>
                             <td>1</td>
-                            <td>Nom 1</td>
-                            <td>Prénom 1</td>
-                            <td>0655555</td>
-                            <td>agent1@gmail.com</td>
-                            <td>05/05/2023</td>
-                            <td>05/05/2023</td>
+                            <td>{{$agent->nom}}</td>
+                            <td>{{$agent->prenom}}</td>
+                            <td>{{$agent->telephone}}</td>
+                            <td>{{$agent->email}}</td>
+                            <td>{{$agent->created_at}}</td>
+                            <td>{{$agent->updated_at}}</td>
                             <td>
-                                <a href="/admin/agent" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
+                                <a href="{{route('admin.agent', $agent->id)}}" class="btn-sm">
+                                    <i class="fa fa-eye fa-lg"></i>
+                                </a>
 
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </form>
+                                <a href="{{route('admin.supprimer_agent', $agent->id)}}" class="btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

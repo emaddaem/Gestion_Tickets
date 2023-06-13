@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -63,7 +64,9 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $client = User::find($id);
+
+        return view('admin/clients/client', compact('client'));
     }
 
     /**
@@ -79,7 +82,32 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+
+        $validatedData = $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'telephone' => 'required',
+            'adresse' => 'required',
+            'password' => 'sometimes',
+        ]);
+
+        $user->update([
+            'nom' => $validatedData['nom'],
+            'prenom' => $validatedData['prenom'],
+            'email' => $validatedData['email'],
+            'telephone' => $validatedData['telephone'],
+            'adresse' => $validatedData['adresse']
+        ]);
+
+        if (isset($validatedData['password'])) {
+            $user->update([
+                'password' => Hash::make($validatedData['password'])
+            ]);
+        }
+
+        return redirect()->back()->with('success', "Les chanements ont bien été enregistrés");
     }
 
     /**
@@ -87,6 +115,9 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $client = User::find($id);
+        $client->delete();
+
+        return redirect()->route('admin.clients')->with('success', "Le client a été supprimé avec succès");
     }
 }

@@ -12,6 +12,9 @@
         }
     </style>
 
+    @include('includes.success')
+    @include('includes.errors')
+
     <div class="container mt-5">
         <h2 class="mt-3">Liste des clients</h2>
 
@@ -39,8 +42,8 @@
                         </thead>
                         <tbody>
                             @if($clients && $clients->count() > 0)
+                            @foreach($clients as $client)
                             <tr>
-                                @foreach($clients as $client)
                                 <td>1</td>
                                 <td>{{$client->nom}}</td>
                                 <td>{{$client->prenom}}</td>
@@ -49,16 +52,16 @@
                                 <td>{{$client->created_at}}</td>
                                 <td>{{$client->updated_at}}</td>
                                 <td>
-                                    <a href="{{route('admin.miaw')}}" class="btn-sm">
+                                    <a href="{{route('admin.client', $client->id)}}" class="btn-sm">
                                         <i class="fa fa-eye fa-lg"></i>
                                     </a>
 
-                                    <a href="{{route('admin.miaw', $ticket->id)}}" class="btn-sm">
+                                    <a href="{{route('admin.supprimer_client', $client->id)}}" class="btn-sm">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
-                                @endforeach
                             </tr>
+                            @endforeach
                             @endif
                         </tbody>
                     </table>

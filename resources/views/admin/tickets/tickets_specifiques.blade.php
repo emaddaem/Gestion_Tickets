@@ -14,9 +14,14 @@
 
 <div class="container mt-5">
     <h2 class="mt-3">Liste des tickets</h2>
+    @if(isset($agent) && $agent)
+    <h4>Agent : <strong>{{$agent->nom}} {{$agent->prenom}}</strong></h4>
+    @endif
+    
     @if($nom_statut)
     <h4>Statut : <strong>{{$nom_statut}}</strong></h4>
     @endif
+
     <div class="creer-ticket">
         <a href="{{route('admin.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
@@ -34,6 +39,7 @@
                             <th>Status</th>
                             <th>Priorité</th>
                             <th>Agent assigné</th>
+                            <th>Client concerné</th>
                             <th>Créé à</th>
                             <th>Mise à jour à</th>
                             <th>Actions</th>
@@ -48,6 +54,7 @@
                             <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
                             <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
                             <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
+                            <td>{{$ticket->user->nom}}</td>
                             <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
                             <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                             <td>
