@@ -1,4 +1,4 @@
-@endsection@extends('base')
+@extends('base')
 @section('title', 'Modifier un ticket')
 @section('content')
 
@@ -19,57 +19,65 @@
     <h1 class="text text-center">Modifier le ticket</h1>
 
     <div class="form-group">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.update_ticket', $ticket->id)}}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
 
             <div class="mb-3 d-flex align-items-center">
                 <label for="client">Client concerné</label>
                 <select name="client" id="client" style="width: 250px; height: 37px; margin-left: 10px">
-                    <!-- <option>Sélectionnez l'client</option> -->
-                    <option>Client1</option>
-                    @foreach (['Client2', 'Client3', 'Client4', 'Client5'] as $option)
-                    <option value="{{ $option }}">{{ $option }}</option>
+                    <option value="">Sélectionnez l'client</option>
+                    @foreach($clients as $client)
+                    <option value="{{ $client->id }}" @if ($ticket->user && $ticket->user->id == $client->id) selected @endif>
+                        {{ $client->nom }} {{ $client->prenom }}
+                    </option>
                     @endforeach
                 </select>
                 <a href="/ajouter_client" class="btn btn-primary">+ Nouveau client</a>
             </div>
 
             <div class="mb-3">
-                <label for="sujet">Sujet</label>
-                <input type="text" class="form-control" name="sujet" value="Sujet 1">
+                <label for="titre">Titre</label>
+                <input type="text" class="form-control" name="titre" value="{{$ticket->titre}}">
             </div>
 
             <div class="mb-3">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description">Description du sujet 1</textarea>
+                <textarea class="form-control" name="description" id="description">{{$ticket->description}}</textarea>
             </div>
 
             <div class="mb-3">
                 <label for="categorie">Catégorie</label>
                 <select name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
-                    <option>Sélectionnez la catégorie</option>
-                    @foreach (['catégorie 1', 'catégorie 2', 'catégorie 3', 'catégorie 4'] as $option)
-                    <option value="{{ $option }}">{{ $option }}</option>
+                    <option value="">Sélectionnez la catégorie</option>
+                    @foreach ($categories as $categorie)
+                    <option value="{{ $categorie->id }}" @if ($ticket->categorie && $ticket->categorie->id == $categorie->id) selected @endif>
+                        {{ $categorie->nom }}
+                    </option>
                     @endforeach
                 </select>
             </div>
 
             <div class="mb-3">
-                <label for="status">Status</label>
-                <select name="status" id="status" style="width: 250px; margin-left: 10px">
-                    <option value="nouveau">Nouveau</option>
-                    @foreach (['En attente', 'Non assigné', 'Résolu'] as $option)
-                    <option value="{{ $option }}">{{ $option }}</option>
+                <label for="statut">Statut</label>
+                <select name="statut" id="statut" style="width: 250px; margin-left: 10px">
+                    <option value="">Sélectionnez le statut</option>
+                    @foreach ($statuts as $statut)
+                    <option value="{{ $statut->id }}" @if ($ticket->statut && $ticket->statut->id == $statut->id) selected @endif>
+                        {{ $statut->nom }}
+                    </option>
                     @endforeach
                 </select>
             </div>
 
             <div class="mb-3">
-                <label for="priotite">Priotité</label>
-                <select name="priotite" id="priotite" style="width: 250px; margin-left: 10px">
-                    <option>Sélectionnez la priorité</option>
-                    @foreach (['Faible', 'Moyenne', 'Haute', 'Urgent', 'Bloquant'] as $option)
-                    <option value="{{ $option }}">{{ $option }}</option>
+                <label for="priorite">Priotité</label>
+                <select name="priorite" id="priorite" style="width: 250px; margin-left: 10px">
+                    <option value="">Sélectionnez la priorité</option>
+                    @foreach ($priorites as $priorite)
+                    <option value="{{ $priorite->id }}" @if ($ticket->priorite && $ticket->priorite->id == $priorite->id) selected @endif>
+                        {{ $priorite->nom }}
+                    </option>
                     @endforeach
                 </select>
             </div>
@@ -82,10 +90,11 @@
             <div class="mb-3">
                 <label for="agent">Agent assigné</label>
                 <select name="agent" id="agent" style="width: 250px; margin-left: 10px">
-                    <!-- <option>Sélectionnez l'agent</option> -->
-                    <option>Agent1</option>
-                    @foreach (['Agent2', 'Agent3', 'Agent4', 'Agent5'] as $option)
-                    <option value="{{ $option }}">{{ $option }}</option>
+                    <option value="">Sélectionnez l'agent</option>
+                    @foreach($agents as $agent)
+                    <option value="{{ $agent->id }}" @if ($ticket->agent && $ticket->agent->id == $agent->id) selected @endif>
+                        {{ $agent->nom }} {{ $agent->prenom }}
+                    </option>
                     @endforeach
                 </select>
             </div>

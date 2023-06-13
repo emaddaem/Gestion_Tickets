@@ -25,7 +25,29 @@ class TicketController extends Controller
     {
         $tickets = Ticket::whereDate('created_at', Carbon::today())->get();
 
-        return view('admin/index', compact('tickets'));
+        $statuts_data = [
+            'id_statut_nouveau' => Statut::where('nom', 'Nouveau')->value('id'),
+            'id_statut_traitement' => Statut::where('nom', 'En cours de traitement')->value('id'),
+            'id_statut_attente' => Statut::where('nom', 'En attente')->value('id'),
+            'id_statut_resolu' => Statut::where('nom', 'Résolu')->value('id'),
+    
+            'nombreNouveauxTickets' => Ticket::where('statut_id', 'id_statut_nouveau')->count(),
+            'nombreTicketsTraitement' => Ticket::where('statut_id', 'id_statut_traitement')->count(),
+            'nombreTicketsattente' => Ticket::where('statut_id', 'id_statut_attente')->count(),
+            'nombreTicketsResolus' => Ticket::where('statut_id', 'id_statut_resolu')->count(),
+        ];
+
+        // $id_statut_nouveau = Statut::where('nom', 'Nouveau')->value('id');
+        // $id_statut_traitement = Statut::where('nom', 'En cours de traitement')->value('id');
+        // $id_statut_attente = Statut::where('nom', 'En attente')->value('id');
+        // $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
+
+        // $nombreNouveauxTickets = $tickets->where('statut_id', $id_statut_nouveau)->count();
+        // $nombreTicketsTraitement = $tickets->where('statut_id', $id_statut_traitement)->count();
+        // $nombreTicketsattente = $tickets->where('statut_id', $id_statut_attente)->count();
+        // $nombreTicketsResolus = $tickets->where('statut_id', $id_statut_resolu)->count();
+
+        return view('admin/index', compact('tickets', 'statuts_data'));
     }
 
     public function tickets()
@@ -106,9 +128,16 @@ class TicketController extends Controller
     }
 
 
-    public function edit() //string $id
+    public function edit(string $id)
     {
-        return view('admin/tickets/modifier_ticket');
+        $ticket = Ticket::find($id);
+        $agents = User::where('role', 'agent')->get();
+        $clients = User::where('role', 'client')->get();
+        $statuts = Statut::all();
+        $priorites = Priorite::all();
+        $categories = Categorie::all();
+
+        return view('admin/tickets/modifier_ticket', compact('ticket', 'clients', 'agents', 'statuts', 'priorites', 'categories'));
     }
 
 
@@ -119,15 +148,21 @@ class TicketController extends Controller
         $validatedData = $request->validate([
             "titre" => "required",
             "description" => "required",
-            'categorie' => "required",
-            "jointures.*" => "image|max:8192",
-            "jointures[]",
+            "client" => "required",
+            "agent" => "sometimes",
+            "statut" => "sometimes",
+            "priorite" => "sometimes",
+            "categorie" => "required",
+            "jointures[]"
         ]);
 
         $ticket->update([
             'titre' => $validatedData['titre'],
             'description' => $validatedData['description'],
-            'categorie_id' => $validatedData['categorie']
+            'agent_id' => $validatedData['agent'],
+            'statut_id' => $validatedData['statut'],
+            'priorite_id' => $validatedData['priorite'],
+            'categorie_id' => $validatedData['categorie'],
         ]);
 
         if ($request->File('jointures')) {
@@ -145,7 +180,7 @@ class TicketController extends Controller
             }
         }
 
-        return redirect()->route('client.ticket', $ticket->id)->with('success', "Votre ticket a été modifié avec succès");
+        return redirect()->route('admin.ticket', $ticket->id)->with('success', "Le ticket a été modifié avec succès");
     }
 
 

@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <h4><strong>Mes tickets récentes :</strong></h4>
+    <h2>Mes tickets récentes :</h2>
 
     <!-- <div class="container"> -->
     <div class="row my-4">

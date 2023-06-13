@@ -21,49 +21,59 @@
 
 <div class="container">
     <h3><strong>Tableau de board</strong></h3>
-
     <div class="row mt-4">
 
-        <div class="col-md-3">
+        <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques')}}">
                         <h5 class="card-title">Nouveaux tickets</h5>
                     </a>
-                    <h5 class="card-title move-right"><strong>0</h5></strong>
+                    <h5 class="card-title move-right"><strong>{{$statuts_data['nombreNouveauxTickets']}}</strong></h5>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques')}}">
-                        <h5 class="card-title">Tickets non assignés</h5>
+                        <h5 class="card-title">Tickets en cours de traitement</h5>
                     </a>
-                    <h5 class="card-title move-right"><strong>0</h5></strong>
+                    <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsTraitement']}}</strong></h5>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques')}}">
                         <h5 class="card-title">Tickets en attente</h5>
                     </a>
-                    <h5 class="card-title move-right"><strong>0</h5></strong>
+                    <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsattente']}}</strong></h5>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 my-2">
             <div class="card" style="width: 19rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques')}}">
                         <h5 class="card-title">Tickets résolus</h5>
                     </a>
-                    <h5 class="card-title move-right"><strong>0</h5></strong>
+                    <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsResolus']}}</strong></h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 my-2">
+            <div class="card" style="width: 19rem;">
+                <div class="card-body">
+                    <a href="{{route('admin.tickets_specifiques')}}">
+                        <h5 class="card-title">Tickets non assignés</h5>
+                    </a>
+                    <h5 class="card-title move-right"><strong>0</strong></h5>
                 </div>
             </div>
         </div>

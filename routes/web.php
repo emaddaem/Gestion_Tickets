@@ -42,8 +42,10 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::post('/enregistrer_ticket', [TicketController_admin::class, 'store'])->name('admin.enregistrer_ticket');
 
-
         Route::get('/modifier_ticket/{id}', [TicketController_admin::class, 'edit'])->name('admin.modifier_ticket');
+
+        Route::put('/actualiser_ticket/{id}', [TicketController_admin::class, 'update'])->name('admin.update_ticket');
+
 
         Route::get('/supprimer_ticket/{id}', [TicketController_admin::class, 'destroy'])->name('admin.supprimer_ticket');
 
