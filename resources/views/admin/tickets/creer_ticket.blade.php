@@ -15,7 +15,7 @@
 @include('includes.success')
 @include('includes.errors')
 
-<div class="container col-lg-10 my-5">
+<div class="container col-lg-8 my-5">
     <h1 class="text text-center">Créer un ticket</h1>
 
     <div class="form-group">
@@ -31,7 +31,7 @@
                         <option value="{{ $client->id }}">{{ $client->nom }} {{ $client->prenom }}</option>
                         @endforeach
                     </select>
-                    <a href="/ajouter_client" class="btn btn-primary">+ Nouveau client</a>
+                    <a href="{{route('admin.ajouter_client')}}" class="btn btn-primary">+ Nouveau client</a>
                 </div>
             </div>
 

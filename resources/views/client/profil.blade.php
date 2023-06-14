@@ -15,7 +15,7 @@
 @include('includes.success')
 @include('includes.errors')
 
-<div class="container my-5">
+<div class="container col-lg-8 my-5">
 
     <h1 class="text text-center">Page de profil</h1>
 
@@ -26,7 +26,6 @@
         <div class="form-group mb-3">
             <label>Nom de l'entreprise:</label>
             <input class="form-control" value="{{$user->entreprise->nom}}" disabled>
-            <!-- <p>{{$user->entreprise->nom}}</p> -->
         </div>
         <div class="form-group mb-3">
             <label for="prenom">Prénom:</label>

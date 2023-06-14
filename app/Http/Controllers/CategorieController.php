@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -10,7 +11,7 @@ class CategorieController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         //
@@ -18,7 +19,9 @@ class CategorieController extends Controller
 
     public function categories()
     {
-        return view('admin/categories/categories');
+        $categories = Categorie::all();
+
+        return view('admin/categories/categories', compact('categories'));
     }
 
     /**
@@ -34,7 +37,15 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            "nom" => "required",
+        ]);
+
+        Categorie::create([
+            'nom' => $validatedData['nom'],
+        ]);
+
+        return redirect()->route('admin.categories')->with("success", "La catégorie a bien été ajoutée.");
     }
 
     /**
@@ -50,7 +61,9 @@ class CategorieController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categorie = Categorie::find($id);
+
+        return view('admin/categories/modifier_categorie', compact('categorie'));
     }
 
     /**
@@ -58,7 +71,17 @@ class CategorieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $categorie = Categorie::find($id);
+
+        $validatedData = $request->validate([
+            "nom" => "required",
+        ]);
+
+        $categorie->update([
+            'nom' => $validatedData['nom'],
+        ]);
+
+        return redirect()->route('admin.categories', $categorie->id)->with('success', "La catégorie a été modifiée avec succès");
     }
 
     /**
@@ -66,6 +89,10 @@ class CategorieController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $categorie = Categorie::find($id);
+
+        $categorie->delete();
+
+        return redirect()->route('admin.categories')->with('success', "La catégorie a été supprimée avec succès");
     }
 }

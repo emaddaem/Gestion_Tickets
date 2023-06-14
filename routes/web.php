@@ -82,7 +82,15 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/admins', [AdminController_admin::class, 'admins'])->name('admin.admins');
 
+        Route::get('/admin/{id}', [AdminController_admin::class, 'show'])->name('admin.admin');
+
+        Route::put('/actualiser_admin/{id}', [AdminController_admin::class, 'update'])->name('admin.update_admin');
+
         Route::get('/ajouter_admin', [AdminController_admin::class, 'create'])->name('admin.ajouter_admin');
+
+        Route::post('/enregistrer_admin', [AdminController_admin::class, 'store'])->name('admin.enregistrer_admin');
+
+        Route::get('/supprimer_admin/{id}', [AdminController_admin::class, 'destroy'])->name('admin.supprimer_admin');
 
 
 
@@ -97,6 +105,14 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/categories', [CategorieController::class, 'categories'])->name('admin.categories');
 
         Route::get('/ajouter_categorie', [CategorieController::class, 'create'])->name('admin.ajouter_categorie');
+
+        Route::post('/enregistrer_categorie', [CategorieController::class, 'store'])->name('admin.enregistrer_categorie');
+
+        Route::get('/modifier_categorie/{id}', [CategorieController::class, 'edit'])->name('admin.modifier_categorie');
+
+        Route::put('/actualiser_categorie/{id}', [CategorieController::class, 'update'])->name('admin.update_categorie');
+
+        Route::get('/supprimer_categorie/{id}', [CategorieController::class, 'destroy'])->name('admin.supprimer_categorie');
     });
 });
 

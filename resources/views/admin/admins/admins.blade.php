@@ -18,7 +18,9 @@
     <h2 class="mt-3">Liste des admins</h2>
 
     <div class="creer-ticket">
-        <a href="/admin/ajouter_admin" class="btn btn-success mt-2">Ajouter un admin</a>
+        <a href="{{route('admin.ajouter_admin')}}" class="btn btn-success mt-2">
+            Ajouter un admin
+        </a>
     </div>
 
     <div class="container mt-3">
@@ -38,30 +40,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if($admins && $admins->count() > 0)
+                        @foreach($admins as $admin)
                         <tr>
                             <td>1</td>
-                            <td>Nom 1</td>
-                            <td>Prénom 1</td>
-                            <td>0655555</td>
-                            <td>admin1@gmail.com</td>
-                            <td>05/05/2023</td>
-                            <td>05/05/2023</td>
+                            <td>{{$admin->nom}}</td>
+                            <td>{{$admin->prenom}}</td>
+                            <td>{{$admin->telephone}}</td>
+                            <td>{{$admin->email}}</td>
+                            <td>{{$admin->created_at}}</td>
+                            <td>{{$admin->updated_at}}</td>
                             <td>
-                                <a href="/admin/admin" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
+                                <a href="{{route('admin.admin', $admin->id)}}" class="btn-sm">
+                                    <i class="fa fa-eye fa-lg"></i>
+                                </a>
 
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </form>
+                                <a href="{{route('admin.supprimer_admin', $admin->id)}}" class="btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
 @endsection

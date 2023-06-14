@@ -81,6 +81,7 @@
     <h2 class="mt-5">Liste des tickets d'aujourd'hui</h2>
 
     <div class="row my-3">
+        @if ($tickets && $tickets->count() > 0)
         <div class="container col-lg-11">
             <div class="creer-ticket">
                 <a href="{{route('admin.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
@@ -130,6 +131,7 @@
                 </tbody>
             </table>
         </div>
+        @endif
     </div>
 
 </div>

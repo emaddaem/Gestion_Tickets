@@ -12,7 +12,7 @@
     }
 </style>
 
-<div class="container">
+<div class="container col-lg-8">
     <h1 class="text text-center">Ajouter un client</h1>
 
     <div class="form-group">

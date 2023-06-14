@@ -64,6 +64,8 @@
                     </tbody>
                 </table>
             </div>
+            @else
+            <h4 class="text text-center">Aucun résultat trouvé</h4>
             @endif
         </div>
     </div>

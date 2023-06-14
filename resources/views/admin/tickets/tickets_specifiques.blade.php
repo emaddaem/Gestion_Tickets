@@ -17,9 +17,11 @@
     @if(isset($agent) && $agent)
     <h4>Agent : <strong>{{$agent->nom}} {{$agent->prenom}}</strong></h4>
     @endif
-    
+
     @if($nom_statut)
     <h4>Statut : <strong>{{$nom_statut}}</strong></h4>
+    @else
+    <h4>Statut : <strong>Non assigné</strong></h4>
     @endif
 
     <div class="creer-ticket">
@@ -75,6 +77,8 @@
                     </tbody>
                 </table>
             </div>
+            @else
+            <h4 class="text text-center">Aucun résultat trouvé</h4>
             @endif
         </div>
     </div>
