@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entreprise;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -31,9 +32,14 @@ class AuthController extends Controller
         return redirect("login")->withSuccess('Login details are not valid');
     }
 
-    public function registration()
+    public function registration(string $entreprise_URL)
     {
-        return view('auth.registration');
+        $entreprise = Entreprise::where('url_personnalisee', $entreprise_URL)->first();
+
+        if(!$entreprise){
+            $entreprise = null;
+        }
+        return view('auth.registration', compact('entreprise'));
     }
 
     public function customRegistration(Request $request)
@@ -43,7 +49,8 @@ class AuthController extends Controller
             'prenom' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'telephone' => 'required'
+            'telephone' => 'required',
+            'entreprise_id' => 'sometimes',
         ]);
 
         User::create([
@@ -51,7 +58,8 @@ class AuthController extends Controller
             'prenom' => $request->get('prenom'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
-            'telephone' => $request->get('telephone')
+            'telephone' => $request->get('telephone'),
+            'entreprise_id' => $request->get('entreprise_id'),
         ]);
 
         return redirect()->intended('/');

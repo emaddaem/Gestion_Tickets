@@ -1,60 +1,79 @@
 @extends('base')
 @section('content')
-<main class="signup-form">
-    <div class="signup-form-container">
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh">
+    <div class="d-flex flex-column justify-content-between">
         <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="row justify-content-center">
-                    <div class="card">
-                        <h3 class="card-header text-center">Inscrivez-vous</h3>
-                        <div class="card-body">
-                            <form action="{{ route('register.custom') }}" method="POST">
-                                @csrf
-                                <div class="form-group mb-4">
-                                    <input type="text" placeholder="Nom" id="nom" class="form-control" name="nom" required autofocus>
+            <div class="col-lg-6 col-xl-5 col-md-10 ">
+                <div class="card card-default mb-0">
+                    <div class="card-header pb-0">
+                        <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
+                            <a class="w-auto pl-0" href="/index.html">
+                                <!-- <img src="images/logo.png" alt="Mono"> -->
+                                <span class="brand-name text-dark">MONO</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body px-5 pb-5 pt-0">
+                        <h4 class="text-dark text-center mb-5">Sign Up</h4>
+                        <form action="{{ route('register.custom') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <!-- Champ caché pour l'identifiant de l'entreprise -->
+                                <input type="hidden" name="entreprise_id" value="{{ $entreprise ? $entreprise->id : null }}">
+                                
+                                <div class="form-group col-md-12 mb-4">
+                                    <input type="text" class="form-control input-lg" id="name" name="nom" aria-describedby="nameHelp" placeholder="Name">
                                     @if (isset($errors) && $errors->has('nom'))
                                     <span class="text-danger">{{ $errors->first('nom') }}</span>
                                     @endif
                                 </div>
-                                <div class="form-group mb-4">
+                                <div class="form-group col-md-12 mb-4">
                                     <input type="text" placeholder="Prénom" id="prenom" class="form-control" name="prenom" required autofocus>
                                     @if (isset($errors) && $errors->has('prenom'))
                                     <span class="text-danger">{{ $errors->first('prenom') }}</span>
                                     @endif
                                 </div>
-                                <div class="form-group mb-4">
-                                    <input type="text" placeholder="Email" id="email_address" class="form-control" name="email" required autofocus>
+                                <div class="form-group col-md-12 mb-4">
+                                    <input type="email" class="form-control input-lg" id="email" name="email" aria-describedby="emailHelp" placeholder="Username">
                                     @if (isset($errors) && $errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
                                 </div>
-                                <div class="form-group mb-4">
+                                <div class="form-group col-md-12 mb-4">
                                     <input type="number" placeholder="Numéro de téléphone" id="telephone" class="form-control" name="telephone" required autofocus>
                                     @if (isset($errors) && $errors->has('telephone'))
                                     <span class="text-danger">{{ $errors->first('telephone') }}</span>
                                     @endif
                                 </div>
-                                <div class="form-group mb-4">
+                                <div class="form-group col-md-12 mb-4">
                                     <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
                                     @if (isset($errors) && $errors->has('password'))
                                     <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
-                                <div class="form-group mb-4">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" name="remember"> Remember Me</label>
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-between mb-3">
+
+                                        <div class="custom-control custom-checkbox mr-3 mb-3">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                            <label class="custom-control-label" for="customCheck2">I Agree the terms and conditions.</label>
+                                        </div>
+
                                     </div>
+
+                                    <button type="submit" class="btn btn-primary btn-pill mb-4">Sign Up</button>
+
+                                    <p>Already have an account?
+                                        <a class="text-blue" href="sign-in.html">Sign in</a>
+                                    </p>
                                 </div>
-                                <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block">S'inscrire</button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
 
 @endsection

@@ -100,7 +100,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register-user') }}">Créer un compte</a>
+                    <a class="nav-link" href="{{ route('register-user', 'aucune') }}">Créer un compte</a>
                 </li>
                 @else
                 <li class="nav-item">
