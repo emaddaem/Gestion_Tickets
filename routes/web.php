@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\EntrepriseController;
+
 use App\Http\Controllers\admin\TicketController as TicketController_admin;
 use App\Http\Controllers\admin\ProfilController as ProfilController_admin;
 use App\Http\Controllers\admin\ClientController as ClientController_admin;
@@ -23,6 +25,8 @@ use App\Http\Controllers\CategorieController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/Inscrire_entreprise', [EntrepriseController::class, 'store'])->name('entreprise.inscrire');
 
 // Route d'admin
 Route::group(['middleware' => 'admin'], function () {

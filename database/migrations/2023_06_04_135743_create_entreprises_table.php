@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('telephone')->nullable();
             $table->string('adresse')->nullable();
             $table->string('description')->nullable();
-            $table->string('url_personnalisee');
+            $table->string('url_personnalisee')->unique();
             $table->timestamps();
         });
     }

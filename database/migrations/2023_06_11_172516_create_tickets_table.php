@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('priorite_id')->nullable();
             $table->unsignedBigInteger('categorie_id')->nullable();
 
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
