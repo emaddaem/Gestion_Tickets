@@ -63,8 +63,8 @@
 
                                     <button type="submit" class="btn btn-primary btn-pill mb-4">Sign Up</button>
 
-                                    <p>Already have an account?
-                                        <a class="text-blue" href="sign-in.html">Sign in</a>
+                                    <p>Vous avez déja un compte?
+                                        <a class="text-blue" href="{{ route('login', 'aucune') }}">Sign in</a>
                                     </p>
                                 </div>
                             </div>

@@ -24,9 +24,12 @@ use App\Http\Controllers\CategorieController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::post('/Inscrire_entreprise', [EntrepriseController::class, 'store'])->name('entreprise.inscrire');
+
+Route::post('/connexion_client', [EntrepriseController::class, 'connexion_client'])->name('entreprise.connexion_client');
+Route::post('/inscription_client', [EntrepriseController::class, 'inscription_client'])->name('entreprise.inscription_client');
 
 // Route d'admin
 Route::group(['middleware' => 'admin'], function () {
@@ -199,7 +202,8 @@ Route::group(['middleware' => 'client'], function () {
 });
 
 //Auth Routes
-Route::get('login', [AuthController::class, 'login'])->name('login');
+// Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::get('login/{entreprise_URL}', [AuthController::class, 'login'])->name('login');
 Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration/{entreprise_URL}', [AuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');

@@ -20,6 +20,18 @@ class EntrepriseController extends Controller
         //
     }
 
+    public function connexion_client(Request $request)
+    {
+        $url_personnalisee = $request->get('url_personnalisee');
+        return redirect()->route('login', $url_personnalisee);
+    }
+
+    public function inscription_client(Request $request)
+    {
+        $url_personnalisee = $request->get('url_personnalisee');
+        return redirect()->route('register-user', $url_personnalisee);
+    }
+
 
     public function store(Request $request)
     {

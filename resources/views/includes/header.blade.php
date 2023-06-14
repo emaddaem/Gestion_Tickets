@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light navbar-expand-lg mb-5" style="background-color: #e3f2fd;">
     <div class="container">
         @guest
-        <a class="navbar-brand mr-auto" href="/">Page d'acceuil</a>
+        <a class="navbar-brand mr-auto" href="/">Acceuil</a>
         @endguest
         @if(Auth::check())
         @if(Auth::user()->role === 'client')
@@ -96,11 +96,11 @@
 
                 @guest
                 <li class="nav-item" style="margin-left: 900px;">
-                    <a class="nav-link" href="{{ route('login') }}">Se connecter</a>
+                    <!-- <a class="nav-link" href="{{ route('login', 'aucune') }}">Se connecter</a> -->
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register-user', 'aucune') }}">Créer un compte</a>
+                    <!-- <a class="nav-link" href="{{ route('register-user', 'aucune') }}">Créer un compte</a> -->
                 </li>
                 @else
                 <li class="nav-item">

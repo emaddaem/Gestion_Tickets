@@ -12,9 +12,19 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(string $entreprise_URL)
     {
-        return view('auth.login');
+        if (!$entreprise_URL) {
+            return redirect()->route('welcome')->withErrors("L'URL que vous désirez accéder est introuvable");
+        }
+
+        $entreprise = Entreprise::where('url_personnalisee', $entreprise_URL)->first();
+
+        if (!$entreprise) {
+            return redirect()->route('welcome')->withErrors("L'URL que vous désirez accéder est introuvable");
+        }
+
+        return view('auth.login', compact('entreprise'));
     }
 
     public function customLogin(Request $request)
@@ -22,22 +32,30 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required',
             'password' => 'required',
+            'entreprise_id' => 'sometimes'
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password', 'entreprise_id');
         if (auth()->attempt($credentials)) {
             return redirect()->intended('/client/dashboard');
+        } else {
+            if (!$request->get('entreprise_id')) {
+                return redirect()->route('welcome')->withErrors("L'URL que vous désirez accéder n'est pas convenable");
+            }
+            else{
+                $entreprise_URL = Entreprise::where('id', $request->get('entreprise_id'))->value('url_personnalisee');
+    
+                return redirect()->route('login', $entreprise_URL)->withErrors('Les informations sont incorrectes.');
+            }
         }
-
-        return redirect("login")->withSuccess('Login details are not valid');
     }
 
     public function registration(string $entreprise_URL)
     {
         $entreprise = Entreprise::where('url_personnalisee', $entreprise_URL)->first();
 
-        if(!$entreprise){
-            $entreprise = null;
+        if (!$entreprise) {
+            return redirect()->route('welcome')->withErrors("L'URL que vous désirez accéder est introuvable");
         }
         return view('auth.registration', compact('entreprise'));
     }
@@ -66,10 +84,11 @@ class AuthController extends Controller
     }
 
 
-    public function signOut() {
+    public function signOut()
+    {
         Session::flush();
         Auth::logout();
 
-        return Redirect('login');
+        return redirect()->route('welcome');
     }
 }

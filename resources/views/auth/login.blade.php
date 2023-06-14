@@ -1,7 +1,10 @@
 @extends('base')
 @section('content')
+
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh">
     <div class="d-flex flex-column justify-content-between">
+        @include('includes.success')
+        @include('includes.errors')
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-10">
                 <div class="card card-default mb-0">
@@ -20,6 +23,9 @@
                         <form method="POST" action="{{ route('login.custom') }}">
                             @csrf
                             <div class="row">
+                                <!-- Champ caché pour l'identifiant de l'entreprise -->
+                                <input type="hidden" name="entreprise_id" value="{{ $entreprise ? $entreprise->id : null }}">
+                                
                                 <div class="form-group col-md-12 mb-4">
                                     <input type="email" class="form-control input-lg" name="email" id="email" aria-describedby="emailHelp" placeholder="email">
                                     @if (isset($errors) && $errors->has('email'))
@@ -47,8 +53,8 @@
 
                                     <button type="submit" class="btn btn-primary btn-pill mb-4">Sign In</button>
 
-                                    <p>Don't have an account yet ?
-                                        <a class="text-blue" href="sign-up.html">Sign Up</a>
+                                    <p>Vous n'avez pas encore de compte ?
+                                        <a class="text-blue" href="{{ route('register-user', 'aucune') }}">Sign Up</a>
                                     </p>
                                 </div>
                             </div>
