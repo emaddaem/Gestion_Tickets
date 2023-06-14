@@ -79,8 +79,8 @@
             <div class="creer-ticket">
                 <a href="{{route('agent.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
             </div>
-            <table class="table table-striped">
-                <thead class="bg-light">
+            <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                <thead>
                     <tr>
                         <th>Id</th>
                         <th>Titre</th>
@@ -96,7 +96,7 @@
                 <tbody>
                     @foreach ($tickets as $ticket)
                     <tr>
-                        <td>1</td>
+                        <td>{{ $loop->index + 1 }}</td>
                         <td>{{$ticket->titre}}</td>
                         <td>{{$ticket->categorie->nom}}</td>
                         <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>

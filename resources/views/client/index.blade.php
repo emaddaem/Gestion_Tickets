@@ -67,7 +67,7 @@
                 <tbody>
                     @foreach ($tickets as $ticket)
                     <tr>
-                        <td>111</td>
+                        <td>{{ $loop->index + 1 }}</td>
                         <td>{{$ticket->titre}}</td>
                         <td>{{$ticket->categorie->nom}}</td>
                         <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>

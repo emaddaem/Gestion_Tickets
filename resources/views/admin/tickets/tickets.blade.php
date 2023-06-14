@@ -26,10 +26,10 @@
         <div class="row">
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
-                <table class="table mt-3">
+                <table id="productsTable" class="table table-hover table-product" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <td>{{ $loop->index + 1 }}</td>
                             <th>Titre</th>
                             <th>Catégorie</th>
                             <th>Status</th>
@@ -54,17 +54,15 @@
                             <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
                             <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                             <td>
-                                <a href="{{route('admin.ticket', $ticket->id)}}" class="btn-sm">
-                                    <i class="fa fa-eye fa-lg"></i>
-                                </a>
-
-                                <a href="{{route('admin.modifier_ticket', $ticket->id)}}" class="btn-sm">
-                                    <i class="fa fa-edit fa-lg"></i>
-                                </a>
-
-                                <a href="{{route('admin.supprimer_ticket', $ticket->id)}}" class="btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{route('admin.ticket', $ticket->id)}}">Afficher</a>
+                                        <a class="dropdown-item" href="{{route('admin.modifier_ticket', $ticket->id)}}">Modifier</a>
+                                        <a class="dropdown-item" href="{{route('admin.supprimer_ticket', $ticket->id)}}">Supprimer</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

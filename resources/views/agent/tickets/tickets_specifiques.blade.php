@@ -23,8 +23,8 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col">
-                <table class="table table-striped">
-                    <thead class="bg-light">
+                <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                    <thead>
                         <tr>
                             <th>Id</th>
                             <th>Sujet</th>

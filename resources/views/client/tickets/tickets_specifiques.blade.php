@@ -23,8 +23,8 @@
         <div class="row">
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
-                <table class="table table-striped">
-                    <thead class="bg-light">
+                <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                    <thead>
                         <tr>
                             <th>Id</th>
                             <th>Sujet</th>
@@ -39,7 +39,7 @@
                     <tbody>
                         @foreach ($tickets as $ticket)
                         <tr>
-                            <td>111</td>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td>{{$ticket->titre}}</td>
                             <td>{{$ticket->categorie->nom}}</td>
                             <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
@@ -47,17 +47,15 @@
                             <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
                             <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                             <td>
-                                <a href="{{route('client.ticket', $ticket->id)}}" class="btn-sm">
-                                    <i class="fa fa-eye fa-lg"></i>
-                                </a>
-
-                                <a href="{{route('client.modifier_ticket', $ticket->id)}}" class="btn-sm">
-                                    <i class="fa fa-edit fa-lg"></i>
-                                </a>
-
-                                <a href="{{route('client.supprimer_ticket', $ticket->id)}}" class="btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{route('client.ticket', $ticket->id)}}">Afficher</a>
+                                        <a class="dropdown-item" href="{{route('client.modifier_ticket', $ticket->id)}}">Modifier</a>
+                                        <a class="dropdown-item" href="{{route('client.supprimer_ticket', $ticket->id)}}">Supprimer</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
