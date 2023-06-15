@@ -55,6 +55,8 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::put('/actualiser_ticket/{id}', [TicketController_admin::class, 'update'])->name('admin.update_ticket');
 
+        Route::post('/assigner_agent/{id}', [TicketController_admin::class, 'assigner_agent'])->name('admin.assigner_agent');
+
         Route::get('/supprimer_ticket/{id}', [TicketController_admin::class, 'destroy'])->name('admin.supprimer_ticket');
 
         Route::post('/creer_commentaire/{id}', [TicketController_admin::class, 'createCommentaire'])->name('admin.creer_commentaire');
@@ -182,6 +184,8 @@ Route::group(['middleware' => 'client'], function () {
 
         Route::post('/enregistrer_ticket', [TicketController::class, 'store'])->name('client.enregistrer_ticket');
 
+        Route::post('/ajouter_jointures/{id}', [TicketController::class, 'ajouter_jointures'])->name('client.ajouter_jointures');
+
         Route::get('/modifier_ticket/{id}', [TicketController::class, 'edit'])->name('client.modifier_ticket');
 
         Route::put('/actualiser_ticket/{id}', [TicketController::class, 'update'])->name('client.update_ticket');
@@ -202,9 +206,10 @@ Route::group(['middleware' => 'client'], function () {
 });
 
 //Auth Routes
-// Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('login/{entreprise_URL}', [AuthController::class, 'login'])->name('login');
 Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
+
 Route::get('registration/{entreprise_URL}', [AuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
+
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');

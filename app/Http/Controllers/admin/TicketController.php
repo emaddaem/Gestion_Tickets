@@ -132,8 +132,9 @@ class TicketController extends Controller
     public function show(string $id)
     {
         $ticket = Ticket::find($id);
+        $agents = User::where('role', 'agent')->get();
 
-        return view('admin/tickets/ticket', compact('ticket'));
+        return view('admin/tickets/ticket', compact('ticket', 'agents'));
     }
 
 
@@ -190,6 +191,21 @@ class TicketController extends Controller
         }
 
         return redirect()->route('admin.ticket', $ticket->id)->with('success', "Le ticket a été modifié avec succès");
+    }
+
+    public function assigner_agent(Request $request, string $id)
+    {
+        $ticket = Ticket::find($id);
+
+        $validatedData = $request->validate([
+            "agent" => "required",
+        ]);
+
+        $ticket->update([
+            'agent_id' => $validatedData['agent'],
+        ]);
+
+        return redirect()->back()->with('success', "L'agent a été assigné avec succès");
     }
 
 

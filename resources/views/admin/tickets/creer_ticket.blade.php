@@ -15,7 +15,7 @@
 @include('includes.success')
 @include('includes.errors')
 
-<div class="container col-lg-8 my-5">
+<div class="container col-lg-7 my-5">
     <h1 class="text text-center">Créer un ticket</h1>
 
     <div class="form-group">
@@ -25,7 +25,7 @@
             <div class="mb-3">
                 <label for="client">Client concerné</label>
                 <div class="d-flex align-items-center justify-content-between">
-                    <select name="client" id="client" style="width: 250px; height: 37px;">
+                    <select class="js-example-basic-multiple form-control border-info" name="client" id="client" style="width: 250px; margin-left: 10px">
                         <option>Sélectionnez le client</option>
                         @foreach($clients as $client)
                         <option value="{{ $client->id }}">{{ $client->nom }} {{ $client->prenom }}</option>
@@ -37,17 +37,17 @@
 
             <div class="mb-3">
                 <label for="titre">Titre</label>
-                <input type="text" class="form-control" name="titre">
+                <input type="text" class="form-control border-info" name="titre">
             </div>
 
             <div class="mb-3">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description"></textarea>
+                <textarea class="form-control border-info" name="description" id="description"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="categorie">Catégorie</label>
-                <select name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
                     <option value="">Sélectionnez la catégorie</option>
                     @foreach ($categories as $categorie)
                     <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
@@ -57,7 +57,7 @@
 
             <div class="mb-3">
                 <label for="statut">Statut</label>
-                <select name="statut" id="statut" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="statut" id="statut" style="width: 250px; margin-left: 10px">
                     @foreach ($statuts as $statut)
                     <option value="{{ $statut->id }}">{{ $statut->nom }}</option>
                     @endforeach
@@ -66,7 +66,7 @@
 
             <div class="mb-3">
                 <label for="priorite">Priotité</label>
-                <select name="priorite" id="priorite" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="priorite" id="priorite" style="width: 250px; margin-left: 10px">
                     <option value="">Sélectionnez la priorité</option>
                     @foreach ($priorites as $priorite)
                     <option value="{{ $priorite->id }}">{{ $priorite->nom }}</option>
@@ -76,12 +76,12 @@
 
             <div class="mb-3">
                 <label for="jointures[]">Ajouter des fichiers</label>
-                <input type="file" class="form-control" name="jointures[]" multiple>
+                <input type="file" class="form-control border-info" name="jointures[]" multiple>
             </div>
 
             <div class="mb-3">
                 <label for="agent">Agent assigné</label>
-                <select name="agent" id="agent" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="agent" id="agent" style="width: 250px; margin-left: 10px">
                     <option value="">Sélectionnez l'agent</option>
                     @foreach($agents as $agent)
                     <option value="{{ $agent->id }}">{{ $agent->nom }} {{ $agent->prenom }}</option>

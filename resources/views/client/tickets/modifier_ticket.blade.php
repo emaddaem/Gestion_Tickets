@@ -35,7 +35,7 @@
 
             <div class="mb-3">
                 <label for="categorie">Catégorie</label>
-                <select name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control" name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
                     <option value="">Sélectionnez la catégorie</option>
                     @foreach ($categories as $categorie)
                     <option value="{{ $categorie->id }}" @if ($ticket->categorie && $ticket->categorie->id == $categorie->id) selected @endif>

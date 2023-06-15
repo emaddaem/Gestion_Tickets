@@ -21,7 +21,7 @@
 
             <div class="mb-3 d-flex align-items-center">
                 <label for="client">Client concerné</label>
-                <select name="client" id="client" style="width: 250px; height: 37px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control" name="client" id="client" style="width: 250px; height: 37px; margin-left: 10px">
                     <!-- <option>Sélectionnez l'client</option> -->
                     <option>Client1</option>
                     @foreach (['Client2', 'Client3', 'Client4', 'Client5'] as $option)
@@ -43,7 +43,7 @@
 
             <div class="mb-3">
                 <label for="categorie">Catégorie</label>
-                <select name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control" name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
                     <option>Sélectionnez la catégorie</option>
                     @foreach (['catégorie 1', 'catégorie 2', 'catégorie 3', 'catégorie 4'] as $option)
                     <option value="{{ $option }}">{{ $option }}</option>
@@ -53,7 +53,7 @@
 
             <div class="mb-3">
                 <label for="status">Status</label>
-                <select name="status" id="status" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control" name="status" id="status" style="width: 250px; margin-left: 10px">
                     <option value="nouveau">Nouveau</option>
                     @foreach (['En attente', 'Non assigné', 'Résolu'] as $option)
                     <option value="{{ $option }}">{{ $option }}</option>
@@ -63,7 +63,7 @@
 
             <div class="mb-3">
                 <label for="priotite">Priotité</label>
-                <select name="priotite" id="priotite" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control" name="priotite" id="priotite" style="width: 250px; margin-left: 10px">
                     <option>Sélectionnez la priorité</option>
                     @foreach (['Faible', 'Moyenne', 'Haute', 'Urgent', 'Bloquant'] as $option)
                     <option value="{{ $option }}">{{ $option }}</option>
@@ -78,7 +78,7 @@
 
             <div class="mb-3">
                 <label for="agent">Agent assigné</label>
-                <select name="agent" id="agent" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control" name="agent" id="agent" style="width: 250px; margin-left: 10px">
                     <!-- <option>Sélectionnez l'agent</option> -->
                     <option>Agent1</option>
                     @foreach (['Agent2', 'Agent3', 'Agent4', 'Agent5'] as $option)

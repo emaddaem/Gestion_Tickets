@@ -12,24 +12,26 @@
     }
 </style>
 
-@include('includes.success')
-@include('includes.errors')
 
-<div class="container mt-5">
-    <h2 class="mt-3">Liste des tickets</h2>
+<div class="container my-5">
+    @include('includes.success')
+    @include('includes.errors')
+
+    <h2>Liste des tickets</h2>
 
     <div class="creer-ticket">
-        <a href="/admin/creer_ticket" class="btn btn-success mt-2">Créer un ticket</a>
+        <a href="{{route('admin.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
 
     <div class="container mt-3">
         <div class="row">
+        <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">
                     <thead>
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
+                            <td>Id</td>
                             <th>Titre</th>
                             <th>Catégorie</th>
                             <th>Status</th>
@@ -44,7 +46,7 @@
                     <tbody>
                         @foreach ($tickets as $ticket)
                         <tr>
-                            <td>1</td>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td>{{$ticket->titre}}</td>
                             <td>{{$ticket->categorie->nom}}</td>
                             <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>

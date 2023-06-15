@@ -103,6 +103,30 @@ class TicketController extends Controller
         return redirect()->route('client.index')->with("success", "Votre ticket a bien été ajouté, il sera assigné à un agent le plutot possible.");
     }
 
+    public function ajouter_jointures(Request $request, string $id)
+    {
+        $user_id = auth()->user()->id;
+
+        $validatedData = $request->validate([
+            "jointures[]"
+        ]);
+
+        if ($request->file('jointures')) {
+            foreach ($request->file('jointures') as $jointure) {
+                $nom_jointure = uniqid() . '.' . $jointure->getClientOriginalExtension();
+                $jointure->move(public_path('images/jointures'), $nom_jointure);
+
+                $jointure = new Jointure([
+                    'chemin' => $nom_jointure,
+                    'ticket_id' => $id
+                ]);
+                $jointure->save();
+            }
+        }
+
+        return redirect()->back()->with("success", "Vos fichiers ont bien été enregistrés");
+    }
+
 
     public function show(string $id)
     {

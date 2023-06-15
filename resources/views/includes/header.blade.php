@@ -1,113 +1,153 @@
-<nav class="navbar navbar-light navbar-expand-lg mb-5" style="background-color: #e3f2fd;">
-    <div class="container">
-        @guest
-        <a class="navbar-brand mr-auto" href="/">Acceuil</a>
-        @endguest
-        @if(Auth::check())
-        @if(Auth::user()->role === 'client')
-        <a class="navbar-brand mr-auto" href="{{route('client.index')}}">Dashboard</a>
-        @elseif(Auth::user()->role === 'admin')
-        <a class="navbar-brand mr-auto" href="{{route('admin.index')}}">Dashboard</a>
-        @elseif(Auth::user()->role === 'agent')
-        <a class="navbar-brand mr-auto" href="{{route('agent.index')}}">Dashboard</a>
-        @endif
-        @endif
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+<ul class="container d-flex nav nav-tabs mb-3 justify-content-between" id="pills-tab2" role="tablist">
+    @guest
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" href="/" role="tab" aria-controls="nav-tabs" aria-selected="true">
+            <i class="mdi mdi-star-outline"></i> Acceuil
+        </a>
+    </li>
+    @endguest
+    @if(Auth::check())
+    @if(Auth::user()->role === 'client')
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" href="{{route('client.index')}}" role="tab" aria-controls="nav-tabs" aria-selected="true">
+            <i class="mdi mdi-star-outline"></i> Tableau de board
+        </a>
+    </li>
+    @elseif(Auth::user()->role === 'admin')
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" href="{{route('admin.index')}}" role="tab" aria-controls="nav-tabs" aria-selected="true">
+            <i class="mdi mdi-star-outline"></i> Tableau de board
+        </a>
+    </li>
+    @elseif(Auth::user()->role === 'agent')
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" href="{{route('agent.index')}}" role="tab" aria-controls="nav-tabs" aria-selected="true">
+            <i class="mdi mdi-star-outline"></i> Tableau de board
+        </a>
+    </li>
+    @endif
+    @endif
 
-                @if(Auth::check())
-                @if(Auth::user()->role === 'client')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('client.tickets')}}">Tickets</a>
-                </li>
+    @if(Auth::check())
+    @if(Auth::user()->role === 'client')
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('client.tickets')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Tickets</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('client.creer_ticket')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Créer un ticket</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('client.profil')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            <i class="mdi mdi-account"></i>
+            Profil</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+            Dropdown</a>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('client.creer_ticket')}}">Créer un ticket</a>
-                </li>
-
-                <!-- <li class="nav-item dropdown" style="margin-left: 620px;">
-                    <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Paramètres</a>
-                    <div class="dropdown-menu" aria-labelledby="optionsDropdown">
-                        <a class="dropdown-item" href="#">Liste des catégories</a>
-                        <a class="dropdown-item" href="">Autres</a>
-                    </div>
-                </li> -->
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('client.profil')}}">Profil</a>
-                </li>
-                @elseif(Auth::user()->role === 'agent')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('agent.tickets')}}">Tickets</a>
-                </li>
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Clients</a>
-                </li> -->
-
-                <li class="nav-item dropdown" style="margin-left: 620px;">
-                    <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Paramètres</a>
-                    <div class="dropdown-menu" aria-labelledby="optionsDropdown">
-                        <a class="dropdown-item" href="#">Liste des catégories</a>
-                        <a class="dropdown-item" href="#">Liste des statuts</a>
-                        <a class="dropdown-item" href="#">Liste des priorités</a>
-                        <a class="dropdown-item" href="">Autres</a>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('agent.profil')}}">Profil</a>
-                </li>
-                @elseif(Auth::user()->role === 'admin')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.tickets')}}">Tickets</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.clients')}}">Clients</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.agents')}}">Agents</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.admins')}}">Admins</a>
-                </li>
-
-                <li class="nav-item dropdown" style="margin-left: 620px;">
-                    <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Paramètres</a>
-                    <div class="dropdown-menu" aria-labelledby="optionsDropdown">
-                        <a class="dropdown-item" href="{{route('admin.categories')}}">Liste des catégories</a>
-                        <a class="dropdown-item" href="{{route('admin.statuts')}}">Liste des statuts</a>
-                        <a class="dropdown-item" href="{{route('admin.priorites')}}">Liste des priorités</a>
-                        <a class="dropdown-item" href="">Autres</a>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.profil')}}">Profil</a>
-                </li>
-                @endif
-                @endif
-
-                @guest
-                <li class="nav-item" style="margin-left: 900px;">
-                    <!-- <a class="nav-link" href="{{ route('login', 'aucune') }}">Se connecter</a> -->
-                </li>
-
-                <li class="nav-item">
-                    <!-- <a class="nav-link" href="{{ route('register-user', 'aucune') }}">Créer un compte</a> -->
-                </li>
-                @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('signout') }}">Se déconnecter</a>
-                </li>
-                @endguest
-            </ul>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
         </div>
-    </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('signout')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Se déconnecter</a>
+    </li>
+    @elseif(Auth::user()->role === 'agent')
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('agent.tickets')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            <i class="mdi mdi-account"></i>
+            Tickets</a>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Paramètres</a>
+        <div class="dropdown-menu" aria-labelledby="optionsDropdown">
+            <a class="dropdown-item" href="#">Liste des catégories</a>
+            <a class="dropdown-item" href="#">Liste des statuts</a>
+            <a class="dropdown-item" href="#">Liste des priorités</a>
+            <a class="dropdown-item" href="">Autres</a>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('agent.profil')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            <i class="mdi mdi-account"></i>
+            Profil</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('signout')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Se déconnecter</a>
+    </li>
+    @elseif(Auth::user()->role === 'admin')
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('admin.tickets')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Tickets</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('admin.clients')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            <i class="mdi mdi-account"></i>
+            Clients</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('admin.agents')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            <i class="mdi mdi-account"></i>
+            Agents</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('admin.admins')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            <i class="mdi mdi-account"></i>
+            Admins</a>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Paramètres</a>
+        <div class="dropdown-menu" aria-labelledby="optionsDropdown">
+            <a class="dropdown-item" href="{{route('admin.categories')}}">Liste des catégories</a>
+            <a class="dropdown-item" href="{{route('admin.statuts')}}">Liste des statuts</a>
+            <a class="dropdown-item" href="{{route('admin.priorites')}}">Liste des priorités</a>
+            <a class="dropdown-item" href="">Autres</a>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('admin.profil')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            <i class="mdi mdi-account"></i>
+            Profil</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('signout')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Se déconnecter</a>
+    </li>
+    @endif
+    @endif
+
+    @guest
+    <!-- <li class="nav-item" style="margin-left: 900px;">
+        <a class="nav-link" href="{{ route('login', 'aucune') }}">Se connecter</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('register-user', 'aucune') }}">Créer un compte</a>
+    </li> -->
+    @else
+    <!-- <li class="nav-item">
+        <a class="nav-link" id="nav-profile-tab" href="{{route('signout')}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Se déconnecter</a>
+    </li> -->
+    @endguest
+</ul>
+</div>
+</div>
 </nav>

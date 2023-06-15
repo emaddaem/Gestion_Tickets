@@ -16,14 +16,13 @@
     }
 </style>
 
-@include('includes.success')
-@include('includes.errors')
-
-<div class="container">
+<div class="container my-5">
+    @include('includes.success')
+    @include('includes.errors')
     <h3><strong>Tableau de board</strong></h3>
     <div class="row mt-4">
         <div class="col-md-3 my-2">
-            <div class="card" style="width: 19rem;">
+            <div class="card" style="width: 17rem; height: 8rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques', $statuts_data['id_statut_nouveau'])}}">
                         <h5 class="card-title">Nouveaux tickets</h5>
@@ -34,7 +33,7 @@
         </div>
 
         <div class="col-md-3 my-2">
-            <div class="card" style="width: 19rem;">
+            <div class="card" style="width: 17rem; height: 8rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques', $statuts_data['id_statut_traitement'])}}">
                         <h5 class="card-title">Tickets en cours de traitement</h5>
@@ -45,7 +44,7 @@
         </div>
 
         <div class="col-md-3 my-2">
-            <div class="card" style="width: 19rem;">
+            <div class="card" style="width: 17rem; height: 8rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques', $statuts_data['id_statut_attente'])}}">
                         <h5 class="card-title">Tickets en attente</h5>
@@ -56,7 +55,7 @@
         </div>
 
         <div class="col-md-3 my-2">
-            <div class="card" style="width: 19rem;">
+            <div class="card" style="width: 17rem; height: 8rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques', $statuts_data['id_statut_resolu'])}}">
                         <h5 class="card-title">Tickets résolus</h5>
@@ -67,7 +66,7 @@
         </div>
 
         <div class="col-md-3 my-2">
-            <div class="card" style="width: 19rem;">
+            <div class="card" style="width: 17rem; height: 8rem;">
                 <div class="card-body">
                     <a href="{{route('admin.tickets_specifiques', 0)}}">
                         <h5 class="card-title">Tickets non assignés</h5>
@@ -131,6 +130,5 @@
         </div>
         @endif
     </div>
-
 </div>
 @endsection

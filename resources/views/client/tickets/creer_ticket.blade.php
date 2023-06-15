@@ -23,17 +23,17 @@
             @csrf
             <div class="mb-3">
                 <label for="titre">Titre</label>
-                <input type="text" class="form-control" name="titre">
+                <input type="text" class="form-control border-info" name="titre">
             </div>
 
             <div class="mb-3">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description"></textarea>
+                <textarea class="form-control border-info" name="description" id="description"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="categorie">Catégorie</label>
-                <select name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
                     <option value="">Sélectionnez la catégorie</option>
                     @foreach ($categories as $categorie)
                     <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
@@ -43,7 +43,7 @@
 
             <div class="mb-3">
                 <label for="jointures[]">Ajouter des fichiers</label>
-                <input type="file" class="form-control" name="jointures[]" multiple>
+                <input type="file" class="form-control border-info" name="jointures[]" multiple>
             </div>
 
             <div class="mb-3">
