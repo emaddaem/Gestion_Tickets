@@ -14,6 +14,9 @@
 
 
 <div class="container mt-5">
+    @include('includes.success')
+    @include('includes.errors')
+
     <h2 class="mt-3">Liste des tickets</h2>
 
     <div class="creer-ticket">
@@ -33,7 +36,6 @@
                             <th>Catégorie</th>
                             <th>Status</th>
                             <th>Priorité</th>
-                            <th>Agent assigné</th>
                             <th>Client concerné</th>
                             <th>Créé à</th>
                             <th>Mise à jour à</th>
@@ -48,7 +50,6 @@
                             <td>{{$ticket->categorie->nom}}</td>
                             <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
                             <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
                             <td>{{$ticket->user->nom}}</td>
                             <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
                             <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
@@ -59,6 +60,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="{{route('agent.ticket', $ticket->id)}}">Afficher</a>
                                         <a class="dropdown-item" href="{{route('agent.modifier_ticket', $ticket->id)}}">Modifier</a>
+                                        <a class="dropdown-item" href="{{route('agent.fermer_ticket', $ticket->id)}}">Fermer</a>
                                         <a class="dropdown-item" href="{{route('agent.supprimer_ticket', $ticket->id)}}">Supprimer</a>
                                     </div>
                                 </div>

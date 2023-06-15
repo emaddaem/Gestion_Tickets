@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Ajouter une priorité')
+@section('title', 'Ajouter un statut')
 @section('content')
 
 <style>
@@ -16,10 +16,10 @@
 @include('includes.errors')
 
 <div class="container">
-    <h1 class="text text-center">Ajouter une priorite</h1>
+    <h1 class="text text-center">Ajouter une statut</h1>
 
     <div class="form-group">
-        <form action="{{route('admin.enregistrer_priorite')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.enregistrer_statut')}}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">

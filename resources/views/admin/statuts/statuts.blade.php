@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Liste des status')
+@section('title', 'Liste des statuts')
 @section('content')
 
 <style>
@@ -12,47 +12,47 @@
     }
 </style>
 
-
 <div class="container mt-5">
-    <h2 class="mt-3">Liste des status</h2>
+    <h2 class="mt-3">Liste des statuts</h2>
 
     <div class="creer-ticket">
-        <a href="/admin/ajouter_status" class="btn btn-success mt-2">Ajouter un status</a>
+        <a href="{{route('admin.ajouter_statut')}}" class="btn btn-success mt-2">Ajouter un statut</a>
     </div>
 
     <div class="container mt-3">
         <div class="row">
+            @if ($statuts && $statuts->count() > 0)
             <div class="col">
                 <table class="table mt-3">
                     <thead>
                         <tr>
                             <th>Id</th>
                             <th>Nom</th>
-                            <th>Crée a</th>
-                            <th>Mise a jour a</th>
+                            <th>Créée à</th>
+                            <th>Mise à jour à</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($statuts as $statut)
                         <tr>
-                            <td>1</td>
-                            <td>Status 1</td>
-                            <td>05/05/2023</td>
-                            <td>05/05/2023</td>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{$statut->nom}}</td>
+                            <td>{{$statut->created_at}}</td>
+                            <td>{{$statut->updated_at}}</td>
                             <td>
-                                <a href="/admin/modifier_status" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+                                <a href="{{route('admin.modifier_statut', $statut->id)}}" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
 
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </form>
+                                <a href="{{route('admin.supprimer_statut', $statut->id)}}" class="btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+            @endif
         </div>
     </div>
 </div>

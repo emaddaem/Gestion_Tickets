@@ -243,4 +243,16 @@ class TicketController extends Controller
 
         return redirect()->back()->with('success', "Votre message a été envoyé");
     }
+
+    public function fermer_ticket(string $id)
+    {
+        $ticket = Ticket::find($id);
+        $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
+
+        $ticket->update([
+            'statut_id' => $id_statut_resolu,
+        ]);
+
+        return redirect()->route('admin.tickets')->with('success', "Le ticket a été fermé avec succès");
+    }
 }

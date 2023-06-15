@@ -59,6 +59,8 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/supprimer_ticket/{id}', [TicketController_admin::class, 'destroy'])->name('admin.supprimer_ticket');
 
+        Route::get('/fermer_ticket/{id}', [TicketController_admin::class, 'fermer_ticket'])->name('admin.fermer_ticket');
+
         Route::post('/creer_commentaire/{id}', [TicketController_admin::class, 'createCommentaire'])->name('admin.creer_commentaire');
 
 
@@ -105,17 +107,33 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/supprimer_admin/{id}', [AdminController_admin::class, 'destroy'])->name('admin.supprimer_admin');
 
         Route::get('/rendre_agent/{id}', [AdminController_admin::class, 'rendre_agent'])->name('admin.rendre_agent');
-        
-
 
 
         Route::get('/statuts', [StatutController::class, 'statuts'])->name('admin.statuts');
 
-        Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('admin.ajouter_statuts');
+        Route::get('/ajouter_statut', [StatutController::class, 'create'])->name('admin.ajouter_statut');
+
+        Route::post('/enregistrer_statut', [StatutController::class, 'store'])->name('admin.enregistrer_statut');
+
+        Route::get('/modifier_statut/{id}', [StatutController::class, 'edit'])->name('admin.modifier_statut');
+
+        Route::put('/actualiser_statut/{id}', [StatutController::class, 'update'])->name('admin.update_statut');
+
+        Route::get('/supprimer_statut/{id}', [StatutController::class, 'destroy'])->name('admin.supprimer_statut');
+
 
         Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('admin.priorites');
 
         Route::get('/ajouter_priorite', [PrioriteController::class, 'create'])->name('admin.ajouter_priorite');
+
+        Route::post('/enregistrer_priorite', [PrioriteController::class, 'store'])->name('admin.enregistrer_priorite');
+
+        Route::get('/modifier_priorite/{id}', [PrioriteController::class, 'edit'])->name('admin.modifier_priorite');
+
+        Route::put('/actualiser_priorite/{id}', [PrioriteController::class, 'update'])->name('admin.update_priorite');
+
+        Route::get('/supprimer_priorite/{id}', [PrioriteController::class, 'destroy'])->name('admin.supprimer_priorite');
+
 
         Route::get('/categories', [CategorieController::class, 'categories'])->name('admin.categories');
 
@@ -152,6 +170,9 @@ Route::group(['middleware' => 'agent'], function () {
         Route::put('/actualiser_ticket/{id}', [TicketController_agent::class, 'update'])->name('agent.update_ticket');
 
         Route::get('/supprimer_ticket/{id}', [TicketController_agent::class, 'destroy'])->name('agent.supprimer_ticket');
+
+        Route::get('/fermer_ticket/{id}', [TicketController_agent::class, 'fermer_ticket'])->name('agent.fermer_ticket');
+
 
         Route::post('/creer_commentaire/{id}', [TicketController_agent::class, 'createCommentaire'])->name('agent.creer_commentaire');
 

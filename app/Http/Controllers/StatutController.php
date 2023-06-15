@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Statut;
 use Illuminate\Http\Request;
 
-class StatutController extends Controller
+class statutController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         //
@@ -18,7 +19,9 @@ class StatutController extends Controller
 
     public function statuts()
     {
-        return view('admin/statuts/statuts');
+        $statuts = statut::all();
+
+        return view('admin/statuts/statuts', compact('statuts'));
     }
 
     /**
@@ -26,7 +29,7 @@ class StatutController extends Controller
      */
     public function create()
     {
-        return view('admin/statuts/ajouter_statuts');
+        return view('admin/statuts/ajouter_statut');
     }
 
     /**
@@ -34,7 +37,15 @@ class StatutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            "nom" => "required",
+        ]);
+
+        statut::create([
+            'nom' => $validatedData['nom'],
+        ]);
+
+        return redirect()->route('admin.statuts')->with("success", "La statut a bien été ajoutée.");
     }
 
     /**
@@ -50,7 +61,9 @@ class StatutController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $statut = statut::find($id);
+
+        return view('admin/statuts/modifier_statut', compact('statut'));
     }
 
     /**
@@ -58,7 +71,17 @@ class StatutController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $statut = statut::find($id);
+
+        $validatedData = $request->validate([
+            "nom" => "required",
+        ]);
+
+        $statut->update([
+            'nom' => $validatedData['nom'],
+        ]);
+
+        return redirect()->route('admin.statuts', $statut->id)->with('success', "La statut a été modifiée avec succès");
     }
 
     /**
@@ -66,6 +89,10 @@ class StatutController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $statut = statut::find($id);
+
+        $statut->delete();
+
+        return redirect()->route('admin.statuts')->with('success', "La statut a été supprimée avec succès");
     }
 }

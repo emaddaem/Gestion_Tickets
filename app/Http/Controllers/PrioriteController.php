@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Priorite;
 use Illuminate\Http\Request;
 
 class PrioriteController extends Controller
@@ -10,7 +11,7 @@ class PrioriteController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         //
@@ -18,7 +19,9 @@ class PrioriteController extends Controller
 
     public function priorites()
     {
-        return view('admin/priorites/priorites');
+        $priorites = priorite::all();
+
+        return view('admin/priorites/priorites', compact('priorites'));
     }
 
     /**
@@ -34,7 +37,15 @@ class PrioriteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            "nom" => "required",
+        ]);
+
+        priorite::create([
+            'nom' => $validatedData['nom'],
+        ]);
+
+        return redirect()->route('admin.priorites')->with("success", "La priorite a bien été ajoutée.");
     }
 
     /**
@@ -50,7 +61,9 @@ class PrioriteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $priorite = priorite::find($id);
+
+        return view('admin/priorites/modifier_priorite', compact('priorite'));
     }
 
     /**
@@ -58,7 +71,17 @@ class PrioriteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $priorite = priorite::find($id);
+
+        $validatedData = $request->validate([
+            "nom" => "required",
+        ]);
+
+        $priorite->update([
+            'nom' => $validatedData['nom'],
+        ]);
+
+        return redirect()->route('admin.priorites', $priorite->id)->with('success', "La catégorie a été modifiée avec succès");
     }
 
     /**
@@ -66,6 +89,10 @@ class PrioriteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $priorite = priorite::find($id);
+
+        $priorite->delete();
+
+        return redirect()->route('admin.priorites')->with('success', "La catégorie a été supprimée avec succès");
     }
 }

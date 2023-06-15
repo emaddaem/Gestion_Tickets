@@ -56,7 +56,13 @@
 <div class="container mx-auto my-3 col-10">
     @include('includes.success')
     @include('includes.errors')
-    <h3 class="mb-3"><strong>A propos du ticket</strong></h3>
+
+    <div class="d-flex justify-content-between">
+        <h3 class="mb-3"><strong>A propos du ticket</strong></h3>
+        <h3>
+            <a href="{{route('admin.fermer_ticket', $ticket->id)}}" class="btn btn-danger btn-sm">Fermer le ticket</a>
+        </h3>
+    </div>
 
     <div class="row">
         <div class="left_side col-lg-4">

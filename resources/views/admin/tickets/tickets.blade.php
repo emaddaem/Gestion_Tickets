@@ -25,7 +25,7 @@
 
     <div class="container my-3">
         <div class="row">
-        <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
+            <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">
@@ -51,8 +51,20 @@
                             <td>{{$ticket->categorie->nom}}</td>
                             <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
                             <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
-                            <td>{{$ticket->user->nom}}</td>
+                            <td>
+                                @if($ticket->agent)
+                                <a href="{{route('admin.agent', $ticket->agent->id)}}" style="text-decoration: none; color: inherit;">
+                                    {{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}
+                                </a>
+                                @else
+                                Pas encore assigné
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{route('admin.client', $ticket->user->id)}}" style="text-decoration: none; color: inherit;">
+                                    {{$ticket->user->nom}} {{$ticket->user->prenom}}
+                                </a>
+                            </td>
                             <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
                             <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                             <td>
@@ -62,6 +74,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="{{route('admin.ticket', $ticket->id)}}">Afficher</a>
                                         <a class="dropdown-item" href="{{route('admin.modifier_ticket', $ticket->id)}}">Modifier</a>
+                                        <a class="dropdown-item" href="{{route('admin.fermer_ticket', $ticket->id)}}">Fermer</a>
                                         <a class="dropdown-item" href="{{route('admin.supprimer_ticket', $ticket->id)}}">Supprimer</a>
                                     </div>
                                 </div>
