@@ -133,7 +133,6 @@ Route::group(['middleware' => 'agent'], function () {
 
         Route::get('/profil', [ProfilController_agent::class, 'index'])->name('agent.profil');
 
-
         Route::get('/tickets', [TicketController_agent::class, 'tickets'])->name('agent.tickets');
 
         Route::get('/tickets_specifiques', [TicketController_agent::class, 'tickets_specifiques'])->name('agent.tickets_specifiques');

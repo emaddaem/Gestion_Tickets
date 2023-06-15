@@ -15,7 +15,7 @@ class AgentMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->role !== 'admin') {
+        if (auth()->check() && auth()->user()->role !== 'agent') {
             return redirect()->route(auth()->user()->role . '.index');
         }
 
