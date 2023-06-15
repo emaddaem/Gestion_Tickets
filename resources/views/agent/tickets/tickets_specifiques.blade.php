@@ -14,55 +14,66 @@
 
 
 <div class="container mt-5">
-    <h2 class="mt-3">Liste des tickets</h2>
+    <h2 class="my-3">Liste des tickets</h2>
+
+    @if($nom_statut)
+    <h4>Statut : <strong>{{$nom_statut}}</strong></h4>
+    @else
+    <h4>Statut : <strong>Non assigné</strong></h4>
+    @endif
 
     <div class="creer-ticket">
-        <a href="/admin/creer_ticket" class="btn btn-success mt-2">Créer un ticket</a>
+        <a href="{{route('agent.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
 
     <div class="container mt-3">
         <div class="row">
+            @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Sujet</th>
-                            <th>Description</th>
-                            <th>Priorité</th>
+                            <th>Titre</th>
+                            <th>Catégorie</th>
                             <th>Status</th>
-                            <th>Agent assigné</th>
+                            <th>Priorité</th>
+                            <th>Client concerné</th>
                             <th>Créé à</th>
                             <th>Mise à jour à</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($tickets as $ticket)
                         <tr>
-                            <td>1</td>
-                            <td>Ticket 1</td>
-                            <td>Description de la première ticket</td>
-                            <td>Moyenne</td>
-                            <td>En attente</td>
-                            <td>Agent 1</td>
-                            <td>05/05/2023</td>
-                            <td>05/05/2023</td>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{$ticket->titre}}</td>
+                            <td>{{$ticket->categorie->nom}}</td>
+                            <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
+                            <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
+                            <td>{{$ticket->user->nom}}</td>
+                            <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
+                            <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                             <td>
-                                <a href="/admin/ticket" class="btn-sm"><i class="fas fa-eye fa-lg"></i></a>
-
-                                <a href="/admin/modifier_ticket" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>
-
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    <a href="#" class="btn-sm" onclick="document.forms[0].submit()">
-                                        <i class="fas fa-trash"></i>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                     </a>
-                                </form>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{route('agent.ticket', $ticket->id)}}">Afficher</a>
+                                        <a class="dropdown-item" href="{{route('agent.modifier_ticket', $ticket->id)}}">Modifier</a>
+                                        <a class="dropdown-item" href="{{route('agent.supprimer_ticket', $ticket->id)}}">Supprimer</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+            @else
+            <h4 class="text text-center">Aucun résultat trouvé</h4>
+            @endif
         </div>
     </div>
 </div>

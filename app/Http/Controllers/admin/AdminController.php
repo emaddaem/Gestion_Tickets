@@ -141,4 +141,15 @@ class AdminController extends Controller
 
         return redirect()->route('admin.admins')->with('success', "L'admin a été supprimé avec succès");
     }
+
+    public function rendre_agent(string $id)
+    {
+        $admin = User::find($id);
+        
+        $admin->update([
+            'role' => 'agent',
+        ]);
+
+        return redirect()->back()->with('success', "L'admin ". $admin->nom . $admin->prenom . " est devenue un agent");
+    }
 }

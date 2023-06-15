@@ -176,7 +176,7 @@
                 <div class="agent">
                     <div>
                         <i class="fas fa-user-tie fa-lg mb-2"></i>
-                        <h5 class="d-inline"><strong> {{$ticket->agent->prenom}} {{$ticket->user->nom}}</strong></h5>
+                        <h5 class="d-inline"><strong> {{$ticket->agent->prenom}} {{$ticket->agent->nom}}</strong></h5>
                     </div>
 
                     <i>

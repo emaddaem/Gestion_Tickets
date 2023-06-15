@@ -77,7 +77,7 @@
         </div>
     </div>
 
-    <h2 class="mt-5">Liste des tickets d'aujourd'hui</h2>
+    <h2 class="my-3">Liste des tickets d'aujourd'hui</h2>
 
     <div class="row my-3">
         @if ($tickets && $tickets->count() > 0)

@@ -13,6 +13,9 @@
 </style>
 
 <div class="container mt-5">
+    @include('includes.success')
+    @include('includes.errors')
+
     <h2 class="mt-3">Liste des agents</h2>
 
     <div class="creer-ticket">
@@ -20,6 +23,8 @@
             Ajouter un agent
         </a>
     </div>
+
+    <h6 class="my-2"><strong>Nombre total :</strong> {{$agents->count()}}</h6>
 
     <div class="container mt-3">
         <div class="row">
@@ -41,7 +46,7 @@
                         @if($agents && $agents->count() > 0)
                         @foreach($agents as $agent)
                         <tr>
-                            <td>1</td>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td>{{$agent->nom}}</td>
                             <td>{{$agent->prenom}}</td>
                             <td>{{$agent->telephone}}</td>
@@ -55,6 +60,10 @@
 
                                 <a href="{{route('admin.supprimer_agent', $agent->id)}}" class="btn-sm">
                                     <i class="fa fa-trash"></i>
+                                </a>
+
+                                <a href="{{route('admin.rendre_admin', $agent->id)}}" class="btn btn-primary btn-sm">
+                                    Rendre admin
                                 </a>
                             </td>
                         </tr>

@@ -25,7 +25,7 @@
             <div class="mb-3">
                 <label for="client">Client concerné</label>
                 <div class="d-flex align-items-center justify-content-between">
-                    <select class="js-example-basic-multiple form-control border-info" name="client" id="client" style="width: 250px; margin-left: 10px">
+                    <select class="js-example-basic-multiple form-control border-info" name="client" id="client" style="width: 250px;">
                         <option>Sélectionnez le client</option>
                         @foreach($clients as $client)
                         <option value="{{ $client->id }}">{{ $client->nom }} {{ $client->prenom }}</option>
@@ -47,7 +47,7 @@
 
             <div class="mb-3">
                 <label for="categorie">Catégorie</label>
-                <select class="js-example-basic-multiple form-control border-info" name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="categorie" id="categorie" style="width: 250px;">
                     <option value="">Sélectionnez la catégorie</option>
                     @foreach ($categories as $categorie)
                     <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
@@ -57,7 +57,7 @@
 
             <div class="mb-3">
                 <label for="statut">Statut</label>
-                <select class="js-example-basic-multiple form-control border-info" name="statut" id="statut" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="statut" id="statut" style="width: 250px;">
                     @foreach ($statuts as $statut)
                     <option value="{{ $statut->id }}">{{ $statut->nom }}</option>
                     @endforeach
@@ -66,7 +66,7 @@
 
             <div class="mb-3">
                 <label for="priorite">Priotité</label>
-                <select class="js-example-basic-multiple form-control border-info" name="priorite" id="priorite" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="priorite" id="priorite" style="width: 250px;">
                     <option value="">Sélectionnez la priorité</option>
                     @foreach ($priorites as $priorite)
                     <option value="{{ $priorite->id }}">{{ $priorite->nom }}</option>
@@ -81,7 +81,7 @@
 
             <div class="mb-3">
                 <label for="agent">Agent assigné</label>
-                <select class="js-example-basic-multiple form-control border-info" name="agent" id="agent" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="agent" id="agent" style="width: 250px;">
                     <option value="">Sélectionnez l'agent</option>
                     @foreach($agents as $agent)
                     <option value="{{ $agent->id }}">{{ $agent->nom }} {{ $agent->prenom }}</option>

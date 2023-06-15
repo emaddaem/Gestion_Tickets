@@ -36,7 +36,7 @@
                         <tbody>
                             @foreach ($categories as $categorie)
                             <tr>
-                                <td>1</td>
+                                <td>{{ $loop->index + 1 }}</td>
                                 <td>{{$categorie->nom}}</td>
                                 <td>{{$categorie->created_at}}</td>
                                 <td>{{$categorie->updated_at}}</td>

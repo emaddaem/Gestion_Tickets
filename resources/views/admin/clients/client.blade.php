@@ -19,7 +19,6 @@
 
     <h2 class="text text-center">Informations sur le client</h2>
 
-    <div class="row">
         <form action="{{ route('admin.update_client', $client->id) }}" method="post" id="entreprise" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -63,10 +62,10 @@
             <input type="submit" class="btn btn-success mt-3" id="enregistrer" value="Enregistrer" disabled>
 
         </form>
-    </div>
+
 </div>
 
-<div class="container my-5 col-lg-9">
+<div class="container col-lg-10 my-5">
     <h3>Tickets du client :</h3>
 
     @if($client->tickets && $client->tickets->count() > 0)
@@ -87,7 +86,7 @@
         <tbody>
             @foreach ($client->tickets as $ticket)
             <tr>
-                <td>1</td>
+                <td>{{ $loop->index + 1 }}</td>
                 <td>{{$ticket->titre}}</td>
                 <td>{{$ticket->categorie->nom}}</td>
                 <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>

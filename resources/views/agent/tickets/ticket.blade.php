@@ -3,10 +3,6 @@
 @section('content')
 
 <style>
-    .move-right {
-        text-align: right;
-    }
-
     .card-body a {
         text-decoration: none;
     }
@@ -19,7 +15,7 @@
         border: 2px #eee solid;
         padding: 10px 15px;
         margin-right: 96px;
-        max-height: 715px;
+        max-height: 920px;
     }
 
     .info_agent {
@@ -32,8 +28,21 @@
         padding: 10px 15px;
     }
 
+    .right_side .commentaires {
+        max-height: 600px;
+        overflow-y: scroll;
+    }
+
     .line {
         border: 1px #eee solid;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .line_top,
+    .line_bottom {
+        border: 1px #31343d solid;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 
@@ -43,123 +52,161 @@
     }
 </style>
 
+
 <div class="container mx-auto my-3 col-10">
+    @include('includes.success')
+    @include('includes.errors')
     <h3 class="mb-3"><strong>A propos du ticket</strong></h3>
 
     <div class="row">
         <div class="left_side col-lg-4">
-            <h2 class="mb-3">Sujet du ticket</h2>
+            <h3 class="mb-3">{{$ticket->titre}}</h3>
 
-            <div>
-                <p><i>05/05/2023</i></p>
-                <p><strong>Catégorie :</strong> Catégorie 1</p>
-            </div>
+            @php
+            $nombreCommentairesClient = $ticket->commentaires->where('user.role', 'client')->count();
+            @endphp
+            <h6 class="my-2"><strong>Total de réponses :</strong>
+                {{$ticket->commentaires ? $nombreCommentairesClient : '0'}}
+            </h6>
 
-            <div class="line"></div>
-
-            <div>
-                <p><strong>Total de réponses :</strong> 1</p>
-                <p><strong>Priorité :</strong> Moyenne</p>
-                <p><strong>Status :</strong> En attente</p>
-            </div>
+            <h6 class="my-2"><strong>Date de création :</strong> {{ $ticket->created_at->format('d-m-Y H:i') }}</h6>
+            <h6 class="my-2"><strong>Catégorie :</strong> {{$ticket->categorie->nom}}</h6>
 
             <div class="line"></div>
 
-            <div class="mb-3">
-                <p><strong>Fichiers attachés :</strong></p>
+            <h6 class="my-2"><strong>Priorité :</strong>
+                {{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}
+            </h6>
+
+            <h6 class="my-2"><strong>Status :</strong>
+                {{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}
+            </h6>
+
+
+            <div class="line"></div>
+
+            <div class="my-3">
+                <h6 class="my-1"><strong>Fichiers attachés :</strong></h6>
                 <div class="d-inline">
-                    <img src="../images/image1.jpg" alt="Fichier attaché" class="img-thumbnail w-25" onclick="showImage('../images/image1.jpg')" />
-                </div>
-                <div class="d-inline">
-                    <img src="../images/image2.jpg" alt="Fichier attaché" class="img-thumbnail w-25" onclick="showImage('../images/image2.jpg')" />
+                    @if($ticket->jointures)
+                    @foreach($ticket->jointures as $jointure)
+                    <img src="{{ asset('images/jointures/' . $jointure->chemin) }}" alt="Fichier attaché" class="img-thumbnail w-25" onclick="showImage('{{ asset('images/jointures/' . $jointure->chemin) }}')" />
+                    @endforeach
+                    @endif
                 </div>
             </div>
 
             <div class="line"></div>
 
-            <div class="mb-3">
-                <h3 class="mb-3"><strong>Informations sur le client</strong></h3>
+            <div class="my-3">
+                <h3 class="mb-3"><strong>Informations sur le client :</strong></h3>
+                @if($ticket->user)
+                <i class="fas fa-user"></i>
+                <h3 class="d-inline"> {{$ticket->user->prenom}} {{$ticket->user->nom}}</h3>
 
-                <i class="fas fa-user-tie fa-lg mb-3">
-                    <h3 class="d-inline">Nom&prénom Client</h3>
-                </i>
-
-                <div>
-                    <p><strong>Email :</strong> Client1@gmail.com</p>
-                    <p><strong>Téléphone :</strong> 065555444</p>
-                </div>
+                <h6 class="my-2"><strong>Email :</strong> {{$ticket->user->email}}</h6>
+                <h6 class="my-2"><strong>Téléphone :</strong> {{$ticket->user->telephone}}</h6>
+                @endif
             </div>
+
             <div class="line"></div>
 
-            <div class="mb-5">
-                <a href="#" class="btn btn-danger btn-sm">Supprimer</a>
-                <a href="#" class="btn btn-success btn-sm">Modifier</a>
+            <div class="my-3">
+                <ul class="d-flex justify-content-between">
+                    <li>
+                        <a href="{{route('agent.modifier_ticket', $ticket->id)}}" class="btn btn-success btn-sm">Modifier</a>
+                    </li>
+                    <li>
+                        <a href="{{route('agent.supprimer_ticket', $ticket->id)}}" class="btn btn-danger btn-sm">Supprimer</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
         <div class="right_side col-lg-7">
-
             <div class="client">
-                <i class="fas fa-user fa-lg mb-2">
-                    <h5 class="d-inline"><strong>Client</strong></h5>
-                </i>
+                <div>
+                    <i class="fas fa-user fa-lg"></i>
+                    <h5 class="d-inline"><strong> {{$ticket->user->prenom}} {{$ticket->user->nom}}</strong></h5>
+                </div>
 
                 <i>
-                    <h6 class="date">13/05/23 - 11:50</h6>
+                    <p class="date">{{$ticket->created_at->format('d-m-Y H:i')}}</p>
                 </i>
 
-                <p class="message">Description du ticket Description du ticket Description du ticket Description du ticket Description du ticket Description du ticket Description du ticket Description du ticket</p>
+                <h5 class="message">{{$ticket->description}}</h5>
             </div>
 
-            <div class="line"></div>
+            <div class="line_top mt-3"></div>
 
-            <div class="agent">
-                <i class="fas fa-user-tie fa-lg mb-2">
-                    <h5 class="d-inline"><strong>Vous</strong></h5>
-                </i>
+            <div class="commentaires">
+                @if($ticket->commentaires)
+                @foreach($ticket->commentaires as $commentaire)
+                @if($commentaire->user && $commentaire->user->role == 'agent')
+                <div class="agent">
+                    <div>
+                        <i class="fas fa-user-tie fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong> {{$ticket->agent->prenom}} {{$ticket->agent->nom}}</strong></h5>
+                    </div>
 
-                <i>
-                    <h6 class="date">13/05/23 - 12:30</h6>
-                </i>
+                    <i>
+                        <p class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</p>
+                    </i>
 
-                <p class="message">Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent</p>
+                    <h6 class="message">{{$commentaire->contenu}}</h6>
+                </div>
+
+                <div class="line"></div>
+
+                @elseif($commentaire->user && $commentaire->user->role == 'client')
+                <div class="client">
+                    <div>
+                        <i class="fas fa-user fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong> {{$ticket->user->prenom}} {{$ticket->user->nom}}</strong></h5>
+                    </div>
+
+                    <i>
+                        <p class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</p>
+                    </i>
+
+                    <h6 class="message">{{$commentaire->contenu}}</h6>
+                </div>
+
+                <div class="line"></div>
+
+                @elseif($commentaire->user && $commentaire->user->role == 'admin')
+                <div class="agent">
+                    <div>
+                        <i class="fas fa-user-tie fa-lg mb-2"></i>
+                        <h5 class="d-inline"><strong> Administrateur</strong></h5>
+                    </div>
+
+                    <i>
+                        <p class="date">{{$commentaire->created_at->format('d-m-Y H:i')}}</p>
+                    </i>
+
+                    <h6 class="message">{{$commentaire->contenu}}</h6>
+                </div>
+
+                <div class="line"></div>
+
+                @endif
+                @endforeach
+                @else
+                <h1>pas de commentaires</h1>
+                @endif
             </div>
-
-            <div class="line"></div>
-
-            <div class="client">
-                <i class="fas fa-user fa-lg mb-2">
-                    <h5 class="d-inline"><strong>Client</strong></h5>
-                </i>
-
-                <i>
-                    <h6 class="date">13/05/23 - 11:50</h6>
-                </i>
-
-                <p class="message">Réponse du client Réponse du client Réponse du client Réponse du client Réponse du client Réponse du client Réponse du client Réponse du client Réponse du client</p>
-            </div>
-
-            <div class="line"></div>
-
-            <div class="agent">
-                <i class="fas fa-user-tie fa-lg mb-2">
-                    <h5 class="d-inline"><strong>Vous</strong></h5>
-                </i>
-
-                <i>
-                    <h6 class="date">13/05/23 - 12:30</h6>
-                </i>
-
-                <p class="message">Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent Réponse de l'agent</p>
-            </div>
-
-            <div class="line"></div>
+            <div class="line_bottom"></div>
 
             <div class="form-group">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{route('agent.creer_commentaire', $ticket->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
 
-                    <textarea name="" id="" cols="70" rows="4" placeholder="Entrez votre message ici..."></textarea>
+                    <!-- <textarea name="contenu" id="contenu" cols="70" rows="4" placeholder="Entrez votre message ici..."></textarea> -->
+                    <div class="md-form">
+                        <label for="form7">Répondre :</label>
+                        <textarea name="contenu" id="contenu" class="md-textarea form-control" rows="3" placeholder="Entrez votre message ici..."></textarea>
+                    </div>
 
                     <div>
                         <button type="submit" class="btn btn-primary mt-2">Envoyer</button>

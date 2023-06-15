@@ -88,6 +88,9 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/supprimer_agent/{id}', [AgentController_admin::class, 'destroy'])->name('admin.supprimer_agent');
 
+        Route::get('/rendre_admin/{id}', [AgentController_admin::class, 'rendre_admin'])->name('admin.rendre_admin');
+
+
 
         Route::get('/admins', [AdminController_admin::class, 'admins'])->name('admin.admins');
 
@@ -100,6 +103,9 @@ Route::group(['middleware' => 'admin'], function () {
         Route::post('/enregistrer_admin', [AdminController_admin::class, 'store'])->name('admin.enregistrer_admin');
 
         Route::get('/supprimer_admin/{id}', [AdminController_admin::class, 'destroy'])->name('admin.supprimer_admin');
+
+        Route::get('/rendre_agent/{id}', [AdminController_admin::class, 'rendre_agent'])->name('admin.rendre_agent');
+        
 
 
 
@@ -135,13 +141,20 @@ Route::group(['middleware' => 'agent'], function () {
 
         Route::get('/tickets', [TicketController_agent::class, 'tickets'])->name('agent.tickets');
 
-        Route::get('/tickets_specifiques', [TicketController_agent::class, 'tickets_specifiques'])->name('agent.tickets_specifiques');
+        Route::get('/tickets_specifiques/{statut_id}', [TicketController_agent::class, 'tickets_specifiques'])->name('agent.tickets_specifiques');
 
-        Route::get('/ticket', [TicketController_agent::class, 'show'])->name('agent.ticket');
+        Route::get('/ticket/{id}', [TicketController_agent::class, 'show'])->name('agent.ticket');
 
         Route::get('/creer_ticket', [TicketController_agent::class, 'create'])->name('agent.creer_ticket');
 
-        Route::get('/modifier_ticket', [TicketController_agent::class, 'edit'])->name('agent.modifier_ticket');
+        Route::get('/modifier_ticket/{id}', [TicketController_agent::class, 'edit'])->name('agent.modifier_ticket');
+
+        Route::put('/actualiser_ticket/{id}', [TicketController_agent::class, 'update'])->name('agent.update_ticket');
+
+        Route::get('/supprimer_ticket/{id}', [TicketController_agent::class, 'destroy'])->name('agent.supprimer_ticket');
+
+        Route::post('/creer_commentaire/{id}', [TicketController_agent::class, 'createCommentaire'])->name('agent.creer_commentaire');
+
 
 
         // Route::get('/clients', [ClientController_agent::class, 'clients'])->name('agent.clients');

@@ -24,6 +24,9 @@
             </a>
         </div>
 
+        <h6 class="my-2"><strong>Nombre total :</strong> {{$clients->count()}}</h6>
+
+
         <div class="container mt-3">
             <div class="row">
                 <div class="col">
@@ -44,7 +47,7 @@
                             @if($clients && $clients->count() > 0)
                             @foreach($clients as $client)
                             <tr>
-                                <td>1</td>
+                                <td>{{ $loop->index + 1 }}</td>
                                 <td>{{$client->nom}}</td>
                                 <td>{{$client->prenom}}</td>
                                 <td>{{$client->telephone}}</td>
