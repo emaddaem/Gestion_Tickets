@@ -65,6 +65,28 @@
             </div>
         </div>
 
+        <div class="col-md-3 my-2">
+            <div class="card" style="width: 17rem; height: 8rem;">
+                <div class="card-body">
+                    <a href="{{route('agent.tickets_par_priorite', $statuts_data['id_priorite_urgente'])}}">
+                        <h5 class="card-title">Tickets urgentes</h5>
+                    </a>
+                    <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsUrgentes']}}</strong></h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 my-2">
+            <div class="card" style="width: 17rem; height: 8rem;">
+                <div class="card-body">
+                    <a href="{{route('agent.tickets_par_priorite', $statuts_data['id_priorite_elevee'])}}">
+                        <h5 class="card-title">Tickets priorité elevée</h5>
+                    </a>
+                    <h5 class="card-title move-right"><strong>{{$statuts_data['nombreTicketsElevee']}}</strong></h5>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <h2 class="my-3">Liste des tickets d'aujourd'hui</h2>

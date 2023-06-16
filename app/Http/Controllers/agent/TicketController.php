@@ -31,18 +31,26 @@ class TicketController extends Controller
         $id_statut_attente = Statut::where('nom', 'En attente')->value('id');
         $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
 
+        $id_priorite_urgente = Priorite::where('nom', 'Urgente')->value('id');
+        $id_priorite_elevee = Priorite::where('nom', 'Elevée')->value('id');
+
         $statuts_data = [
             'id_statut_nouveau' => $id_statut_nouveau,
             'id_statut_traitement' => $id_statut_traitement,
             'id_statut_attente' => $id_statut_attente,
             'id_statut_resolu' => $id_statut_resolu,
 
+            'id_priorite_urgente' => $id_priorite_urgente,
+            'id_priorite_elevee' => $id_priorite_elevee,
+
             'nombreNouveauxTickets' => Ticket::where('agent_id', $agent_id)->where('statut_id', $id_statut_nouveau)->count(),
             'nombreTicketsTraitement' => Ticket::where('agent_id', $agent_id)->where('statut_id', $id_statut_traitement)->count(),
             'nombreTicketsattente' => Ticket::where('agent_id', $agent_id)->where('statut_id', $id_statut_attente)->count(),
             'nombreTicketsResolus' => Ticket::where('agent_id', $agent_id)->where('statut_id', $id_statut_resolu)->count(),
+            
+            'nombreTicketsUrgentes' => Ticket::where('agent_id', $agent_id)->where('priorite_id', $id_priorite_urgente)->count(),
+            'nombreTicketsElevee' => Ticket::where('agent_id', $agent_id)->where('priorite_id', $id_priorite_elevee)->count(),
 
-            'nombreTicketsNonAssignés' => Ticket::where('agent_id', null)->count(),
         ];
 
 
@@ -71,6 +79,17 @@ class TicketController extends Controller
         }
 
         return view('agent/tickets/tickets_specifiques', compact('tickets', 'nom_statut'));
+    }
+
+    public function tickets_par_priorite(string $priorite_id)
+    {
+        $agent_id = auth()->user()->id;
+
+        $tickets = Ticket::where('agent_id', $agent_id)->where('priorite_id', $priorite_id)->get();
+
+        $nom_priorite = Priorite::where('id', $priorite_id)->value('nom');
+
+        return view('agent/tickets/tickets_par_priorite', compact('tickets', 'nom_priorite'));
     }
 
     /**

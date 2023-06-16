@@ -28,6 +28,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Nom</th>
+                            <th>Créée par</th>
                             <th>Créée à</th>
                             <th>Mise à jour à</th>
                             <th>Actions</th>
@@ -38,6 +39,7 @@
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{$statut->nom}}</td>
+                            <td>{{$statut->user_id ? $statut->user->nom.' '.$statut->user->prenom : '-' }}</td>
                             <td>{{$statut->created_at}}</td>
                             <td>{{$statut->updated_at}}</td>
                             <td>

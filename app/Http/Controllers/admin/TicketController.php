@@ -79,7 +79,7 @@ class TicketController extends Controller
     {
         $clients = User::where('role', 'client')->get();
         $agents = User::where('role', 'agent')->get();
-        $statuts = Statut::all();
+        $statuts = Statut::whereNull('user_id')->get();
         $priorites = Priorite::all();
         $categories = Categorie::all();
 
@@ -144,7 +144,7 @@ class TicketController extends Controller
         $ticket = Ticket::find($id);
         $agents = User::where('role', 'agent')->get();
         $clients = User::where('role', 'client')->get();
-        $statuts = Statut::all();
+        $statuts = Statut::whereNull('user_id')->get();
         $priorites = Priorite::all();
         $categories = Categorie::all();
 

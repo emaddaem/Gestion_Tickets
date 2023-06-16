@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\AdminController as AdminController_admin;
 
 use App\Http\Controllers\agent\TicketController as TicketController_agent;
 use App\Http\Controllers\agent\ProfilController as ProfilController_agent;
+use App\Http\Controllers\agent\StatutController as StatutController_agent;
 
 use App\Http\Controllers\client\TicketController;
 use App\Http\Controllers\client\ProfilController;
@@ -161,6 +162,8 @@ Route::group(['middleware' => 'agent'], function () {
 
         Route::get('/tickets_specifiques/{statut_id}', [TicketController_agent::class, 'tickets_specifiques'])->name('agent.tickets_specifiques');
 
+        Route::get('/tickets_par_priorite/{priorite_id}', [TicketController_agent::class, 'tickets_par_priorite'])->name('agent.tickets_par_priorite');
+
         Route::get('/ticket/{id}', [TicketController_agent::class, 'show'])->name('agent.ticket');
 
         Route::get('/creer_ticket', [TicketController_agent::class, 'create'])->name('agent.creer_ticket');
@@ -183,9 +186,11 @@ Route::group(['middleware' => 'agent'], function () {
         Route::get('/ajouter_client', [ClientController_agent::class, 'create'])->name('agent.ajouter_client');
 
 
-        // Route::get('/statuts', [StatutController::class, 'statuts'])->name('agent.statuts');
+        Route::get('/statuts', [StatutController_agent::class, 'statuts'])->name('agent.statuts');
 
-        // Route::get('/ajouter_statuts', [StatutController::class, 'create'])->name('agent.ajouter_statuts');
+        Route::get('/ajouter_statut', [StatutController_agent::class, 'create'])->name('agent.ajouter_statut');
+
+        Route::post('/enregistrer_statut', [StatutController_agent::class, 'store'])->name('agent.enregistrer_statut');
 
         // Route::get('/priorites', [PrioriteController::class, 'priorites'])->name('agent.priorites');
 

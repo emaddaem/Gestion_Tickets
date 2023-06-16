@@ -10,12 +10,18 @@ class Statut extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom'
+        'nom',
+        'user_id'
     ];
 
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
