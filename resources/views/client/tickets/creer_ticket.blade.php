@@ -15,7 +15,7 @@
 @include('includes.success')
 @include('includes.errors')
 
-<div class="container col-lg-8">
+<div class="container col-lg-7">
     <h1 class="text text-center mb-3">Créer un ticket</h1>
 
     <div class="form-group">
@@ -33,7 +33,7 @@
 
             <div class="mb-3">
                 <label for="categorie">Catégorie</label>
-                <select class="js-example-basic-multiple form-control border-info" name="categorie" id="categorie" style="width: 250px; margin-left: 10px">
+                <select class="js-example-basic-multiple form-control border-info" name="categorie" id="categorie" style="width: 250px;">
                     <option value="">Sélectionnez la catégorie</option>
                     @foreach ($categories as $categorie)
                     <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>

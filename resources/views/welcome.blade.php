@@ -3,7 +3,7 @@
 @section('content')
 <style>
     body {
-        background-color: #eafef2;
+        background-color: #eef0fd;
     }
 </style>
 
@@ -18,8 +18,8 @@
             </div>
 
             <div class="my-5">
-                <h4>Si vous etes un client, entrez le code de l'entreprise :</h4>
-                <h5 class="my-3">Pour se connecter :</h5>
+                <h4>Si vous êtes un client, entrez le code de l'entreprise :</h4>
+                <h5 class="my-3">Pour <strong>se connecter</strong> :</h5>
                 <form action="{{ route('entreprise.connexion_client') }}" method="POST" class="form-inline">
                     @csrf
                     <div class="form-group">
@@ -27,7 +27,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Accéder</button>
                 </form>
-                <h5 class="my-3">Pour s'inscrire :</h5>
+                <h5 class="my-3">Pour <strong>s'inscrire</strong> :</h5>
                 <form action="{{ route('entreprise.inscription_client') }}" method="POST" class="form-inline">
                     @csrf
                     <div class="form-group">
@@ -41,12 +41,12 @@
             <!-- <main class="signup-form"> -->
             <!-- <div class="signup-form-container"> -->
             <!-- <div class="row justify-content-center"> -->
-            <h3 class="mb-4"><strong>Inscrivez-vous dés maintenant</strong></h3>
+            <h3 class="mb-4"><strong>Inscrivez votre entreprise dés maintenant</strong></h3>
             <div class="card">
                 <div class="card-body">
                     <form action="{{ route('entreprise.inscrire') }}" method="POST">
                         @csrf
-
+                        <label>Informations sur l'entreprise :</label>
                         <div class="form-group mb-4">
                             <input type="text" placeholder="Nom de l'entreprise" id="nom_entreprise" class="form-control" name="nom_entreprise" required autofocus>
                             @if (isset($errors) && $errors->has('nom_entreprise'))
@@ -67,6 +67,8 @@
                             <span class="text-danger">{{ $errors->first('url_personnalisee') }}</span>
                             @endif
                         </div>
+
+                        <label>Informations sur le responsale :</label>
 
                         <div class="form-group mb-4">
                             <input type="text" placeholder="Nom" id="nom" class="form-control" name="nom" required autofocus>
@@ -97,20 +99,20 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
+                            <input type="password" placeholder="Mot de passe" id="password" class="form-control" name="password" required>
                             @if (isset($errors) && $errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
                             @endif
                         </div>
 
-                        <div class="form-group mb-4">
+                        <!-- <div class="form-group mb-4">
                             <div class="checkbox">
                                 <label><input type="checkbox" name="remember"> Remember Me</label>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="d-grid mx-auto">
-                            <button type="submit" class="btn btn-dark btn-block">S'inscrire</button>
+                            <button type="submit" class="btn btn-primary btn-block">Inscrire</button>
                         </div>
 
                     </form>

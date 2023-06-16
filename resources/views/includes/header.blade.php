@@ -46,14 +46,13 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
-            Dropdown</a>
+            Plus
+        </a>
 
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Contact</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+            <a class="dropdown-item" href="#">A propos de nous</a>
         </div>
     </li>
 
@@ -72,8 +71,11 @@
         <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Paramètres</a>
         <div class="dropdown-menu" aria-labelledby="optionsDropdown">
             <a class="dropdown-item" href="#">Liste des catégories</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('agent.statuts')}}">Liste des statuts</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Liste des priorités</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="">Autres</a>
         </div>
     </li>
@@ -114,8 +116,11 @@
         <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Paramètres</a>
         <div class="dropdown-menu" aria-labelledby="optionsDropdown">
             <a class="dropdown-item" href="{{route('admin.categories')}}">Liste des catégories</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('admin.statuts')}}">Liste des statuts</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('admin.priorites')}}">Liste des priorités</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="">Autres</a>
         </div>
     </li>

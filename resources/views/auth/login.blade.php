@@ -12,20 +12,20 @@
                         <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
                             <a class="w-auto pl-0" href="/index.html">
                                 <!-- <img src="images/logo.png" alt="Mono"> -->
-                                <span class="brand-name text-dark">MONO</span>
+                                <span class="brand-name text-dark">Bienvenue</span>
                             </a>
                         </div>
                     </div>
                     <div class="card-body px-5 pb-5 pt-0">
 
-                        <h4 class="text-dark mb-6 text-center">Sign in for free</h4>
+                        <h4 class="text-dark mb-6 text-center">Connectez-vous</h4>
 
                         <form method="POST" action="{{ route('login.custom') }}">
                             @csrf
                             <div class="row">
                                 <!-- Champ caché pour l'identifiant de l'entreprise -->
                                 <input type="hidden" name="entreprise_id" value="{{ $entreprise ? $entreprise->id : null }}">
-                                
+
                                 <div class="form-group col-md-12 mb-4">
                                     <input type="email" class="form-control input-lg" name="email" id="email" aria-describedby="emailHelp" placeholder="email">
                                     @if (isset($errors) && $errors->has('email'))
@@ -44,17 +44,20 @@
 
                                         <div class="custom-control custom-checkbox mr-3 mb-3">
                                             <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                            <label class="custom-control-label" for="customCheck2">Remember me</label>
+                                            <label class="custom-control-label" for="customCheck2">Se rappeler de moi</label>
                                         </div>
 
-                                        <a class="text-color" href="#"> Forgot password? </a>
+                                        <a class="text-color" href="#"> Mot de passe oublié ?</a>
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary btn-pill mb-4">Sign In</button>
+                                    <button type="submit" class="btn btn-primary btn-pill mb-4">Se connecter</button>
 
+                                    @php
+                                    $entreprise_URL = request()->segment(2);
+                                    @endphp
                                     <p>Vous n'avez pas encore de compte ?
-                                        <a class="text-blue" href="{{ route('register-user', 'aucune') }}">Sign Up</a>
+                                        <a class="text-blue" href="{{ route('register-user', $entreprise_URL) }}">S'inscrire</a>
                                     </p>
                                 </div>
                             </div>
