@@ -55,7 +55,9 @@ class TicketController extends Controller
 
     public function tickets()
     {
-        $tickets = Ticket::all();
+        $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
+
+        $tickets = Ticket::where('statut_id', '<>', $id_statut_resolu)->get();
 
         return view('admin/tickets/tickets', compact('tickets'));
     }
@@ -219,7 +221,7 @@ class TicketController extends Controller
             Storage::disk('public')->delete('images/jointures/' . $jointure->chemin);
             $jointure->delete();
         }
-        $ticket->delete();
+        $ticket->forceDelete();
 
         return redirect()->route('admin.index')->with('success', "Le ticket a été supprimé avec succès");
     }

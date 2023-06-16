@@ -12,12 +12,12 @@
     }
 </style>
 
-@include('includes.success')
-@include('includes.errors')
-
 <h4 class="text text-center">Bienvenue dans l'espace de support chez <strong>{{ auth()->user()->entreprise->nom }}</strong></h4>
- 
+
 <div class="container">
+    @include('includes.success')
+    @include('includes.errors')
+    
     <h3><strong>Tableau de board</strong></h3>
 
     <div class="row mt-4 mb-5">
