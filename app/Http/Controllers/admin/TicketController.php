@@ -26,6 +26,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::whereDate('created_at', Carbon::today())->get();
+        $categories = Categorie::all();
 
         $id_statut_nouveau = Statut::where('nom', 'Nouveau')->value('id');
         $id_statut_traitement = Statut::where('nom', 'En cours de traitement')->value('id');
@@ -50,7 +51,7 @@ class TicketController extends Controller
         // $nombreTicketsattente = $tickets->where('statut_id', $id_statut_attente)->count();
         // $nombreTicketsResolus = $tickets->where('statut_id', $id_statut_resolu)->count();
 
-        return view('admin/index', compact('tickets', 'statuts_data'));
+        return view('admin/index', compact('tickets', 'categories', 'statuts_data'));
     }
 
     public function tickets()
@@ -76,6 +77,24 @@ class TicketController extends Controller
         return view('admin/tickets/tickets_specifiques', compact('tickets', 'nom_statut'));
     }
 
+    public function tickets_supprimes()
+    {
+        $tickets = Ticket::onlyTrashed()->get();
+
+        return view('admin/tickets/tickets_supprimes', compact('tickets'));
+    }
+
+    public function tickets_par_categorie(Request $request)
+    {
+        $validatedData = $request->validate([
+            "categorie" => "required",
+        ]);
+
+        $tickets = Ticket::where('categorie_id', $validatedData['categorie'])->get();
+        $categorie = Categorie::find($validatedData['categorie']);
+
+        return view('admin/tickets/tickets_par_categorie', compact('tickets', 'categorie'));
+    }
 
     public function create()
     {

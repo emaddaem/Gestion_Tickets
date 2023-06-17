@@ -121,7 +121,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('admin.priorites')}}">Liste des priorités</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="">Autres</a>
+            <a class="dropdown-item" href="{{route('admin.tickets_supprimes')}}">Tickets supprimés</a>
         </div>
     </li>
 

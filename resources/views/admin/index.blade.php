@@ -75,6 +75,30 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-3 my-2">
+        </div>
+
+        <!-- <div class="col-md-3 my-2">
+        </div> -->
+
+        <div class="col-md-6 my-2">
+            <form action="{{ route('admin.tickets_par_categorie') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="categorie">Chercher par catégorie</label>
+                    <select class="js-example-basic-multiple form-control border-info" name="categorie" id="categorie">
+                        <option value="">Sélectionnez la catégorie</option>
+                        @foreach ($categories as $categorie)
+                        <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="text-right">
+                <button type="submit" class="btn btn-primary btn-sm">Afficher</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <h2 class="my-3">Liste des tickets d'aujourd'hui</h2>
@@ -91,7 +115,7 @@
                         <th>Id</th>
                         <th>Titre</th>
                         <th>Catégorie</th>
-                        <th>Status</th>
+                        <th>Statut</th>
                         <th>Priorité</th>
                         <th>Agent assigné</th>
                         <th>Client concerné</th>

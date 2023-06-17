@@ -24,8 +24,8 @@
     </div>
 
     <div class="container my-3">
+        <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6><br>
         <div class="row">
-            <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">
@@ -34,30 +34,30 @@
                             <td>Id</td>
                             <th>Titre</th>
                             <th>Catégorie</th>
-                            <th>Status</th>
+                            <th>Statut</th>
                             <th>Priorité</th>
-                            <th>Agent assigné</th>
-                            <th>Client concerné</th>
-                            <th>Créé à</th>
-                            <th>Mise à jour à</th>
+                            <th>Agent</th>
+                            <th>Client</th>
+                            <th>Créé</th>
+                            <th>MàJ</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($tickets as $ticket)
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td>{{$ticket->titre}}</td>
+                            <td class="text-center">{{ $loop->index + 1 }}</td>
+                            <td style="font-size: 14px;">{{$ticket->titre}}</td>
                             <td>{{$ticket->categorie->nom}}</td>
-                            <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
-                            <td>
+                            <td class="text-center">{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
+                            <td class="text-center">{{$ticket->priorite ? $ticket->priorite->nom : '-'}}</td>
+                            <td class="text-center">
                                 @if($ticket->agent)
                                 <a href="{{route('admin.agent', $ticket->agent->id)}}" style="text-decoration: none; color: inherit;">
-                                    {{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}
+                                    {{$ticket->agent ? $ticket->agent->nom : '-'}}
                                 </a>
                                 @else
-                                Pas encore assigné
+                                -
                                 @endif
                             </td>
                             <td>
@@ -65,9 +65,9 @@
                                     {{$ticket->user->nom}} {{$ticket->user->prenom}}
                                 </a>
                             </td>
-                            <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
-                            <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
-                            <td>
+                            <td>{{$ticket->created_at->format('d-m-y')}}</td>
+                            <td>{{$ticket->updated_at->format('d-m-y')}}</td>
+                            <td class="text-center">
                                 <div class="dropdown">
                                     <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                     </a>

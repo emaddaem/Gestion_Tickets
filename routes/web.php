@@ -46,6 +46,10 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::get('/tickets_specifiques/{statut_id}/{agent_id}', [AgentController_admin::class, 'tickets_specifiques'])->name('admin.agent_tickets_specifiques');
 
+        Route::post('/tickets_par_categorie', [TicketController_admin::class, 'tickets_par_categorie'])->name('admin.tickets_par_categorie');
+
+        Route::get('/tickets_supprimes', [TicketController_admin::class, 'tickets_supprimes'])->name('admin.tickets_supprimes');
+
         Route::get('/ticket/{id}', [TicketController_admin::class, 'show'])->name('admin.ticket');
 
         Route::get('/creer_ticket', [TicketController_admin::class, 'create'])->name('admin.creer_ticket');

@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Tickets spécifiques')
+@section('title', 'Liste des tickets supprimés')
 @section('content')
 
 <style>
@@ -12,30 +12,23 @@
     }
 </style>
 
-<div class="container mt-5">
-    <h2 class="mt-3">Liste des tickets</h2>
-    @if(isset($agent) && $agent)
-    <h4>Agent : <strong>{{$agent->nom}} {{$agent->prenom}}</strong></h4>
-    @endif
 
-    @if($nom_statut)
-    <h4>Statut : <strong>{{$nom_statut}}</strong></h4>
-    @else
-    <h4>Statut : <strong>Non assigné</strong></h4>
-    @endif
+<div class="container my-5">
+    @include('includes.success')
+    @include('includes.errors')
 
-    <div class="creer-ticket">
-        <a href="{{route('admin.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
-    </div>
+    <h2>Liste des tickets supprimés par les clients</h2>
 
-    <div class="container mt-3">
+
+    <div class="container my-3">
         <div class="row">
+            <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <td>Id</td>
                             <th>Titre</th>
                             <th>Catégorie</th>
                             <th>Statut</th>
@@ -55,8 +48,20 @@
                             <td>{{$ticket->categorie->nom}}</td>
                             <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
                             <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
-                            <td>{{$ticket->user->nom}}</td>
+                            <td>
+                                @if($ticket->agent)
+                                <a href="{{route('admin.agent', $ticket->agent->id)}}" style="text-decoration: none; color: inherit;">
+                                    {{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}
+                                </a>
+                                @else
+                                Pas encore assigné
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{route('admin.client', $ticket->user->id)}}" style="text-decoration: none; color: inherit;">
+                                    {{$ticket->user->nom}} {{$ticket->user->prenom}}
+                                </a>
+                            </td>
                             <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
                             <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                             <td>
@@ -81,4 +86,5 @@
         </div>
     </div>
 </div>
+
 @endsection
