@@ -130,8 +130,10 @@ class TicketController extends Controller
             'priorite_id' => $validatedData['priorite'],
             'categorie_id' => $validatedData['categorie'],
         ]);
+
         $id_statut_nouveau = Statut::where('nom', 'Nouveau')->value('id');
         $ticket->statut_id = $id_statut_nouveau;
+
         $ticket->save();
 
         if ($request->file('jointures')) {
@@ -147,7 +149,7 @@ class TicketController extends Controller
             }
         }
 
-        return redirect()->route('admin.index')->with("success", "Le ticket a bien été ajouté.");
+        return redirect()->back()->with("success", "Le ticket a bien été ajouté.");
     }
 
 

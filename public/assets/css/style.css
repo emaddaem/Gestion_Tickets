@@ -64,6 +64,31 @@ body {
   outline: 0 !important;
 }
 
+/* added by me */
+.form-container{
+  background-color: #dbe5fc;
+  padding: 15px 25px;
+  border-radius: 10px;
+}
+
+.left_side {
+  border: 2px #99b8fd solid;
+  padding: 10px 15px;
+  margin-right: 96px;
+  max-height: 920px;
+}
+
+.right_side {
+  border: 2px #99b8fd solid;
+  padding: 10px 15px;
+}
+
+.left_side, .right_side{
+  background-color: #e6edfd;
+  border-radius: 10px;
+}
+/* added by me */
+
 hr {
   box-sizing: content-box;
   height: 0;

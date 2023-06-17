@@ -10,12 +10,13 @@
     .creer-ticket {
         text-align: right;
     }
+
 </style>
 
-@include('includes.success')
-@include('includes.errors')
 
-<div class="container col-lg-7 my-5">
+<div class="container form-container col-lg-7 my-5">
+    @include('includes.success')
+    @include('includes.errors')
     <h1 class="text text-center">Créer un ticket</h1>
 
     <div class="form-group">
@@ -42,7 +43,7 @@
 
             <div class="mb-3">
                 <label for="description">Description</label>
-                <textarea class="form-control border-info" name="description" id="description"></textarea>
+                <textarea class="form-control border-info" rows="5" name="description" id="description"></textarea>
             </div>
 
             <div class="mb-3">

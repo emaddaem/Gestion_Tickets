@@ -15,7 +15,7 @@
 @include('includes.success')
 @include('includes.errors')
 
-<div class="container col-lg-7">
+<div class="container form-container col-lg-7">
     <h1 class="text text-center mb-3">Créer un ticket</h1>
 
     <div class="form-group">

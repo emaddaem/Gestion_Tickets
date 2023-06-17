@@ -375,7 +375,7 @@ $(document).ready(function () {
       info: false,
       lengthChange: false,
       lengthMenu: [
-        [5, 10, 15, -1],
+        [5, 15, 15, -1],
         [5, 10, 15, "All"],
       ],
       scrollX: true,

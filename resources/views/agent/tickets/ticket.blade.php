@@ -7,23 +7,7 @@
         text-decoration: none;
     }
 
-    /* .container {
-            width: 1200px;
-        } */
-
-    .left_side {
-        border: 2px #eee solid;
-        padding: 10px 15px;
-        margin-right: 96px;
-        max-height: 920px;
-    }
-
     .info_agent {
-        border: 2px #eee solid;
-        padding: 10px 15px;
-    }
-
-    .right_side {
         border: 2px #eee solid;
         padding: 10px 15px;
     }
@@ -34,7 +18,7 @@
     }
 
     .line {
-        border: 1px #eee solid;
+        border: 1px #99b8fd solid;
         margin-top: 10px;
         margin-bottom: 10px;
     }
