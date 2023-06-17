@@ -85,7 +85,8 @@ class AgentController extends Controller
         $id_statut_traitement = Statut::where('nom', 'En cours de traitement')->value('id');
         $id_statut_attente = Statut::where('nom', 'En attente')->value('id');
         $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
-        $id_statut_non = Statut::where('nom', 'Nouveau')->value('id');
+
+        // $tickets = Ticket::where('agent_id', $id)->where('statut_id', '<>', $id_statut_resolu)->get();
 
         $statuts_data = [
             'id_statut_nouveau' => $id_statut_nouveau,
@@ -99,9 +100,7 @@ class AgentController extends Controller
             'nombreTicketsResolus' => Ticket::where('agent_id', $id)->where('statut_id', $id_statut_resolu)->count(),
         ];
 
-        $tickets = Ticket::where('agent_id', $id)->get();
-
-        return view('admin/agents/agent', compact('agent', 'tickets', 'statuts_data'));
+        return view('admin/agents/agent', compact('agent', 'statuts_data'));
     }
 
     /**

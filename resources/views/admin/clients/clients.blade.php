@@ -40,6 +40,7 @@
                                 <th>Email</th>
                                 <th>Créé à</th>
                                 <th>Mise à jour à</th>
+                                <th>Nb de tickets</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -52,8 +53,9 @@
                                 <td>{{$client->prenom}}</td>
                                 <td>{{$client->telephone}}</td>
                                 <td>{{$client->email}}</td>
-                                <td>{{$client->created_at}}</td>
-                                <td>{{$client->updated_at}}</td>
+                                <td>{{$client->created_at->format('d-m-y')}}</td>
+                                <td>{{$client->updated_at->format('d-m-y')}}</td>
+                                <td class="text-center">{{$client->tickets->count()}}</td>
                                 <td>
                                     <a href="{{route('admin.client', $client->id)}}" class="btn-sm">
                                         <i class="fa fa-eye fa-lg"></i>

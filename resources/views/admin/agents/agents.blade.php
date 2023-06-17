@@ -51,8 +51,8 @@
                             <td>{{$agent->prenom}}</td>
                             <td>{{$agent->telephone}}</td>
                             <td>{{$agent->email}}</td>
-                            <td>{{$agent->created_at}}</td>
-                            <td>{{$agent->updated_at}}</td>
+                            <td>{{$agent->created_at->format('d-m-y')}}</td>
+                            <td>{{$agent->updated_at->format('d-m-y')}}</td>
                             <td>
                                 <a href="{{route('admin.agent', $agent->id)}}" class="btn-sm">
                                     <i class="fa fa-eye fa-lg"></i>

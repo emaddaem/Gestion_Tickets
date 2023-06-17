@@ -21,8 +21,8 @@
 
 
     <div class="container mb-7">
+        <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
         <div class="row">
-            <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">

@@ -117,7 +117,7 @@
     <h3>Tickets assignés :</h3>
 
     @if($agent->tickets && $agent->tickets->count() > 0)
-    <table class="table mt-3">
+    <table id="productsTable" class="table table-hover table-product" style="width:100%">
         <thead>
             <tr>
                 <th>Id</th>
@@ -125,35 +125,34 @@
                 <th>Catégorie</th>
                 <th>Status</th>
                 <th>Priorité</th>
-                <th>Client concerné</th>
-                <th>Créé à</th>
-                <th>Mise à jour à</th>
+                <th>Client</th>
+                <th>Créé</th>
+                <th>MàJ</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($agent->tickets as $ticket)
             <tr>
-                <td>{{ $loop->index + 1 }}</td>
-                <td>{{$ticket->titre}}</td>
+                <td class="text-center">{{ $loop->index + 1 }}</td>
+                <td style="font-size: 14px;">{{$ticket->titre}}</td>
                 <td>{{$ticket->categorie->nom}}</td>
-                <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
-                <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
+                <td class="text-center">{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
+                <td class="text-center">{{$ticket->priorite ? $ticket->priorite->nom : '-'}}</td>
                 <td>{{$ticket->user->nom}}</td>
-                <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
-                <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
-                <td>
-                    <a href="{{route('admin.ticket', $ticket->id)}}" class="btn-sm">
-                        <i class="fa fa-eye fa-lg"></i>
-                    </a>
-
-                    <a href="{{route('admin.modifier_ticket', $ticket->id)}}" class="btn-sm">
-                        <i class="fa fa-edit fa-lg"></i>
-                    </a>
-
-                    <a href="{{route('admin.supprimer_ticket', $ticket->id)}}" class="btn-sm">
-                        <i class="fa fa-trash"></i>
-                    </a>
+                <td>{{$ticket->created_at->format('d-m-y')}}</td>
+                <td>{{$ticket->updated_at->format('d-m-y')}}</td>
+                <td class="text-center">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{route('admin.ticket', $ticket->id)}}">Afficher</a>
+                            <a class="dropdown-item" href="{{route('admin.modifier_ticket', $ticket->id)}}">Modifier</a>
+                            <a class="dropdown-item" href="{{route('admin.fermer_ticket', $ticket->id)}}">Fermer</a>
+                            <a class="dropdown-item" href="{{route('admin.supprimer_ticket', $ticket->id)}}">Supprimer</a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             @endforeach

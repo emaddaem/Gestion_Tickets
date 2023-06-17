@@ -66,7 +66,9 @@ class ClientController extends Controller
     {
         $client = User::find($id);
 
-        return view('admin/clients/client', compact('client'));
+        $tickets_supprimes = Ticket::where('user_id', $id)->onlyTrashed()->get();
+
+        return view('admin/clients/client', compact('client', 'tickets_supprimes'));
     }
 
     /**
