@@ -20,19 +20,19 @@
     </div>
     <div class="container mt-3">
         <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
-        <div class="row">
+        < <div class="row">
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Sujet</th>
+                            <th>Titre</th>
                             <th>Catégorie</th>
                             <th>Statut</th>
-                            <th>Agent assigné</th>
-                            <th>Créé a</th>
-                            <th>Mise a jour a</th>
+                            <th>Agent</th>
+                            <th>Créé</th>
+                            <th>MàJ</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -40,13 +40,13 @@
                         @foreach ($tickets as $ticket)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{$ticket->titre}}</td>
+                            <td style="font-size: 14px;">{{$ticket->titre}}</td>
                             <td>{{$ticket->categorie->nom}}</td>
-                            <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
-                            <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
-                            <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
-                            <td>
+                            <td class="text-center">{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
+                            <td>{{$ticket->agent ? $ticket->agent->nom : '-'}}</td>
+                            <td>{{$ticket->created_at->format('d-m-y')}}</td>
+                            <td>{{$ticket->updated_at->format('d-m-y')}}</td>
+                            <td class="text-center">
                                 <div class="dropdown">
                                     <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                     </a>
@@ -65,7 +65,7 @@
             @else
             <h4 class="text text-center">Aucun résultat trouvé</h4>
             @endif
-        </div>
     </div>
+</div>
 </div>
 @endsection

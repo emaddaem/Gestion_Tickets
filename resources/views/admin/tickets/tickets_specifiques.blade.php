@@ -28,7 +28,7 @@
         <a href="{{route('admin.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
 
-    <div class="container mt-3">
+    <div class="container mb-7">
         <div class="row">
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
@@ -40,32 +40,47 @@
                             <th>Catégorie</th>
                             <th>Statut</th>
                             <th>Priorité</th>
-                            <th>Agent assigné</th>
-                            <th>Client concerné</th>
-                            <th>Créé à</th>
-                            <th>Mise à jour à</th>
+                            <th>Agent</th>
+                            <th>Client</th>
+                            <th>Créé</th>
+                            <th>MàJ</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($tickets as $ticket)
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td>{{$ticket->titre}}</td>
+                        <td class="text-center">{{ $loop->index + 1 }}</td>
+                            <td style="font-size: 14px;">{{$ticket->titre}}</td>
                             <td>{{$ticket->categorie->nom}}</td>
-                            <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
-                            <td>{{$ticket->user->nom}}</td>
-                            <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
-                            <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
+                            <td class="text-center">{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
+                            <td class="text-center">{{$ticket->priorite ? $ticket->priorite->nom : '-'}}</td>
+                            <td class="text-center">
+                                @if($ticket->agent)
+                                <a href="{{route('admin.agent', $ticket->agent->id)}}" style="text-decoration: none; color: inherit;">
+                                    {{$ticket->agent->nom}}
+                                </a>
+                                @else
+                                -
+                                @endif
+                            </td>
                             <td>
+                                <a href="{{route('admin.client', $ticket->user->id)}}" style="text-decoration: none; color: inherit;">
+                                    {{$ticket->user->nom}} {{$ticket->user->prenom}}
+                                </a>
+                            </td>
+                            <td>{{$ticket->created_at->format('d-m-y')}}</td>
+                            <td>{{$ticket->updated_at->format('d-m-y')}}</td>
+                            <td class="text-center">
                                 <div class="dropdown">
                                     <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="{{route('admin.ticket', $ticket->id)}}">Afficher</a>
                                         <a class="dropdown-item" href="{{route('admin.modifier_ticket', $ticket->id)}}">Modifier</a>
+                                        @if($ticket->statut->nom !== "Résolu")
+                                        <a class="dropdown-item" href="{{route('admin.fermer_ticket', $ticket->id)}}">Fermer</a>
+                                        @endif
                                         <a class="dropdown-item" href="{{route('admin.supprimer_ticket', $ticket->id)}}">Supprimer</a>
                                     </div>
                                 </div>

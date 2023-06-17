@@ -43,6 +43,7 @@ class CategorieController extends Controller
 
         Categorie::create([
             'nom' => $validatedData['nom'],
+            'entreprise_id' => auth()->user()->entreprise->id,
         ]);
 
         return redirect()->route('admin.categories')->with("success", "La catégorie a bien été ajoutée.");

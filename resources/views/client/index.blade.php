@@ -12,17 +12,19 @@
     }
 </style>
 
-<h4 class="text text-center">Bienvenue dans l'espace de support chez <strong>{{ auth()->user()->entreprise->nom }}</strong></h4>
+<div style="margin-top: 40px;">
+    <h4 class="text text-center">Bienvenue dans l'espace de support chez <strong>{{ auth()->user()->entreprise->nom }}</strong></h4>
+</div>
 
-<div class="container">
+<div class="container my-3">
     @include('includes.success')
     @include('includes.errors')
-    
+
     <h3><strong>Tableau de board</strong></h3>
 
     <div class="row mt-4 mb-5">
-        <div class="col-md-3">
-            <div class="card" style="width: 19rem;">
+        <div class="col-md-3 my-2">
+            <div class="card" style="width: 17rem; height: 8rem;">
                 <div class="card-body">
                     <a href="{{route('client.tickets_specifiques', $id_statut_nouveau)}}">
                         <h5 class="card-title">Nouveaux tickets</h5>
@@ -32,11 +34,11 @@
             </div>
         </div>
 
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3 my-2"></div>
+        <div class="col-md-3 my-2"></div>
 
-        <div class="col-md-3">
-            <div class="card" style="width: 19rem;">
+        <div class="col-md-3 my-2">
+            <div class="card" style="width: 17rem; height: 8rem;">
                 <div class="card-body">
                     <a href="{{route('client.tickets_specifiques', $id_statut_resolu)}}">
                         <h5 class="card-title">Tickets résolus</h5>
@@ -60,23 +62,23 @@
                         <th>Titre</th>
                         <th>Catégorie</th>
                         <th>Statut</th>
-                        <th>Agent assigné</th>
-                        <th>Créé a</th>
-                        <th>Mise a jour a</th>
+                        <th>Agent</th>
+                        <th>Créé</th>
+                        <th>MàJ</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($tickets as $ticket)
                     <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td>{{$ticket->titre}}</td>
+                        <td class="text-center">{{ $loop->index + 1 }}</td>
+                        <td style="font-size: 14px;">{{$ticket->titre}}</td>
                         <td>{{$ticket->categorie->nom}}</td>
-                        <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
-                        <td>{{$ticket->agent ? $ticket->agent->nom : 'Pas encore assigné'}}</td>
-                        <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
-                        <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
-                        <td>
+                        <td class="text-center">{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
+                        <td>{{$ticket->agent ? $ticket->agent->nom : '-'}}</td>
+                        <td>{{$ticket->created_at->format('d-m-y')}}</td>
+                        <td>{{$ticket->updated_at->format('d-m-y')}}</td>
+                        <td class="text-center">
                             <div class="dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 </a>

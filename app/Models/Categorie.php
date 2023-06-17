@@ -10,7 +10,8 @@ class Categorie extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom'
+        'nom',
+        'entreprise_id'
     ];
 
     public function tickets()

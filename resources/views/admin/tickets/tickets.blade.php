@@ -23,7 +23,7 @@
         <a href="{{route('admin.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
 
-    <div class="container my-3">
+    <div class="container mb-7">
         <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6><br>
         <div class="row">
             @if ($tickets && $tickets->count() > 0)
@@ -54,7 +54,7 @@
                             <td class="text-center">
                                 @if($ticket->agent)
                                 <a href="{{route('admin.agent', $ticket->agent->id)}}" style="text-decoration: none; color: inherit;">
-                                    {{$ticket->agent ? $ticket->agent->nom : '-'}}
+                                    {{$ticket->agent->nom}}
                                 </a>
                                 @else
                                 -
