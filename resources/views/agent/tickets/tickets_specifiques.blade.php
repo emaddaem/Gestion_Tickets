@@ -36,7 +36,7 @@
                             <th>Id</th>
                             <th>Titre</th>
                             <th>Catégorie</th>
-                            <th>Status</th>
+                            <th>Statut</th>
                             <th>Priorité</th>
                             <th>Client concerné</th>
                             <th>Créé à</th>
@@ -50,9 +50,9 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{$ticket->titre}}</td>
                             <td>{{$ticket->categorie->nom}}</td>
-                            <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
-                            <td>{{$ticket->user->nom}}</td>
+                            <td>{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
+                            <td>{{$ticket->priorite ? $ticket->priorite->nom : '-'}}</td>
+                            <td>{{$ticket->user->prenom}} {{$ticket->user->nom}}</td>
                             <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
                             <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
                             <td>

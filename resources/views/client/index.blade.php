@@ -35,7 +35,7 @@
     @include('includes.success')
     @include('includes.errors')
 
-    <h3><strong>Tableau de board</strong></h3>
+    <h3><strong>Tableau de bord</strong></h3>
 
     <div class="row mt-4 mb-5">
         <div class="col-md-3 my-2">

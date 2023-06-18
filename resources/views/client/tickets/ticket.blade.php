@@ -20,7 +20,11 @@
         max-height: 600px;
         overflow-y: scroll;
     }
-
+    
+    .left_side{
+        max-height: 780px;
+    }
+    
     .line {
         border: 1px #99b8fd solid;
         margin-top: 15px;
@@ -37,6 +41,7 @@
     .message,
     .date {
         margin-left: 23px;
+        margin-right: 23px;
     }
 </style>
 
@@ -93,8 +98,10 @@
                 <h3 class="mb-3"><strong>Informations sur l'agent assigné :</strong></h3>
                 @if($ticket->agent)
 
-                <i class="fas fa-user-tie"></i>
-                <h3 class="d-inline"> {{$ticket->agent->prenom}}</h3>
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-user-tie fa-lg" style="color: black;"></i>&nbsp;&nbsp;
+                    <h3 class="d-inline">{{$ticket->agent->prenom}}</h3>
+                </div>
 
                 <h6 class="my-2"><strong>Email :</strong> {{$ticket->agent->email}}</h6>
                 <h6 class="my-2"><strong>Téléphone :</strong> {{$ticket->agent->telephone}}</h6>
@@ -122,9 +129,10 @@
         <div class="right_side col-lg-7">
 
             <div class="client">
-                <div>
-                    <i class="fas fa-user fa-lg mb-2"></i>
-                    <h5 class="d-inline"><strong>Vous</strong></h5>
+                <div class="d-flex align-items-center">
+                    <!-- <i class="fas fa-user fa-lg" style="color: black;"></i>&nbsp;
+                    <h5 class="d-inline"><strong>Vous</strong></h5> -->
+                    <h5 class="d-inline"><strong>Description :</strong></h5>
                 </div>
 
                 <i>
@@ -141,8 +149,8 @@
                 @foreach($ticket->commentaires as $commentaire)
                 @if($commentaire->user && $commentaire->user->role == 'agent')
                 <div class="agent">
-                    <div>
-                        <i class="fas fa-user-tie fa-lg mb-2"></i>
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-user-tie fa-lg" style="color: black;"></i>&nbsp;
                         <h5 class="d-inline"><strong> {{$ticket->agent->prenom}}</strong></h5>
                     </div>
 
@@ -156,8 +164,8 @@
                 <div class="line"></div>
                 @elseif($commentaire->user && $commentaire->user->role == 'client')
                 <div class="client">
-                    <div>
-                        <i class="fas fa-user fa-lg mb-2"></i>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-user fa-lg" style="color: black;"></i>&nbsp;
                         <h5 class="d-inline"><strong>Vous</strong></h5>
                     </div>
                     <i>
@@ -171,8 +179,8 @@
 
                 @elseif($commentaire->user && $commentaire->user->role == 'admin')
                 <div class="agent">
-                    <div>
-                        <i class="fas fa-user-tie fa-lg mb-2"></i>
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-user-tie fa-lg" style="color: black;"></i>&nbsp;
                         <h5 class="d-inline"><strong> Administrateur</strong></h5>
                     </div>
 

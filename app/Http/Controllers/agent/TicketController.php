@@ -48,8 +48,8 @@ class TicketController extends Controller
             'nombreTicketsattente' => Ticket::where('agent_id', $agent_id)->where('statut_id', $id_statut_attente)->count(),
             'nombreTicketsResolus' => Ticket::where('agent_id', $agent_id)->where('statut_id', $id_statut_resolu)->count(),
             
-            'nombreTicketsUrgentes' => Ticket::where('agent_id', $agent_id)->where('priorite_id', $id_priorite_urgente)->count(),
-            'nombreTicketsElevee' => Ticket::where('agent_id', $agent_id)->where('priorite_id', $id_priorite_elevee)->count(),
+            'nombreTicketsUrgentes' => Ticket::where('agent_id', $agent_id)->where('priorite_id', $id_priorite_urgente)->where('statut_id', '<>', $id_statut_resolu)->count(),
+            'nombreTicketsElevee' => Ticket::where('agent_id', $agent_id)->where('priorite_id', $id_priorite_elevee)->where('statut_id', '<>', $id_statut_resolu)->count(),
 
         ];
 
@@ -85,7 +85,9 @@ class TicketController extends Controller
     {
         $agent_id = auth()->user()->id;
 
-        $tickets = Ticket::where('agent_id', $agent_id)->where('priorite_id', $priorite_id)->get();
+        $id_statut_resolu = Statut::where('nom', 'Résolu')->value('id');
+
+        $tickets = Ticket::where('agent_id', $agent_id)->where('priorite_id', $priorite_id)->where('statut_id', '<>', $id_statut_resolu)->get();
 
         $nom_priorite = Priorite::where('id', $priorite_id)->value('nom');
 

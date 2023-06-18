@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Tableau de board')
+@section('title', 'Tableau de bord')
 @section('content')
 
 <style>
@@ -20,7 +20,7 @@
     @include('includes.success')
     @include('includes.errors')
 
-    <h3><strong>Tableau de board</strong></h3>
+    <h3><strong>Tableau de bord</strong></h3>
     <div class="row mt-4">
         <div class="col-md-3 my-2">
             <div class="card" style="width: 17rem; height: 8rem;">

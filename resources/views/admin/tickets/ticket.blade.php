@@ -33,6 +33,8 @@
     .message,
     .date {
         margin-left: 23px;
+        margin-right: 23px;
+
     }
 </style>
 
@@ -146,8 +148,9 @@
         <div class="right_side col-lg-7">
             <div class="client">
                 <div>
-                    <i class="fas fa-user fa-lg"></i>
-                    <h5 class="d-inline"><strong> {{$ticket->user->prenom}} {{$ticket->user->nom}}</strong></h5>
+                    <!-- <i class="fas fa-user fa-lg"></i>
+                    <h5 class="d-inline"><strong> {{$ticket->user->prenom}} {{$ticket->user->nom}}</strong></h5> -->
+                    <h5 class="d-inline"><strong>Description :</strong></h5>
                 </div>
 
                 <i>
@@ -166,7 +169,7 @@
                 <div class="agent">
                     <div>
                         <i class="fas fa-user-tie fa-lg mb-2"></i>
-                        <h5 class="d-inline"><strong> {{$ticket->agent->prenom}} {{$ticket->agent->nom}}</strong></h5>
+                        <h5 class="d-inline"><strong>{{$ticket->agent->prenom}} {{$ticket->agent->nom}}</strong></h5>
                     </div>
 
                     <i>

@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Tableau de board')
+@section('title', 'Tableau de bord')
 @section('content')
 
 <style>
@@ -17,7 +17,7 @@
 </style>
 
 <div class="container">
-    <h3 class="mt-5"><strong>Tableau de board</strong></h3>
+    <h3 class="mt-5"><strong>Tableau de bord</strong></h3>
 
     <div class="row mt-4">
 
