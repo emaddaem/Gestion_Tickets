@@ -10,6 +10,10 @@
     .card-body a {
         text-decoration: none;
     }
+
+    .form-container img{
+        height: 35px;
+    }
 </style>
 
 <div class="container my-5">
@@ -52,20 +56,25 @@
 
     </div>
 </div>
+
 <div class="container form-container col-lg-7 my-5">
     @include('includes.success')
     @include('includes.errors')
 
-    <h1 class="text text-center">Page de profil</h1>
+    <h1 class="text text-center mb-7">Page de profil</h1>
 
-    <h4 class="mt-5"><strong>Informations sur l'entreprise</strong></h4>
+    <h4 class="my-3"><strong>Informations sur l'entreprise</strong></h4>
 
     <form action="{{ route('entreprise.update_entreprise') }}" method="post" id="entreprise" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        <div class="col-lg-4">
-            <img src="../images/logo.png" alt="Logo d'entreprise" class="img-thumbnail w-25" onclick="showImage('../images/logo.png')" />
+        <div class="form-group d-flex align-items-center justify-content-center mb-3">
+            @if($entreprise->logo)
+            <img src="{{ asset('images/logos/' . $entreprise->logo) }}"  alt="{{ $entreprise->nom }}" onclick="showImage('{{ asset('images/logos/' . $entreprise->logo) }}')" />
+            @else
+            <p>Ajoutez un logo de votre entreprise</p>
+            @endif
         </div>
         <div class="form-group mb-3">
             <label for="logo">Logo</label>

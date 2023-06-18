@@ -8,8 +8,11 @@
                     <div class="card-header pb-0">
                         <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
                             <a class="w-auto pl-0" href="/index.html">
-                                <!-- <img src="images/logo.png" alt="Mono"> -->
+                                @if($entreprise && $entreprise->logo)
+                                <img src="{{ asset('images/logos/' . $entreprise->logo) }}" alt="{{ $entreprise->nom }}" />
+                                @else
                                 <span class="brand-name text-dark">Bienvenue</span>
+                                @endif
                             </a>
                         </div>
                     </div>
@@ -20,7 +23,7 @@
                             <div class="row">
                                 <!-- Champ caché pour l'identifiant de l'entreprise -->
                                 <input type="hidden" name="entreprise_id" value="{{ $entreprise ? $entreprise->id : null }}">
-                                
+
                                 <div class="form-group col-md-12 mb-4">
                                     <input type="text" class="form-control input-lg" id="name" name="nom" aria-describedby="nameHelp" placeholder="Nom">
                                     @if (isset($errors) && $errors->has('nom'))

@@ -15,13 +15,13 @@ class AuthController extends Controller
     public function login(string $entreprise_URL)
     {
         if (!$entreprise_URL) {
-            return redirect()->route('welcome')->withErrors("L'URL que vous désirez accéder est introuvable");
+            return redirect()->route('welcome')->withErrors("L'entreprise que vous désirez accéder est introuvable");
         }
 
         $entreprise = Entreprise::where('url_personnalisee', $entreprise_URL)->first();
 
         if (!$entreprise) {
-            return redirect()->route('welcome')->withErrors("L'URL que vous désirez accéder est introuvable");
+            return redirect()->route('welcome')->withErrors("L'entreprise que vous désirez accéder est introuvable");
         }
 
         return view('auth.login', compact('entreprise'));
@@ -55,7 +55,7 @@ class AuthController extends Controller
         $entreprise = Entreprise::where('url_personnalisee', $entreprise_URL)->first();
 
         if (!$entreprise) {
-            return redirect()->route('welcome')->withErrors("L'URL que vous désirez accéder est introuvable");
+            return redirect()->route('welcome')->withErrors("L'entreprise que vous désirez accéder est introuvable");
         }
         return view('auth.registration', compact('entreprise'));
     }

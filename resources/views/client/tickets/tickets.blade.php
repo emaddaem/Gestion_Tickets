@@ -18,6 +18,7 @@
     <div class="creer-ticket">
         <a href="{{route('client.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
+    
     <div class="container mt-3">
         <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
         < <div class="row">

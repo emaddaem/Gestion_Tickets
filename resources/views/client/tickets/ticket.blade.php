@@ -23,8 +23,8 @@
 
     .line {
         border: 1px #99b8fd solid;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
     .line_top,
@@ -92,14 +92,12 @@
             <div class="my-3">
                 <h3 class="mb-3"><strong>Informations sur l'agent assigné :</strong></h3>
                 @if($ticket->agent)
-                <div class="my-2">
-                    <i class="fas fa-user-tie"></i>
-                    <h3 class="d-inline"> {{$ticket->agent->prenom}}</h3>
-                </div>
-                <div class="my-2">
-                    <h6 class="my-1"><strong>Email :</strong> {{$ticket->agent->email}}</h6>
-                    <h6 class="my-1"><strong>Téléphone :</strong> {{$ticket->agent->telephone}}</h6>
-                </div>
+
+                <i class="fas fa-user-tie"></i>
+                <h3 class="d-inline"> {{$ticket->agent->prenom}}</h3>
+
+                <h6 class="my-2"><strong>Email :</strong> {{$ticket->agent->email}}</h6>
+                <h6 class="my-2"><strong>Téléphone :</strong> {{$ticket->agent->telephone}}</h6>
                 @else
                 <h3 class="my-3">Pas encore assigné</h3>
                 @endif

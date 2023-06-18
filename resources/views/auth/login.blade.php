@@ -11,8 +11,11 @@
                     <div class="card-header pb-0">
                         <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
                             <a class="w-auto pl-0" href="/index.html">
-                                <!-- <img src="images/logo.png" alt="Mono"> -->
+                                @if($entreprise && $entreprise->logo)
+                                <img src="{{ asset('images/logos/' . $entreprise->logo) }}"  alt="{{ $entreprise->nom }}" />
+                                @else
                                 <span class="brand-name text-dark">Bienvenue</span>
+                                @endif
                             </a>
                         </div>
                     </div>

@@ -10,10 +10,25 @@
     .card-body a {
         text-decoration: none;
     }
+
+    .creer-ticket {
+        text-align: right;
+    }
+
+    .logo-entreprise img{
+        height: 30px;
+    }
 </style>
 
 <div style="margin-top: 40px;">
-    <h4 class="text text-center">Bienvenue dans l'espace de support chez <strong>{{ auth()->user()->entreprise->nom }}</strong></h4>
+    <div class="logo-entreprise d-flex align-items-center justify-content-center mb-3">
+        @if(auth()->user()->entreprise->logo)
+        <img src="{{ asset('images/logos/' . auth()->user()->entreprise->logo) }}" alt="{{ auth()->user()->entreprise->nom }}" onclick="showImage('{{ asset('images/logos/' . auth()->user()->entreprise->logo) }}')" />
+        @endif
+    </div>
+    <h4 class="text text-center">
+        Bienvenue dans l'espace de support chez <strong>{{ auth()->user()->entreprise->nom }}</strong>
+    </h4>
 </div>
 
 <div class="container my-3">
@@ -50,6 +65,10 @@
     </div>
 
     <h2>Mes tickets récentes :</h2>
+
+    <div class="creer-ticket">
+        <a href="{{route('client.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
+    </div>
 
     <!-- <div class="container"> -->
     <div class="row my-4">

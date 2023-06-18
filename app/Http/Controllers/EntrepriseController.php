@@ -85,7 +85,7 @@ class EntrepriseController extends Controller
         $entreprise = auth()->user()->entreprise;
 
         $validatedData = $request->validate([
-            'logo' => 'sometimes',
+            'logo' => "sometimes|image|max:8192",
             'nom' => 'sometimes',
             'description' => 'sometimes',
             'telephone' => 'sometimes',
@@ -94,7 +94,12 @@ class EntrepriseController extends Controller
             'url_personnalisee' => ['sometimes', Rule::unique('entreprises')->ignore(auth()->user()->entreprise->id)],
         ]);
 
+        $logo = $request->file('logo');
+        $nom_logo = uniqid() . '.' . $logo->getClientOriginalExtension();
+        $logo->move(public_path('images/logos'), $nom_logo);
+
         $entreprise->update([
+            'logo' => $nom_logo,
             'nom' => $validatedData['nom'],
             'email' => $validatedData['email'],
             'description' => $validatedData['description'],

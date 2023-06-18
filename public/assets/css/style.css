@@ -72,14 +72,14 @@ body {
 }
 
 .left_side {
-  border: 2px #99b8fd solid;
+  /* border: 2px #99b8fd solid; */
   padding: 10px 15px;
   margin-right: 96px;
   max-height: 920px;
 }
 
 .right_side {
-  border: 2px #99b8fd solid;
+  /* border: 2px #99b8fd solid; */
   padding: 10px 15px;
 }
 

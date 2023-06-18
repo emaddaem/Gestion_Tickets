@@ -19,8 +19,8 @@
 
     .line {
         border: 1px #99b8fd solid;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
     .line_top,
