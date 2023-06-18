@@ -46,9 +46,9 @@
                 <input type="file" class="form-control border-info" name="jointures[]" multiple>
             </div>
 
-            <div class="mb-3">
-                <input type="submit" value="Ajouter" class="btn btn-primary mt-3">
+            <div class="mb-3 text-right">
                 <a href="javascript:history.back()" class="btn btn-danger mt-3">Annuler</a>
+                <input type="submit" value="Créer" class="btn btn-primary mt-3">
             </div>
 
         </form>

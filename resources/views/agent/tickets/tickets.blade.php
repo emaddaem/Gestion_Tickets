@@ -23,9 +23,9 @@
         <a href="{{route('agent.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
 
+    <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
     <div class="container my-3">
         <div class="row">
-            <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">

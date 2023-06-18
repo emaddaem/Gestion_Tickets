@@ -2,7 +2,7 @@
     @guest
         <li class="nav-item">
             <a class="nav-link active" id="pills-home-tab" href="/" role="tab" aria-controls="nav-tabs" aria-selected="true">
-                <i class="mdi mdi-star-outline"></i> Acceuil
+                <i class="mdi mdi-star-outline"></i> Accueil
             </a>
         </li>
     @else
@@ -10,7 +10,7 @@
             @if(Auth::user()->role === 'client')
             <li class="nav-item">
                 <a class="nav-link active" id="pills-home-tab" href="{{route('client.index')}}" role="tab" aria-controls="nav-tabs" aria-selected="true">
-                    <i class="mdi mdi-star-outline"></i> Tableau de board
+                    <i class="mdi mdi-star-outline"></i> Accueil
                 </a>
             </li>
             <li class="nav-item">
@@ -46,7 +46,7 @@
             @elseif(Auth::user()->role === 'agent')
             <li class="nav-item">
                 <a class="nav-link active" id="pills-home-tab" href="{{route('agent.index')}}" role="tab" aria-controls="nav-tabs" aria-selected="true">
-                    <i class="mdi mdi-star-outline"></i> Tableau de board
+                    <i class="mdi mdi-star-outline"></i> Accueil
                 </a>
             </li>
 
@@ -82,7 +82,7 @@
             @elseif(Auth::user()->role === 'admin')
             <li class="nav-item">
                 <a class="nav-link active" id="pills-home-tab" href="{{route('admin.index')}}" role="tab" aria-controls="nav-tabs" aria-selected="true">
-                    <i class="mdi mdi-star-outline"></i> Tableau de board
+                    <i class="mdi mdi-star-outline"></i> Accueil
                 </a>
             </li>
             <li class="nav-item">

@@ -13,7 +13,7 @@
 </style>
 
 
-<div class="container my-5">
+<div class="container form-container my-5">
 
     <h1 class="text text-center">Page de profil</h1>
 

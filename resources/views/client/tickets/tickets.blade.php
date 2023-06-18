@@ -18,10 +18,10 @@
     <div class="creer-ticket">
         <a href="{{route('client.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>
     </div>
-    
+
     <div class="container mt-3">
         <h6 class="my-2"><strong>Nombre total :</strong> {{$tickets->count()}}</h6>
-        < <div class="row">
+        <div class="row">
             @if ($tickets && $tickets->count() > 0)
             <div class="col">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">
@@ -44,7 +44,7 @@
                             <td style="font-size: 14px;">{{$ticket->titre}}</td>
                             <td>{{$ticket->categorie->nom}}</td>
                             <td class="text-center">{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
-                            <td>{{$ticket->agent ? $ticket->agent->nom : '-'}}</td>
+                            <td>{{$ticket->agent ? $ticket->agent->prenom : '-'}}</td>
                             <td>{{$ticket->created_at->format('d-m-y')}}</td>
                             <td>{{$ticket->updated_at->format('d-m-y')}}</td>
                             <td class="text-center">
@@ -66,7 +66,7 @@
             @else
             <h4 class="text text-center">Aucun résultat trouvé</h4>
             @endif
+        </div>
     </div>
-</div>
 </div>
 @endsection

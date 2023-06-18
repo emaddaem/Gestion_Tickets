@@ -93,8 +93,8 @@
                         <td class="text-center">{{ $loop->index + 1 }}</td>
                         <td style="font-size: 14px;">{{$ticket->titre}}</td>
                         <td>{{$ticket->categorie->nom}}</td>
-                        <td class="text-center">{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
-                        <td>{{$ticket->agent ? $ticket->agent->nom : '-'}}</td>
+                        <td>{{$ticket->statut ? $ticket->statut->nom : '-'}}</td>
+                        <td>{{$ticket->agent ? $ticket->agent->prenom : '-'}}</td>
                         <td>{{$ticket->created_at->format('d-m-y')}}</td>
                         <td>{{$ticket->updated_at->format('d-m-y')}}</td>
                         <td class="text-center">

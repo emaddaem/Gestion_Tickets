@@ -121,7 +121,7 @@
                         <td>{{$ticket->categorie->nom}}</td>
                         <td class="text-center">{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
                         <td class="text-center">{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
-                        <td>{{$ticket->user->nom}}</td>
+                        <td>{{$ticket->user->nom}} {{$ticket->user->prenom}}</td>
                         <td>{{$ticket->created_at->format('d-m-y')}}</td>
                         <td>{{$ticket->updated_at->format('d-m-y')}}</td>
                         <td class="text-center">

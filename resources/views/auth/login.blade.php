@@ -30,13 +30,13 @@
                                 <input type="hidden" name="entreprise_id" value="{{ $entreprise ? $entreprise->id : null }}">
 
                                 <div class="form-group col-md-12 mb-4">
-                                    <input type="email" class="form-control input-lg" name="email" id="email" aria-describedby="emailHelp" placeholder="email">
+                                    <input type="email" class="form-control input-lg" name="email" id="email" aria-describedby="emailHelp" placeholder="Adresse email">
                                     @if (isset($errors) && $errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group col-md-12 ">
-                                    <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Password">
+                                    <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Mot de passe">
                                     @if (isset($errors) && $errors->has('password'))
                                     <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif

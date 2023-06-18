@@ -12,10 +12,10 @@
     }
 </style>
 
-@include('includes.success')
-@include('includes.errors')
 
-<div class="container col-lg-7 my-5">
+<div class="container form-container col-lg-7 my-5">
+    @include('includes.success')
+    @include('includes.errors')
 
     <h1 class="text text-center">Page de profil</h1>
 
@@ -64,10 +64,11 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary mt-3" id="btn-changer-mot-de-passe" onclick="activerChangementMotDePasse()">Changer le mot de passe</button>
-        <button type="button" class="btn btn-primary mt-3" id="modifier" onclick="activerChamps('entreprise')">Modifier</button>
-        <input type="submit" class="btn btn-success mt-3" id="enregistrer" value="Enregistrer" disabled>
-
+        <div class="text-right">
+            <button type="button" class="btn btn-primary mt-3" id="btn-changer-mot-de-passe" onclick="activerChangementMotDePasse()">Changer le mot de passe</button>
+            <button type="button" class="btn btn-primary mt-3" id="modifier" onclick="activerChamps('entreprise')">Modifier</button>
+            <input type="submit" class="btn btn-success mt-3" id="enregistrer" value="Enregistrer" disabled>
+        </div>
     </form>
 </div>
 

@@ -12,10 +12,10 @@
     }
 </style>
 
-@include('includes.success')
-@include('includes.errors')
 
 <div class="container form-container col-lg-7 my-5">
+    @include('includes.success')
+    @include('includes.errors')
     <h1 class="text text-center">Modifier le ticket</h1>
 
     <div class="form-group">
