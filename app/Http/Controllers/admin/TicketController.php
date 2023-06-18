@@ -155,7 +155,7 @@ class TicketController extends Controller
 
     public function show(string $id)
     {
-        $ticket = Ticket::find($id);
+        $ticket = Ticket::withTrashed()->find($id);
         $agents = User::where('role', 'agent')->get();
 
         return view('admin/tickets/ticket', compact('ticket', 'agents'));
@@ -164,7 +164,7 @@ class TicketController extends Controller
 
     public function edit(string $id)
     {
-        $ticket = Ticket::find($id);
+        $ticket = Ticket::withTrashed()->find($id);
         $agents = User::where('role', 'agent')->get();
         $clients = User::where('role', 'client')->get();
         $statuts = Statut::whereNull('user_id')->get();
@@ -235,7 +235,7 @@ class TicketController extends Controller
 
     public function destroy(string $id)
     {
-        $ticket = Ticket::find($id);
+        $ticket = Ticket::withTrashed()->find($id);
         $jointures = $ticket->jointures;
 
         foreach ($jointures as $jointure) {

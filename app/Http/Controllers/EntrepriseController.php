@@ -6,6 +6,7 @@ use App\Models\Entreprise;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class EntrepriseController extends Controller
 {
@@ -79,9 +80,30 @@ class EntrepriseController extends Controller
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $entreprise = auth()->user()->entreprise;
+
+        $validatedData = $request->validate([
+            'logo' => 'sometimes',
+            'nom' => 'sometimes',
+            'description' => 'sometimes',
+            'telephone' => 'sometimes',
+            'adresse' => 'sometimes',
+            'email' => ['sometimes', 'email', Rule::unique('entreprises')->ignore(auth()->user()->entreprise->id)],
+            'url_personnalisee' => ['sometimes', Rule::unique('entreprises')->ignore(auth()->user()->entreprise->id)],
+        ]);
+
+        $entreprise->update([
+            'nom' => $validatedData['nom'],
+            'email' => $validatedData['email'],
+            'description' => $validatedData['description'],
+            'telephone' => $validatedData['telephone'],
+            'adresse' => $validatedData['adresse'],
+            'url_personnalisee' => $validatedData['url_personnalisee']
+        ]);
+
+        return redirect()->back()->with('success', "Les informations de l'entreprise ont bien été modifiées");
     }
 
 

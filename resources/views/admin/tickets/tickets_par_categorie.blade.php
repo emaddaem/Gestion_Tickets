@@ -18,7 +18,7 @@
     @include('includes.errors')
 
     <h2>Liste des tickets</h2>
-    <h4>Ctégorie : <strong>{{$categorie->nom}}</strong></h4>
+    <h4>Catégorie : <strong>{{$categorie->nom}}</strong></h4>
 
     <div class="creer-ticket">
         <a href="{{route('admin.creer_ticket')}}" class="btn btn-success mt-2">Créer un ticket</a>

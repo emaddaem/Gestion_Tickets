@@ -29,7 +29,10 @@ Route::get('/', function () {
 
 Route::post('/Inscrire_entreprise', [EntrepriseController::class, 'store'])->name('entreprise.inscrire');
 
+Route::put('/profil/modifier_entreprise', [EntrepriseController::class, 'update'])->name('entreprise.update_entreprise');
+
 Route::post('/connexion_client', [EntrepriseController::class, 'connexion_client'])->name('entreprise.connexion_client');
+
 Route::post('/inscription_client', [EntrepriseController::class, 'inscription_client'])->name('entreprise.inscription_client');
 
 // Route d'admin
@@ -39,6 +42,8 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/dashboard', [TicketController_admin::class, 'index'])->name('admin.index');
 
         Route::get('/profil', [ProfilController_admin::class, 'index'])->name('admin.profil');
+
+        Route::put('/profil/modifier', [ProfilController_admin::class, 'update'])->name('admin.update_profil');
 
         Route::get('/tickets', [TicketController_admin::class, 'tickets'])->name('admin.tickets');
 
