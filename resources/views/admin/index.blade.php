@@ -137,7 +137,7 @@
                         <td class="text-center">
                             @if($ticket->agent)
                             <a href="{{route('admin.agent', $ticket->agent->id)}}" style="text-decoration: none; color: inherit;">
-                                {{$ticket->agent->nom}}
+                                {{$ticket->agent->nom}} {{$ticket->agent->prenom}}
                             </a>
                             @else
                             -

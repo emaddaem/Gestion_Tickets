@@ -38,8 +38,8 @@
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{$statut->nom}}</td>
-                            <td>{{$statut->created_at}}</td>
-                            <td>{{$statut->updated_at}}</td>
+                            <td>{{$statut->created_at ? $statut->created_at->format('d-m-y') : null}}</td>
+                            <td>{{$statut->updated_at ? $statut->updated_at->format('d-m-y') : null}}</td>
                             <td>
                                 @if($statut && $statut->user_id !== null)
                                 <a href="{{route('admin.modifier_statut', $statut->id)}}" class="btn-sm"><i class="fas fa-edit fa-lg"></i></a>

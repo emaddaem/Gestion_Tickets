@@ -38,23 +38,23 @@
                             <th>Catégorie</th>
                             <th>Statut</th>
                             <th>Priorité</th>
-                            <th>Client concerné</th>
-                            <th>Créé à</th>
-                            <th>Mise à jour à</th>
+                            <th>Client</th>
+                            <th>Créé</th>
+                            <th>MàJ</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($tickets as $ticket)
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td>{{$ticket->titre}}</td>
+                            <td class="text-center">{{ $loop->index + 1 }}</td>
+                            <td style="font-size: 14px;">{{$ticket->titre}}</td>
                             <td>{{$ticket->categorie->nom}}</td>
                             <td>{{$ticket->statut ? $ticket->statut->nom : 'Pas encore défini'}}</td>
                             <td>{{$ticket->priorite ? $ticket->priorite->nom : 'Pas encore défini'}}</td>
                             <td>{{$ticket->user->nom}}</td>
-                            <td>{{$ticket->created_at->format('d-m-Y H:i')}}</td>
-                            <td>{{$ticket->updated_at->format('d-m-Y H:i')}}</td>
+                            <td>{{$ticket->created_at->format('d-m-y')}}</td>
+                            <td>{{$ticket->updated_at->format('d-m-y')}}</td>
                             <td>
                                 <div class="dropdown">
                                     <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">

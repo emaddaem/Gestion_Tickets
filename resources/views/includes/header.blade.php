@@ -59,11 +59,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="optionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plus</a>
                 <div class="dropdown-menu" aria-labelledby="optionsDropdown">
-                    <a class="dropdown-item" href="#">Liste des catégories</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{route('agent.statuts')}}">Liste des statuts</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Liste des priorités</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="">Autres</a>
                 </div>
